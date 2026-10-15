@@ -54,31 +54,6 @@
       }
     ]
   },
-  "teaching": {
-    "label": "Teaching",
-    "headingLead": "Teaching that forms",
-    "headingHighlight": "minds and hearts.",
-    "intro": "As a professor of theology, he trains students, pastors and church leaders to know the truth deeply and to live it faithfully.",
-    "cta": "Invite him to teach",
-    "disciplinesLabel": "Teaching disciplines",
-    "formats": ["Courses", "Seminars", "Lectures", "Conferences", "Mentoring"],
-    "formatsLabel": "Courses, seminars, lectures and more"
-  },
-  "footer": {
-    "ctaTitle": "Ready to invite him to speak?",
-    "ctaText": "Conferences, seminars, church services and courses: get in touch to plan his visit.",
-    "ctaButton": "Get in touch",
-    "description": "Pastor, professor of theology and author, serving the Church through preaching, teaching and writing.",
-    "exploreTitle": "Explore",
-    "ministryTitle": "Ministry",
-    "connectTitle": "Connect",
-    "inviteLink": "Invite to speak",
-    "prayerLink": "Prayer request",
-    "emailLabel": "Contact",
-    "rights": "All rights reserved.",
-    "backToTop": "Back to top",
-    "footerLabel": "Footer"
-  },
   "pages": {
     "about": {
       "title": "About",

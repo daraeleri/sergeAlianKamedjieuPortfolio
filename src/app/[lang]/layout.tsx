@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist_Mono, Outfit, Rubik } from "next/font/google";
+import { Outfit, Rubik } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { locales } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
@@ -15,13 +15,6 @@ const body = Rubik({
 const heading = Outfit({
   variable: "--font-heading-face",
   subsets: ["latin"],
-});
-
-// Small uppercase section labels ("◆ About"), as in the Fluid Glass reference.
-const mono = Geist_Mono({
-  variable: "--font-mono-face",
-  subsets: ["latin"],
-  weight: "500",
 });
 
 export function generateStaticParams() {
@@ -54,7 +47,7 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
   return (
     <html
       lang={await getLocale()}
-      className={`${body.variable} ${heading.variable} ${mono.variable} h-full antialiased`}
+      className={`${body.variable} ${heading.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">{children}</body>
     </html>
