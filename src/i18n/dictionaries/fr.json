@@ -64,6 +64,21 @@
     "formats": ["Cours", "Séminaires", "Conférences", "Colloques", "Mentorat"],
     "formatsLabel": "Cours, séminaires, conférences et plus"
   },
+  "footer": {
+    "ctaTitle": "Prêt à l'inviter à prendre la parole ?",
+    "ctaText": "Conférences, séminaires, cultes et cours : contactez-nous pour organiser sa venue.",
+    "ctaButton": "Nous contacter",
+    "description": "Pasteur, professeur de théologie et auteur, au service de l'Église par la prédication, l'enseignement et l'écriture.",
+    "exploreTitle": "Explorer",
+    "ministryTitle": "Ministère",
+    "connectTitle": "Contact",
+    "inviteLink": "Inviter à prêcher",
+    "prayerLink": "Demande de prière",
+    "emailLabel": "Contact",
+    "rights": "Tous droits réservés.",
+    "backToTop": "Haut de page",
+    "footerLabel": "Pied de page"
+  },
   "pages": {
     "about": {
       "title": "À propos",

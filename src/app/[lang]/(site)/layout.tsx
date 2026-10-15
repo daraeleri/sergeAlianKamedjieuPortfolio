@@ -8,7 +8,9 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <SmoothScroll />
       <SiteHeader />
       {/* Pages own their width and top spacing: the navbar is fixed and overlays them. */}
-      <main className="flex-1">{children}</main>
+      <main id="top" className="flex-1">
+        {children}
+      </main>
       <SiteFooter />
     </>
   );
