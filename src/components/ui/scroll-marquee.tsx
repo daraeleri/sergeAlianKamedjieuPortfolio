@@ -10,15 +10,17 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 type ScrollMarqueeProps = {
   items: string[];
+  /** Small caption above the strip, e.g. "Courses, seminars, lectures and more". */
+  label?: string;
   className?: string;
 };
 
 /**
- * Tilted royal-blue band of large words that loops horizontally. It speeds up with
- * scroll velocity and runs backwards while the page scrolls up. Static for visitors
- * who prefer reduced motion.
+ * Straight strip of large words that loops horizontally, with faded edges (BeeToGreen's
+ * partner-logo strip). It gently speeds up with scrolling and runs backwards while the
+ * page scrolls up. Static for visitors who prefer reduced motion.
  */
-export function ScrollMarquee({ items, className }: ScrollMarqueeProps) {
+export function ScrollMarquee({ items, label, className }: ScrollMarqueeProps) {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -28,7 +30,7 @@ export function ScrollMarquee({ items, className }: ScrollMarqueeProps) {
         // The track holds the word list twice, so moving it by -50% loops seamlessly.
         const loop = gsap.to("[data-marquee-track]", {
           xPercent: -50,
-          duration: 28,
+          duration: 32,
           ease: "none",
           repeat: -1,
         });
@@ -40,13 +42,13 @@ export function ScrollMarquee({ items, className }: ScrollMarqueeProps) {
           start: "top bottom",
           end: "bottom top",
           onUpdate: (self) => {
-            const boost = 1 + Math.min(Math.abs(self.getVelocity()) / 350, 5);
+            const boost = 1 + Math.min(Math.abs(self.getVelocity()) / 600, 2.5);
             gsap.to(loop, {
               timeScale: self.direction * boost,
-              duration: 0.25,
+              duration: 0.3,
               overwrite: true,
               onComplete: () => {
-                gsap.to(loop, { timeScale: self.direction, duration: 1, ease: "power2.out" });
+                gsap.to(loop, { timeScale: self.direction, duration: 1.2, ease: "power2.out" });
               },
             });
           },
@@ -60,21 +62,22 @@ export function ScrollMarquee({ items, className }: ScrollMarqueeProps) {
     items.map((item) => (
       <Fragment key={`${copy}-${item}`}>
         <span className="px-6 sm:px-10">{item}</span>
-        <span className="text-[0.5em] text-white/60">✦</span>
+        <span className="size-2.5 shrink-0 rounded-full bg-brand sm:size-3" />
       </Fragment>
     ));
 
   return (
-    <div ref={rootRef} className={cn("relative py-6", className)}>
-      {/* Readable once for assistive technology; the moving band is decorative. */}
+    <div ref={rootRef} className={cn("relative", className)}>
+      {label ? <p className="text-center text-sm font-medium text-black/50">{label}</p> : null}
+      {/* Readable once for assistive technology; the moving strip is decorative. */}
       <p className="sr-only">{items.join(", ")}</p>
       <div
         aria-hidden
-        className="-mx-[5%] -rotate-2 overflow-hidden bg-brand py-5 text-white shadow-[0_20px_50px_-25px] shadow-brand sm:py-7"
+        className="mt-6 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
       >
         <div
           data-marquee-track
-          className="flex w-max items-center font-heading text-5xl font-bold tracking-tight whitespace-nowrap sm:text-7xl"
+          className="flex w-max items-center font-heading text-4xl font-bold tracking-tight whitespace-nowrap text-ink/85 sm:text-6xl"
         >
           {words(0)}
           {words(1)}

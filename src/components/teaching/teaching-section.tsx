@@ -6,10 +6,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import type { Route } from "next";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { DisciplineIcon } from "@/components/teaching/discipline-icon";
 import { ScrollMarquee } from "@/components/ui/scroll-marquee";
-import { SectionLabel } from "@/components/ui/section-label";
 import type { Discipline } from "@/content/teaching";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { cn } from "@/lib/utils";
@@ -30,58 +29,16 @@ type TeachingSectionProps = {
 };
 
 /**
- * Home "Teaching" section (United Carriers style): on desktop a royal-blue card stays
- * pinned beside the list of disciplines and switches to whichever one is in the middle
- * of the screen. Ends with a marquee of teaching formats that reacts to scrolling.
+ * Home "Teaching" section in the BeeToGreen style: a rounded light-blue panel with a big
+ * centred heading, a grid of chunky discipline cards (the first one royal blue) and a
+ * strip of teaching formats.
  */
 export function TeachingSection({ copy, disciplines, contactHref }: TeachingSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const [active, setActive] = useState(0);
-  const count = String(disciplines.length).padStart(2, "0");
 
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
-
-      // Desktop: the row crossing the middle of the screen drives the pinned card.
-      mm.add("(min-width: 1024px)", () => {
-        gsap.utils.toArray<HTMLElement>("[data-discipline-row]").forEach((row, i) => {
-          ScrollTrigger.create({
-            trigger: row,
-            start: "top 55%",
-            end: "bottom 55%",
-            onToggle: (self) => self.isActive && setActive(i),
-          });
-        });
-        gsap.fromTo(
-          "[data-discipline-progress]",
-          { scaleX: 0 },
-          {
-            scaleX: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: "[data-discipline-list]",
-              start: "top 55%",
-              end: "bottom 55%",
-              scrub: true,
-            },
-          },
-        );
-      });
-
-      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
-        gsap.to("[data-rings]", {
-          rotate: 140,
-          ease: "none",
-          scrollTrigger: {
-            trigger: "[data-discipline-list]",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-      });
-
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         // Heading lines rise out of a mask, one after another.
         const split = SplitText.create("[data-teaching-heading]", { type: "lines", mask: "lines" });
@@ -92,18 +49,32 @@ export function TeachingSection({ copy, disciplines, contactHref }: TeachingSect
           ease: "power4.out",
           scrollTrigger: {
             trigger: "[data-teaching-heading]",
-            start: "top 80%",
+            start: "top 85%",
             toggleActions: "play none none reverse",
           },
         });
-        gsap.from("[data-discipline-row]", {
-          y: 60,
+        gsap.from("[data-teaching-intro]", {
+          y: 30,
           opacity: 0,
           duration: 0.9,
-          ease: "power3.out",
           stagger: 0.1,
+          ease: "power3.out",
           scrollTrigger: {
-            trigger: "[data-discipline-list]",
+            trigger: "[data-teaching-heading]",
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+          },
+        });
+        // Cards pop up one after another, with a little overshoot.
+        gsap.from("[data-discipline-card]", {
+          y: 80,
+          opacity: 0,
+          scale: 0.94,
+          duration: 0.9,
+          stagger: 0.1,
+          ease: "back.out(1.4)",
+          scrollTrigger: {
+            trigger: "[data-discipline-grid]",
             start: "top 80%",
             toggleActions: "play none none reverse",
           },
@@ -114,156 +85,147 @@ export function TeachingSection({ copy, disciplines, contactHref }: TeachingSect
     { scope: sectionRef },
   );
 
-  const current = disciplines[active];
+  const [featured, ...others] = disciplines;
 
   return (
-    <section
-      ref={sectionRef}
-      id="teaching"
-      className="overflow-x-clip bg-white pt-20 pb-16 text-ink sm:pt-28 sm:pb-24 lg:pt-36"
-    >
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <SectionLabel label={copy.label} index="02" />
-
-        <div className="mt-14 grid gap-8 sm:mt-20 lg:grid-cols-[1.4fr_1fr] lg:items-end">
-          <h2
-            data-teaching-heading
-            className="font-heading text-[2.6rem] leading-[1] font-bold tracking-tight text-balance sm:text-6xl lg:text-7xl"
-          >
-            {copy.headingLead} <span className="text-brand">{copy.headingHighlight}</span>
-          </h2>
-          <div className="max-w-md space-y-6 lg:justify-self-end lg:pb-2">
-            <p className="text-lg leading-relaxed text-black/60">{copy.intro}</p>
-            <Link
-              href={contactHref}
-              className="group inline-flex items-center gap-3 rounded-md bg-ink px-5 py-3 font-mono text-xs tracking-[0.16em] text-white uppercase transition-colors hover:bg-brand"
+    <section ref={sectionRef} id="teaching" className="bg-white px-2 pb-2 sm:px-4 sm:pb-4">
+      <div className="overflow-hidden rounded-[2rem] bg-brand-tint py-20 text-ink sm:rounded-[3rem] sm:py-28 lg:py-32">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          {/* Header */}
+          <div className="mx-auto max-w-4xl text-center">
+            <p
+              data-teaching-intro
+              className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-1.5 text-xs font-medium tracking-wide text-black/70 shadow-sm sm:text-sm"
             >
-              <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
-                ↳
-              </span>
-              {copy.cta}
-            </Link>
-          </div>
-        </div>
-
-        <div className="mt-16 grid gap-16 sm:mt-24 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
-          {/* Pinned card (desktop only) */}
-          {current ? (
-            <div
-              aria-hidden
-              className="relative hidden overflow-hidden rounded-[2.5rem] bg-brand p-10 text-white lg:sticky lg:top-28 lg:flex lg:h-[min(36rem,calc(100svh-9rem))] lg:flex-col lg:justify-between lg:self-start"
+              <span aria-hidden className="size-1.5 rounded-full bg-brand" />
+              {copy.label}
+            </p>
+            <h2
+              data-teaching-heading
+              className="mt-6 font-heading text-[2.4rem] leading-[1.02] font-bold tracking-tight text-balance sm:text-6xl lg:text-7xl"
             >
-              <Rings />
-              <div className="relative flex items-center justify-between font-mono text-xs tracking-[0.16em] uppercase">
-                <span className="text-white/70">{copy.disciplineLabel}</span>
-                <span>
-                  <span key={active} className="inline-block animate-fade-up">
-                    {String(active + 1).padStart(2, "0")}
-                  </span>{" "}
-                  <span className="text-white/50">/ {count}</span>
-                </span>
-              </div>
-
-              <div className="relative grid place-items-center">
-                {disciplines.map((d, i) => (
-                  <DisciplineIcon
-                    key={d.slug}
-                    name={d.icon}
-                    className={cn(
-                      "col-start-1 row-start-1 size-36 transition-all duration-700 ease-out xl:size-44",
-                      i === active
-                        ? "scale-100 rotate-0 opacity-100"
-                        : "scale-75 -rotate-12 opacity-0",
-                    )}
-                  />
-                ))}
-              </div>
-
-              <div className="relative">
-                <p
-                  key={active}
-                  className="animate-fade-up font-heading text-4xl leading-none font-bold tracking-tight xl:text-5xl"
-                >
-                  {current.title}
-                </p>
-                <div className="mt-6 h-1 overflow-hidden rounded-full bg-white/20">
-                  <div
-                    data-discipline-progress
-                    className="h-full origin-left rounded-full bg-white"
-                  />
-                </div>
-              </div>
-            </div>
-          ) : null}
-
-          {/* Discipline list */}
-          <ol
-            data-discipline-list
-            aria-label={copy.disciplinesLabel}
-            className="border-b border-black/10"
-          >
-            {disciplines.map((d, i) => (
-              <li
-                key={d.slug}
-                data-discipline-row
-                className={cn(
-                  "relative border-t border-black/10 py-10 transition-opacity duration-500 lg:flex lg:min-h-[50vh] lg:flex-col lg:justify-center",
-                  i === active ? "lg:opacity-100" : "lg:opacity-25",
-                )}
+              {copy.headingLead} <span className="text-brand">{copy.headingHighlight}</span>
+            </h2>
+            <p
+              data-teaching-intro
+              className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-black/65 sm:text-lg"
+            >
+              {copy.intro}
+            </p>
+            <div data-teaching-intro className="mt-8">
+              <Link
+                href={contactHref}
+                className="group inline-flex items-center gap-3 rounded-xl bg-brand px-6 py-3.5 font-medium text-white shadow-[0_10px_30px_-10px] shadow-brand transition-colors hover:bg-brand-strong"
               >
-                <div className="flex items-center gap-4">
-                  <span className="font-mono text-xs tracking-[0.16em] text-black/40">
-                    {String(i + 1).padStart(2, "0")}
+                {copy.cta}
+                <span aria-hidden className="transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Discipline cards */}
+          <ul
+            data-discipline-grid
+            aria-label={copy.disciplinesLabel}
+            className="mt-16 grid gap-4 sm:mt-20 sm:gap-5 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2"
+          >
+            {featured ? (
+              <li data-discipline-card className="md:col-span-2 lg:col-span-1 lg:row-span-2">
+                <div className="group relative isolate flex h-full min-h-[24rem] flex-col justify-between overflow-hidden rounded-[2rem] bg-brand p-8 text-white transition-transform duration-500 ease-out hover:-translate-y-1.5 hover:-rotate-[0.6deg] sm:p-10">
+                  <FeaturedShape />
+                  <span className="grid size-20 place-items-center rounded-3xl bg-white/15 ring-1 ring-white/20 sm:size-24">
+                    <DisciplineIcon name={featured.icon} className="size-11 sm:size-14" />
                   </span>
-                  <DisciplineIcon name={d.icon} className="size-9 text-brand lg:hidden" />
+                  <div className="mt-16">
+                    <p className="font-heading text-lg font-semibold text-white/60">01</p>
+                    <h3 className="mt-2 font-heading text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
+                      {featured.title}
+                    </h3>
+                    <p className="mt-3 max-w-sm leading-relaxed text-white/80">
+                      {featured.description}
+                    </p>
+                    <Topics topics={featured.topics} tone="dark" className="mt-6" />
+                  </div>
                 </div>
-                <h3 className="mt-5 font-heading text-3xl leading-tight font-bold tracking-tight sm:text-4xl xl:text-5xl">
-                  {d.title}
-                </h3>
-                <p className="mt-4 max-w-md text-lg leading-relaxed text-black/60">
-                  {d.description}
-                </p>
-                <ul className="mt-6 flex flex-wrap gap-2">
-                  {d.topics.map((topic) => (
-                    <li
-                      key={topic}
-                      className="rounded-full border border-black/15 px-3 py-1 font-mono text-[0.65rem] tracking-[0.12em] text-black/70 uppercase"
-                    >
-                      {topic}
-                    </li>
-                  ))}
-                </ul>
+              </li>
+            ) : null}
+
+            {others.map((d, i) => (
+              <li key={d.slug} data-discipline-card>
+                <div
+                  className={cn(
+                    "group flex h-full flex-col rounded-[2rem] bg-white p-7 shadow-[0_18px_40px_-24px_rgb(65_105_225/0.45)] ring-1 ring-black/5 transition-transform duration-500 ease-out hover:-translate-y-1.5 sm:p-8",
+                    i % 2 ? "hover:rotate-[0.6deg]" : "hover:-rotate-[0.6deg]",
+                  )}
+                >
+                  <div className="flex items-start justify-between">
+                    <span className="grid size-14 place-items-center rounded-2xl bg-brand-tint text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-white">
+                      <DisciplineIcon name={d.icon} className="size-8" />
+                    </span>
+                    <span className="font-heading text-lg font-semibold text-black/25">
+                      {String(i + 2).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h3 className="mt-8 font-heading text-2xl leading-tight font-bold tracking-tight">
+                    {d.title}
+                  </h3>
+                  <p className="mt-2 leading-relaxed text-black/60">{d.description}</p>
+                  <Topics topics={d.topics} tone="light" className="mt-auto pt-6" />
+                </div>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
-      </div>
 
-      <ScrollMarquee items={copy.formats} className="mt-24 sm:mt-32" />
+        <ScrollMarquee items={copy.formats} label={copy.formatsLabel} className="mt-20 sm:mt-24" />
+      </div>
     </section>
   );
 }
 
-/** Concentric dashed rings behind the icon; rotated by scroll. */
-function Rings() {
+function Topics({
+  topics,
+  tone,
+  className,
+}: {
+  topics: string[];
+  tone: "light" | "dark";
+  className?: string;
+}) {
+  return (
+    <ul className={cn("flex flex-wrap gap-2", className)}>
+      {topics.map((topic) => (
+        <li
+          key={topic}
+          className={cn(
+            "rounded-full px-3 py-1 text-xs font-medium",
+            tone === "dark" ? "bg-white/15 text-white" : "bg-brand-tint text-brand-strong",
+          )}
+        >
+          {topic}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** Organic lighter-blue shape in the featured card (BeeToGreen swoosh feel). */
+function FeaturedShape() {
   return (
     <svg
-      data-rings
+      aria-hidden
       viewBox="0 0 400 400"
-      fill="none"
-      className="pointer-events-none absolute top-1/2 left-1/2 size-[130%] -translate-x-1/2 -translate-y-1/2 text-white/15"
+      className="absolute -right-24 -bottom-24 -z-10 size-[26rem] text-white/10 transition-transform duration-700 ease-out group-hover:scale-110 group-hover:-rotate-6"
     >
-      {[80, 130, 180].map((r, i) => (
-        <circle
-          key={r}
-          cx="200"
-          cy="200"
-          r={r}
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeDasharray={i === 1 ? "2 10" : "60 14"}
-        />
-      ))}
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="46"
+        strokeLinecap="round"
+        d="M40 330C80 220 170 250 210 170s-30-130 40-130 120 90 70 170"
+      />
     </svg>
   );
 }

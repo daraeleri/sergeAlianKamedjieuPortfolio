@@ -61,9 +61,9 @@
     "headingHighlight": "les esprits et les cœurs.",
     "intro": "Professeur de théologie, il forme étudiants, pasteurs et responsables d'Église à connaître la vérité en profondeur et à la vivre fidèlement.",
     "cta": "L'inviter à enseigner",
-    "disciplineLabel": "Discipline",
     "disciplinesLabel": "Disciplines enseignées",
-    "formats": ["Cours", "Séminaires", "Conférences", "Colloques", "Mentorat"]
+    "formats": ["Cours", "Séminaires", "Conférences", "Colloques", "Mentorat"],
+    "formatsLabel": "Cours, séminaires, conférences et plus"
   },
   "pages": {
     "about": {
