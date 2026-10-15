@@ -1,4 +1,3 @@
-import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import type { Dictionary } from "@/i18n/get-dictionary";
@@ -56,7 +55,7 @@ export function Hero({ locale, copy }: HeroProps) {
 
           <div className="mt-8 flex animate-fade-up flex-wrap items-center gap-x-6 gap-y-4 [animation-delay:360ms]">
             <Link
-              href={`${localizePath(locale, "/")}#books` as Route}
+              href={localizePath(locale, "/books")}
               className="rounded-xl bg-brand px-6 py-3.5 font-medium text-white shadow-[0_10px_30px_-10px] shadow-brand transition-colors hover:bg-brand-strong"
             >
               {copy.primaryCta}

@@ -55,23 +55,6 @@
       }
     ]
   },
-  "books": {
-    "label": "Books",
-    "headingLead": "Written to",
-    "headingHighlight": "equip",
-    "headingTail": "the Church.",
-    "intro": "Books for students, pastors and every believer who wants to know God more deeply.",
-    "allBooks": "All books",
-    "annotation": "his latest book",
-    "featuredLabel": "Latest book",
-    "byline": "by Serge Alain Kamedjieu",
-    "getBook": "Get the book",
-    "readMore": "Read more",
-    "shelfTitle": "More books",
-    "previous": "Previous books",
-    "next": "Next books",
-    "coverAlt": "Cover of {title}"
-  },
   "teaching": {
     "label": "Teaching",
     "headingLead": "Teaching that forms",

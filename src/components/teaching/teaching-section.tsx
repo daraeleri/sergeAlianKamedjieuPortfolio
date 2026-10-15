@@ -123,7 +123,7 @@ export function TeachingSection({ copy, disciplines, contactHref }: TeachingSect
       className="overflow-x-clip bg-white pt-20 pb-16 text-ink sm:pt-28 sm:pb-24 lg:pt-36"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <SectionLabel label={copy.label} index="03" />
+        <SectionLabel label={copy.label} index="02" />
 
         <div className="mt-14 grid gap-8 sm:mt-20 lg:grid-cols-[1.4fr_1fr] lg:items-end">
           <h2

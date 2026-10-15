@@ -55,23 +55,6 @@
       }
     ]
   },
-  "books": {
-    "label": "Livres",
-    "headingLead": "Écrits pour",
-    "headingHighlight": "équiper",
-    "headingTail": "l'Église.",
-    "intro": "Des livres pour les étudiants, les pasteurs et tout croyant qui désire connaître Dieu plus profondément.",
-    "allBooks": "Tous les livres",
-    "annotation": "son dernier livre",
-    "featuredLabel": "Dernier livre",
-    "byline": "par Serge Alain Kamedjieu",
-    "getBook": "Obtenir le livre",
-    "readMore": "En savoir plus",
-    "shelfTitle": "Autres livres",
-    "previous": "Livres précédents",
-    "next": "Livres suivants",
-    "coverAlt": "Couverture de {title}"
-  },
   "teaching": {
     "label": "Enseignement",
     "headingLead": "Un enseignement qui forme",

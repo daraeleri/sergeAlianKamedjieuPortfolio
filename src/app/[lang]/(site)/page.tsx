@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import { BooksSection } from "@/components/books/books-section";
 import { AboutSection } from "@/components/site/about-section";
 import { Hero } from "@/components/site/hero";
 import { TeachingSection } from "@/components/teaching/teaching-section";
-import { siteConfig } from "@/config/site";
-import { books } from "@/content/books";
 import { disciplines } from "@/content/teaching";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { localizePath, pageMetadata } from "@/i18n/routing";
@@ -25,30 +22,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function HomePage() {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
-  const booksHref = localizePath(locale, "/books");
 
   return (
     <>
       <Hero locale={locale} copy={dict.hero} />
       <AboutSection locale={locale} copy={dict.about} />
-      <BooksSection
-        copy={dict.books}
-        author={siteConfig.name}
-        allBooksHref={booksHref}
-        books={books.map((book) => ({
-          slug: book.slug,
-          year: book.year,
-          publisher: book.publisher,
-          theme: book.theme,
-          cover: book.cover,
-          title: book.title[locale],
-          subtitle: book.subtitle[locale],
-          summary: book.summary[locale],
-          tags: book.tags[locale],
-          // Until each book has its own page, every link goes to the Books page.
-          href: booksHref,
-        }))}
-      />
       <TeachingSection
         copy={dict.teaching}
         contactHref={localizePath(locale, "/contact")}
