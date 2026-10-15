@@ -2,6 +2,7 @@
 
 import type { Route } from "next";
 import Link from "next/link";
+import { useLenis } from "lenis/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import { LanguageSwitcher } from "@/components/language-switcher";
@@ -24,6 +25,8 @@ export function SiteNavbar({ locale, brand, homeHref, links, cta, labels }: Site
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const panelId = useId();
+  // Undefined when smooth scrolling is off (reduced motion).
+  const lenis = useLenis();
 
   const isActive = (href: Route) =>
     href === homeHref ? pathname === href : pathname.startsWith(href);
@@ -37,15 +40,18 @@ export function SiteNavbar({ locale, brand, homeHref, links, cta, labels }: Site
     const onKey = (event: KeyboardEvent) => event.key === "Escape" && close();
     const onResize = (event: MediaQueryListEvent) => event.matches && close();
 
+    // Lenis drives scrolling itself, so it must be paused as well as the body locked.
+    lenis?.stop();
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
     desktop.addEventListener("change", onResize);
     return () => {
+      lenis?.start();
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
       desktop.removeEventListener("change", onResize);
     };
-  }, [open]);
+  }, [open, lenis]);
 
   const close = () => setOpen(false);
 
