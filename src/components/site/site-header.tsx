@@ -1,36 +1,28 @@
-import Link from "next/link";
-import { LanguageSwitcher } from "@/components/language-switcher";
+import { SiteNavbar } from "@/components/site/site-navbar";
 import { siteConfig, siteNav } from "@/config/site";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { localizePath } from "@/i18n/routing";
 
+/** Server wrapper: resolves locale and copy, then renders the interactive navbar. */
 export async function SiteHeader() {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
 
   return (
-    <header className="border-b border-border">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-6 py-4">
-        <Link href={localizePath(locale, "/")} className="font-semibold">
-          {siteConfig.name}
-        </Link>
-        <div className="flex flex-wrap items-center gap-6">
-          <nav aria-label={dict.nav.main}>
-            <ul className="flex flex-wrap gap-5 text-sm">
-              {siteNav.map((item) => (
-                <li key={item.key}>
-                  <Link
-                    href={localizePath(locale, item.href)}
-                    className="text-muted hover:text-foreground"
-                  >
-                    {dict.nav[item.key]}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <LanguageSwitcher locale={locale} label={dict.nav.language} />
-        </div>
-      </div>
-    </header>
+    <SiteNavbar
+      locale={locale}
+      brand={siteConfig.name}
+      homeHref={localizePath(locale, "/")}
+      links={siteNav
+        .filter((item) => item.key !== "home")
+        .map((item) => ({ href: localizePath(locale, item.href), label: dict.nav[item.key] }))}
+      cta={{ href: localizePath(locale, "/contact"), label: dict.nav.cta }}
+      labels={{
+        main: dict.nav.main,
+        language: dict.nav.language,
+        openMenu: dict.nav.openMenu,
+        closeMenu: dict.nav.closeMenu,
+        home: dict.nav.homeLink,
+      }}
+    />
   );
 }

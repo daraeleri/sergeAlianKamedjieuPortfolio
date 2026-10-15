@@ -1,17 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Outfit, Rubik } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { locales } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import "../globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const body = Rubik({
+  variable: "--font-rubik",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Stand-in for Nohemi until its licensed font files are added. To switch, load
+// Nohemi with `next/font/local` under the same `--font-heading-face` variable.
+const heading = Outfit({
+  variable: "--font-heading-face",
   subsets: ["latin"],
 });
 
@@ -45,7 +47,7 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
   return (
     <html
       lang={await getLocale()}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${body.variable} ${heading.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">{children}</body>
     </html>

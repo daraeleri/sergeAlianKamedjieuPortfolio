@@ -5,7 +5,8 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-12">{children}</main>
+      {/* Pages own their width and top spacing: the navbar is fixed and overlays them. */}
+      <main className="flex-1">{children}</main>
       <SiteFooter />
     </>
   );

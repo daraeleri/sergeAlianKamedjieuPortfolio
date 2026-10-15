@@ -10,5 +10,5 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function SermonsPage() {
   const { title, description } = (await getDictionary()).pages.sermons;
-  return <PageHeader title={title} description={description} />;
+  return <PageHeader site title={title} description={description} />;
 }

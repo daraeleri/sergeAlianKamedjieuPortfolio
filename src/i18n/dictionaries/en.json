@@ -10,7 +10,23 @@
     "events": "Events",
     "contact": "Contact",
     "main": "Main",
-    "language": "Language"
+    "language": "Language",
+    "cta": "Invite to speak",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "homeLink": "Home page"
+  },
+  "hero": {
+    "eyebrow": "Pastor · Teacher · Speaker",
+    "titleLead": "Proclaiming",
+    "titleHighlight": "hope,",
+    "titleTail": "rooted in the Word.",
+    "description": "Biblical teaching and messages of faith, hope and love to strengthen your walk with God.",
+    "primaryCta": "Watch sermons",
+    "secondaryCta": "Invite to speak",
+    "cardLabel": "Sermons",
+    "cardTitle": "Listen & watch",
+    "portraitAlt": "Portrait of Pastor Serge Alain Kamedjieu"
   },
   "pages": {
     "about": { "title": "About", "description": "Biography, calling and ministry journey." },
