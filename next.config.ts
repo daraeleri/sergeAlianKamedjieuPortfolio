@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   poweredByHeader: false,
   typedRoutes: true,
+  experimental: {
+    // The root layout lives under the dynamic [lang] segment.
+    globalNotFound: true,
+  },
   turbopack: {
     rules: {
       "*.css": {

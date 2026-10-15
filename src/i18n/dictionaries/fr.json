@@ -1,0 +1,70 @@
+{
+  "site": {
+    "title": "Pasteur Serge Alain Kamedjieu",
+    "description": "Pasteur, enseignant et serviteur de la Parole. Prédications, événements et nouvelles du ministère."
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "sermons": "Prédications",
+    "events": "Événements",
+    "contact": "Contact",
+    "main": "Principal",
+    "language": "Langue"
+  },
+  "pages": {
+    "about": {
+      "title": "À propos",
+      "description": "Biographie, appel et parcours dans le ministère."
+    },
+    "sermons": {
+      "title": "Prédications",
+      "description": "Messages récents et séries d'enseignement."
+    },
+    "events": {
+      "title": "Événements",
+      "description": "Cultes, conférences et rencontres à venir."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Demandes de prière, invitations et renseignements."
+    }
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "viewSite": "← Voir le site",
+    "nav": {
+      "label": "Tableau de bord",
+      "overview": "Vue d'ensemble",
+      "sermons": "Prédications",
+      "events": "Événements",
+      "messages": "Messages",
+      "settings": "Paramètres"
+    },
+    "overview": {
+      "title": "Vue d'ensemble",
+      "description": "Bon retour. Gérez le contenu du site depuis cet espace."
+    },
+    "sermons": {
+      "title": "Prédications",
+      "description": "Créer, modifier et publier des prédications."
+    },
+    "events": {
+      "title": "Événements",
+      "description": "Planifier et gérer les événements à venir."
+    },
+    "messages": {
+      "title": "Messages",
+      "description": "Messages du formulaire de contact et demandes de prière."
+    },
+    "settings": {
+      "title": "Paramètres",
+      "description": "Profil, informations du site et paramètres du compte."
+    }
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil"
+  }
+}

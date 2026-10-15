@@ -1,28 +1,27 @@
-import type { Route } from "next";
+import type { Dictionary } from "@/i18n/get-dictionary";
+import type { Pathname } from "@/i18n/routing";
 import { env } from "@/lib/env";
 
+/** Locale-independent site settings. Translated copy lives in src/i18n/dictionaries. */
 export const siteConfig = {
   name: "Serge Alain Kamedjieu",
-  title: "Pastor Serge Alain Kamedjieu",
-  description: "Pastor, teacher and servant of the Word. Sermons, events and ministry updates.",
   url: env.NEXT_PUBLIC_SITE_URL,
-  locale: "en",
 } as const;
 
-type NavItem = { label: string; href: Route };
+type NavItem<K> = { key: K; href: Pathname };
 
-export const siteNav: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Sermons", href: "/sermons" },
-  { label: "Events", href: "/events" },
-  { label: "Contact", href: "/contact" },
+export const siteNav: NavItem<keyof Dictionary["nav"]>[] = [
+  { key: "home", href: "/" },
+  { key: "about", href: "/about" },
+  { key: "sermons", href: "/sermons" },
+  { key: "events", href: "/events" },
+  { key: "contact", href: "/contact" },
 ];
 
-export const dashboardNav: NavItem[] = [
-  { label: "Overview", href: "/dashboard" },
-  { label: "Sermons", href: "/dashboard/sermons" },
-  { label: "Events", href: "/dashboard/events" },
-  { label: "Messages", href: "/dashboard/messages" },
-  { label: "Settings", href: "/dashboard/settings" },
+export const dashboardNav: NavItem<keyof Dictionary["dashboard"]["nav"]>[] = [
+  { key: "overview", href: "/dashboard" },
+  { key: "sermons", href: "/dashboard/sermons" },
+  { key: "events", href: "/dashboard/events" },
+  { key: "messages", href: "/dashboard/messages" },
+  { key: "settings", href: "/dashboard/settings" },
 ];
