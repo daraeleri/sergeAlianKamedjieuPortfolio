@@ -1,12 +1,11 @@
 {
   "site": {
     "title": "Pasteur Serge Alain Kamedjieu",
-    "description": "Pasteur, professeur de théologie et auteur. Livres, enseignement et ministère."
+    "description": "Pasteur, professeur de théologie et auteur. Enseignement, écriture et ministère."
   },
   "nav": {
     "home": "Accueil",
     "about": "À propos",
-    "books": "Livres",
     "teaching": "Enseignement",
     "contact": "Contact",
     "main": "Principal",
@@ -21,7 +20,7 @@
     "titleLead": "Officier de la Couronne de la",
     "titleHighlight": "Divine Majesté",
     "description": "Un enseignement biblique et des messages de foi, d'espérance et d'amour pour affermir votre marche avec Dieu.",
-    "primaryCta": "Découvrir ses livres",
+    "primaryCta": "Faire sa connaissance",
     "secondaryCta": "Inviter à prêcher",
     "cardLabel": "Livres",
     "cardTitle": "Lire ses ouvrages",
@@ -70,10 +69,6 @@
       "title": "À propos",
       "description": "Biographie, appel et parcours dans le ministère."
     },
-    "books": {
-      "title": "Livres",
-      "description": "Livres et écrits sur la théologie et la vie chrétienne."
-    },
     "teaching": {
       "title": "Enseignement",
       "description": "Travaux académiques, cours et conférences en théologie."
@@ -89,7 +84,6 @@
     "nav": {
       "label": "Tableau de bord",
       "overview": "Vue d'ensemble",
-      "books": "Livres",
       "teaching": "Enseignement",
       "messages": "Messages",
       "settings": "Paramètres"
@@ -97,10 +91,6 @@
     "overview": {
       "title": "Vue d'ensemble",
       "description": "Bon retour. Gérez le contenu du site depuis cet espace."
-    },
-    "books": {
-      "title": "Livres",
-      "description": "Ajouter, modifier et publier des livres."
     },
     "teaching": {
       "title": "Enseignement",

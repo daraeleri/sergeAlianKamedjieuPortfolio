@@ -49,7 +49,7 @@ export function SmoothScroll() {
       options={{
         autoRaf: false,
         lerp: 0.1,
-        // Smoothly scroll to in-page anchors such as "#books".
+        // Smoothly scroll to in-page anchors such as "#about".
         anchors: true,
       }}
     />
