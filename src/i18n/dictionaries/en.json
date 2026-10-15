@@ -18,9 +18,8 @@
   },
   "hero": {
     "eyebrow": "Pastor · Teacher · Speaker",
-    "titleLead": "Proclaiming",
-    "titleHighlight": "hope,",
-    "titleTail": "rooted in the Word.",
+    "titleLead": "Crown Officer of the",
+    "titleHighlight": "Divine Majesty",
     "description": "Biblical teaching and messages of faith, hope and love to strengthen your walk with God.",
     "primaryCta": "Watch sermons",
     "secondaryCta": "Invite to speak",
@@ -29,8 +28,14 @@
     "portraitAlt": "Portrait of Pastor Serge Alain Kamedjieu"
   },
   "pages": {
-    "about": { "title": "About", "description": "Biography, calling and ministry journey." },
-    "sermons": { "title": "Sermons", "description": "Recent messages and teaching series." },
+    "about": {
+      "title": "About",
+      "description": "Biography, calling and ministry journey."
+    },
+    "sermons": {
+      "title": "Sermons",
+      "description": "Recent messages and teaching series."
+    },
     "events": {
       "title": "Events",
       "description": "Upcoming services, conferences and gatherings."
@@ -55,8 +60,14 @@
       "title": "Overview",
       "description": "Welcome back. Manage your site content from here."
     },
-    "sermons": { "title": "Sermons", "description": "Create, edit and publish sermons." },
-    "events": { "title": "Events", "description": "Schedule and manage upcoming events." },
+    "sermons": {
+      "title": "Sermons",
+      "description": "Create, edit and publish sermons."
+    },
+    "events": {
+      "title": "Events",
+      "description": "Schedule and manage upcoming events."
+    },
     "messages": {
       "title": "Messages",
       "description": "Contact form submissions and prayer requests."

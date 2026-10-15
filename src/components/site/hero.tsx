@@ -27,9 +27,26 @@ export function Hero({ locale, copy }: HeroProps) {
             {copy.eyebrow}
           </p>
 
-          <h1 className="mt-6 animate-fade-up font-heading text-[2.75rem] leading-[0.95] font-bold tracking-tight [animation-delay:120ms] sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
-            {copy.titleLead} <span className="text-brand">{copy.titleHighlight}</span>{" "}
-            {copy.titleTail}
+          <h1 className="mt-6 max-w-[14ch] animate-fade-up font-heading text-[2.15rem] leading-[1.05] font-bold tracking-tight text-balance [animation-delay:120ms] sm:text-5xl md:text-[2.75rem] lg:text-[3.5rem] xl:text-[4rem]">
+            {copy.titleLead}{" "}
+            <span className="relative inline-block text-brand">
+              {copy.titleHighlight}
+              {/* Hand-drawn style underline under the highlighted phrase */}
+              <svg
+                aria-hidden
+                viewBox="0 0 300 12"
+                preserveAspectRatio="none"
+                className="absolute -bottom-2 left-0 h-2.5 w-full text-brand/35"
+              >
+                <path
+                  d="M2 9 C 80 3 200 2 298 7"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="5"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
           </h1>
 
           <p className="mt-6 max-w-lg animate-fade-up text-base leading-relaxed text-black/65 [animation-delay:240ms] sm:text-lg">
