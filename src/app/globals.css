@@ -39,6 +39,7 @@
   --font-sans: var(--font-rubik);
   --font-heading: var(--font-heading-face);
   --font-mono: var(--font-mono-face);
+  --font-script: var(--font-script-face);
 }
 
 @theme {

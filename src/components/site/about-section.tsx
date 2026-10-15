@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { localizePath } from "@/i18n/routing";
+import { SectionLabel } from "@/components/ui/section-label";
 import { cn } from "@/lib/utils";
 
 type AboutSectionProps = {
@@ -61,21 +62,6 @@ export function AboutSection({ locale, copy }: AboutSectionProps) {
         </ol>
       </div>
     </section>
-  );
-}
-
-/** Hairline row with a "◆ LABEL" on the left and a section number on the right. */
-function SectionLabel({ label, index }: { label: string; index: string }) {
-  return (
-    <div className="flex items-center justify-between border-t border-black/10 pt-4 font-mono text-xs tracking-[0.16em] text-black/60 uppercase">
-      <span className="flex items-center gap-2">
-        <span aria-hidden className="text-brand">
-          ◆
-        </span>
-        {label}
-      </span>
-      <span aria-hidden>({index})</span>
-    </div>
   );
 }
 

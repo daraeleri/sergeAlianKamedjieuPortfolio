@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist_Mono, Outfit, Rubik } from "next/font/google";
+import { Caveat, Geist_Mono, Outfit, Rubik } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { locales } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
@@ -22,6 +22,13 @@ const mono = Geist_Mono({
   variable: "--font-mono-face",
   subsets: ["latin"],
   weight: "500",
+});
+
+// Handwritten annotations beside headings, as in the Aardvark Book Club reference.
+const script = Caveat({
+  variable: "--font-script-face",
+  subsets: ["latin"],
+  weight: "600",
 });
 
 export function generateStaticParams() {
@@ -54,7 +61,7 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
   return (
     <html
       lang={await getLocale()}
-      className={`${body.variable} ${heading.variable} ${mono.variable} h-full antialiased`}
+      className={`${body.variable} ${heading.variable} ${mono.variable} ${script.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">{children}</body>
     </html>

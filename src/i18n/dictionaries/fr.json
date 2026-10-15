@@ -1,13 +1,13 @@
 {
   "site": {
     "title": "Pasteur Serge Alain Kamedjieu",
-    "description": "Pasteur, enseignant et serviteur de la Parole. Prédications, événements et nouvelles du ministère."
+    "description": "Pasteur, professeur de théologie et auteur. Livres, enseignement et ministère."
   },
   "nav": {
     "home": "Accueil",
     "about": "À propos",
-    "sermons": "Prédications",
-    "events": "Événements",
+    "books": "Livres",
+    "teaching": "Enseignement",
     "contact": "Contact",
     "main": "Principal",
     "language": "Langue",
@@ -17,14 +17,14 @@
     "homeLink": "Page d'accueil"
   },
   "hero": {
-    "eyebrow": "Pasteur · Enseignant · Orateur",
+    "eyebrow": "Pasteur · Professeur de théologie · Auteur",
     "titleLead": "Officier de la Couronne de la",
     "titleHighlight": "Divine Majesté",
     "description": "Un enseignement biblique et des messages de foi, d'espérance et d'amour pour affermir votre marche avec Dieu.",
-    "primaryCta": "Voir les prédications",
+    "primaryCta": "Découvrir ses livres",
     "secondaryCta": "Inviter à prêcher",
-    "cardLabel": "Prédications",
-    "cardTitle": "Écouter et regarder",
+    "cardLabel": "Livres",
+    "cardTitle": "Lire ses ouvrages",
     "portraitAlt": "Portrait du pasteur Serge Alain Kamedjieu"
   },
   "about": {
@@ -47,18 +47,35 @@
       }
     ]
   },
+  "books": {
+    "label": "Livres",
+    "headingLead": "Écrits pour",
+    "headingHighlight": "équiper",
+    "headingTail": "l'Église.",
+    "intro": "Des livres pour les étudiants, les pasteurs et tout croyant qui désire connaître Dieu plus profondément.",
+    "allBooks": "Tous les livres",
+    "annotation": "son dernier livre",
+    "featuredLabel": "Dernier livre",
+    "byline": "par Serge Alain Kamedjieu",
+    "getBook": "Obtenir le livre",
+    "readMore": "En savoir plus",
+    "shelfTitle": "Autres livres",
+    "previous": "Livres précédents",
+    "next": "Livres suivants",
+    "coverAlt": "Couverture de {title}"
+  },
   "pages": {
     "about": {
       "title": "À propos",
       "description": "Biographie, appel et parcours dans le ministère."
     },
-    "sermons": {
-      "title": "Prédications",
-      "description": "Messages récents et séries d'enseignement."
+    "books": {
+      "title": "Livres",
+      "description": "Livres et écrits sur la théologie et la vie chrétienne."
     },
-    "events": {
-      "title": "Événements",
-      "description": "Cultes, conférences et rencontres à venir."
+    "teaching": {
+      "title": "Enseignement",
+      "description": "Travaux académiques, cours et conférences en théologie."
     },
     "contact": {
       "title": "Contact",
@@ -71,8 +88,8 @@
     "nav": {
       "label": "Tableau de bord",
       "overview": "Vue d'ensemble",
-      "sermons": "Prédications",
-      "events": "Événements",
+      "books": "Livres",
+      "teaching": "Enseignement",
       "messages": "Messages",
       "settings": "Paramètres"
     },
@@ -80,13 +97,13 @@
       "title": "Vue d'ensemble",
       "description": "Bon retour. Gérez le contenu du site depuis cet espace."
     },
-    "sermons": {
-      "title": "Prédications",
-      "description": "Créer, modifier et publier des prédications."
+    "books": {
+      "title": "Livres",
+      "description": "Ajouter, modifier et publier des livres."
     },
-    "events": {
-      "title": "Événements",
-      "description": "Planifier et gérer les événements à venir."
+    "teaching": {
+      "title": "Enseignement",
+      "description": "Gérer les cours, conférences et publications."
     },
     "messages": {
       "title": "Messages",
