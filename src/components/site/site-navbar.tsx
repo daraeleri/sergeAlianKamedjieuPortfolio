@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight, Menu, X } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import { useLenis } from "lenis/react";
@@ -126,7 +127,11 @@ export function SiteNavbar({ locale, brand, homeHref, links, cta, labels }: Site
               aria-label={open ? labels.closeMenu : labels.openMenu}
               className="grid size-10 place-items-center rounded-xl bg-ink text-white lg:hidden"
             >
-              <MenuIcon open={open} />
+              {open ? (
+                <X aria-hidden className="size-5" />
+              ) : (
+                <Menu aria-hidden className="size-5" />
+              )}
             </button>
           </div>
         </div>
@@ -157,9 +162,7 @@ export function SiteNavbar({ locale, brand, homeHref, links, cta, labels }: Site
                       )}
                     >
                       {link.label}
-                      <span aria-hidden className="text-base text-black/30">
-                        →
-                      </span>
+                      <ArrowRight aria-hidden className="size-5 text-black/30" />
                     </Link>
                   </li>
                 ))}
@@ -179,30 +182,5 @@ export function SiteNavbar({ locale, brand, homeHref, links, cta, labels }: Site
         </div>
       </div>
     </header>
-  );
-}
-
-function MenuIcon({ open }: { open: boolean }) {
-  return (
-    <span aria-hidden className="relative block h-3.5 w-5">
-      <span
-        className={cn(
-          "absolute left-0 h-0.5 w-5 rounded bg-current transition-all duration-300",
-          open ? "top-1.5 rotate-45" : "top-0",
-        )}
-      />
-      <span
-        className={cn(
-          "absolute top-1.5 left-0 h-0.5 w-5 rounded bg-current transition-opacity duration-300",
-          open && "opacity-0",
-        )}
-      />
-      <span
-        className={cn(
-          "absolute left-0 h-0.5 w-5 rounded bg-current transition-all duration-300",
-          open ? "top-1.5 -rotate-45" : "top-3",
-        )}
-      />
-    </span>
   );
 }

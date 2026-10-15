@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import { ArrowRight } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import { useRef } from "react";
@@ -118,9 +119,10 @@ export function TeachingSection({ copy, disciplines, contactHref }: TeachingSect
                 className="group inline-flex items-center gap-3 rounded-xl bg-brand px-6 py-3.5 font-medium text-white shadow-[0_10px_30px_-10px] shadow-brand transition-colors hover:bg-brand-strong"
               >
                 {copy.cta}
-                <span aria-hidden className="transition-transform group-hover:translate-x-1">
-                  →
-                </span>
+                <ArrowRight
+                  aria-hidden
+                  className="size-4 transition-transform group-hover:translate-x-1"
+                />
               </Link>
             </div>
           </div>

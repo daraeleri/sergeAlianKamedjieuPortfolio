@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -66,9 +67,10 @@ export function Hero({ locale, copy }: HeroProps) {
               className="group inline-flex items-center gap-2 font-medium text-ink underline decoration-brand decoration-2 underline-offset-8 hover:decoration-ink"
             >
               {copy.secondaryCta}
-              <span aria-hidden className="transition-transform group-hover:translate-x-1">
-                →
-              </span>
+              <ArrowRight
+                aria-hidden
+                className="size-4 transition-transform group-hover:translate-x-1"
+              />
             </Link>
           </div>
         </div>
@@ -97,7 +99,7 @@ export function Hero({ locale, copy }: HeroProps) {
                 aria-hidden
                 className="grid size-7 shrink-0 place-items-center rounded-full bg-white text-sm text-brand transition-transform group-hover:translate-x-0.5"
               >
-                ▶
+                <Play className="size-3.5 fill-current" />
               </span>
             </span>
           </Link> */}

@@ -3,12 +3,11 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowRight, GraduationCap, HandHeart, Mic, PenLine, type LucideIcon } from "lucide-react";
 import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import { DisciplineIcon } from "@/components/teaching/discipline-icon";
-import type { DisciplineIcon as IconName } from "@/content/teaching";
 import type { Dictionary } from "@/i18n/get-dictionary";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -20,7 +19,7 @@ type AboutCardProps = {
 };
 
 /** Icon for each feature, in the order of `about.features` in the dictionaries. */
-const featureIcons: IconName[] = ["scripture", "history", "doctrine", "pastoral"];
+const featureIcons: LucideIcon[] = [Mic, GraduationCap, PenLine, HandHeart];
 
 /**
  * Navy introduction card under the About statement: greeting, short bio, a 2×2 grid
@@ -153,7 +152,7 @@ export function AboutCard({ copy, aboutHref, contactHref }: AboutCardProps) {
             {copy.features.map((feature, i) => (
               <li key={feature.title} data-about-reveal className="flex gap-4">
                 <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-[#0a1430] text-brand-soft ring-1 ring-white/10">
-                  <DisciplineIcon name={featureIcons[i] ?? "doctrine"} className="size-6" />
+                  <FeatureIcon icon={featureIcons[i]} />
                 </span>
                 <div>
                   <p className="font-heading text-lg font-semibold tracking-tight sm:text-xl">
@@ -173,9 +172,10 @@ export function AboutCard({ copy, aboutHref, contactHref }: AboutCardProps) {
               className="group inline-flex items-center gap-3 rounded-xl bg-brand px-6 py-3.5 font-medium text-white shadow-[0_10px_30px_-10px] shadow-brand transition-colors hover:bg-brand-strong"
             >
               {copy.cta}
-              <span aria-hidden className="transition-transform group-hover:translate-x-1">
-                →
-              </span>
+              <ArrowRight
+                aria-hidden
+                className="size-4 transition-transform group-hover:translate-x-1"
+              />
             </Link>
             <Link
               href={contactHref}
@@ -212,4 +212,8 @@ export function AboutCard({ copy, aboutHref, contactHref }: AboutCardProps) {
       </div>
     </div>
   );
+}
+
+function FeatureIcon({ icon: Icon = PenLine }: { icon?: LucideIcon }) {
+  return <Icon aria-hidden strokeWidth={1.75} className="size-6" />;
 }
