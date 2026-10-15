@@ -64,6 +64,16 @@
     "next": "Next books",
     "coverAlt": "Cover of {title}"
   },
+  "teaching": {
+    "label": "Teaching",
+    "headingLead": "Teaching that forms",
+    "headingHighlight": "minds and hearts.",
+    "intro": "As a professor of theology, he trains students, pastors and church leaders to know the truth deeply and to live it faithfully.",
+    "cta": "Invite him to teach",
+    "disciplineLabel": "Discipline",
+    "disciplinesLabel": "Teaching disciplines",
+    "formats": ["Courses", "Seminars", "Lectures", "Conferences", "Mentoring"]
+  },
   "pages": {
     "about": {
       "title": "About",

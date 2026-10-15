@@ -64,6 +64,16 @@
     "next": "Livres suivants",
     "coverAlt": "Couverture de {title}"
   },
+  "teaching": {
+    "label": "Enseignement",
+    "headingLead": "Un enseignement qui forme",
+    "headingHighlight": "les esprits et les cœurs.",
+    "intro": "Professeur de théologie, il forme étudiants, pasteurs et responsables d'Église à connaître la vérité en profondeur et à la vivre fidèlement.",
+    "cta": "L'inviter à enseigner",
+    "disciplineLabel": "Discipline",
+    "disciplinesLabel": "Disciplines enseignées",
+    "formats": ["Cours", "Séminaires", "Conférences", "Colloques", "Mentorat"]
+  },
   "pages": {
     "about": {
       "title": "À propos",
