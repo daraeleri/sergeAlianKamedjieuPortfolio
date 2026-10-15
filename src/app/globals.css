@@ -38,6 +38,7 @@
   --color-surface: var(--surface);
   --font-sans: var(--font-rubik);
   --font-heading: var(--font-heading-face);
+  --font-mono: var(--font-mono-face);
 }
 
 @theme {
@@ -68,6 +69,35 @@
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/*
+ * Scroll-revealed statement text (Fluid Glass style): each word brightens as the
+ * paragraph scrolls through the viewport. Uses CSS scroll-driven animations, so no
+ * JavaScript. Browsers without scroll timelines run it as a 0s animation and simply
+ * show the final state; reduced-motion users get the text as is.
+ * Markup: a `.reveal-text` element whose words are `.reveal-word` spans with
+ * `--p` set to the word's position from 0 to 1.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-text {
+    view-timeline-name: --reveal-text;
+  }
+
+  .reveal-word {
+    animation: reveal-word linear both;
+    animation-timeline: --reveal-text;
+    animation-range: cover calc(12% + var(--p) * 30%) cover calc(18% + var(--p) * 30%);
+  }
+}
+
+@keyframes reveal-word {
+  from {
+    opacity: 0.15;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

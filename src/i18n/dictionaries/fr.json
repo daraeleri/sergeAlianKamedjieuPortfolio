@@ -27,6 +27,26 @@
     "cardTitle": "Écouter et regarder",
     "portraitAlt": "Portrait du pasteur Serge Alain Kamedjieu"
   },
+  "about": {
+    "label": "À propos",
+    "statement": "Un cœur de berger et une voix d'enseignant, consacrés à annoncer la Parole avec clarté et à conduire chacun dans la présence de la Divine Majesté.",
+    "statementHighlight": "la présence de la Divine Majesté.",
+    "cta": "Découvrir son parcours",
+    "pillars": [
+      {
+        "title": "Prédication",
+        "description": "Annoncer l'Évangile avec clarté, conviction et compassion."
+      },
+      {
+        "title": "Enseignement",
+        "description": "Enraciner les croyants dans une saine doctrine pour une foi profonde."
+      },
+      {
+        "title": "Accompagnement",
+        "description": "Marcher aux côtés de chacun par la prière, le conseil et le soin pastoral."
+      }
+    ]
+  },
   "pages": {
     "about": {
       "title": "À propos",

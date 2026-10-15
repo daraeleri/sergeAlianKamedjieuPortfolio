@@ -27,6 +27,26 @@
     "cardTitle": "Listen & watch",
     "portraitAlt": "Portrait of Pastor Serge Alain Kamedjieu"
   },
+  "about": {
+    "label": "About",
+    "statement": "A shepherd's heart and a teacher's voice, devoted to proclaiming the Word with clarity and leading people into the presence of the Divine Majesty.",
+    "statementHighlight": "the presence of the Divine Majesty.",
+    "cta": "Read his story",
+    "pillars": [
+      {
+        "title": "Preaching",
+        "description": "Proclaiming the Gospel with clarity, conviction and compassion."
+      },
+      {
+        "title": "Teaching",
+        "description": "Grounding believers in sound doctrine so their faith grows deep roots."
+      },
+      {
+        "title": "Shepherding",
+        "description": "Walking alongside people in prayer, counsel and pastoral care."
+      }
+    ]
+  },
   "pages": {
     "about": {
       "title": "About",

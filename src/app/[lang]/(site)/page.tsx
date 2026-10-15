@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AboutSection } from "@/components/site/about-section";
 import { Hero } from "@/components/site/hero";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { pageMetadata } from "@/i18n/routing";
@@ -20,5 +21,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function HomePage() {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
 
-  return <Hero locale={locale} copy={dict.hero} />;
+  return (
+    <>
+      <Hero locale={locale} copy={dict.hero} />
+      <AboutSection locale={locale} copy={dict.about} />
+    </>
+  );
 }
