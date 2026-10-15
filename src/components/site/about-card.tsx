@@ -33,20 +33,18 @@ export function AboutCard({ copy, aboutHref, contactHref }: AboutCardProps) {
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
+      const opening = {
+        trigger: rootRef.current,
+        start: "top 90%",
+        end: "top 40%",
+        scrub: true,
+      };
+
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         gsap.fromTo(
           "[data-about-bg]",
           { clipPath: "inset(8% 5% 8% 5% round 3rem)" },
-          {
-            clipPath: "inset(0% 0% 0% 0% round 2.5rem)",
-            ease: "none",
-            scrollTrigger: {
-              trigger: rootRef.current,
-              start: "top 90%",
-              end: "top 40%",
-              scrub: true,
-            },
-          },
+          { clipPath: "inset(0% 0% 0% 0% round 2.5rem)", ease: "none", scrollTrigger: opening },
         );
         gsap.fromTo(
           "[data-about-portrait]",
@@ -73,14 +71,34 @@ export function AboutCard({ copy, aboutHref, contactHref }: AboutCardProps) {
             scrub: true,
           },
         });
+        // Text and features fade in, and fade back out when scrolling up past the card.
         gsap.from("[data-about-reveal]", {
           y: 36,
           opacity: 0,
           duration: 0.9,
           stagger: 0.08,
           ease: "power3.out",
-          scrollTrigger: { trigger: rootRef.current, start: "top 65%" },
+          scrollTrigger: {
+            trigger: rootRef.current,
+            start: "top 65%",
+            toggleActions: "play none none reverse",
+          },
         });
+      });
+
+      // Desktop: the photo frame closes in step with the card background (same inset,
+      // converted to the frame's own size: 46% of the card wide, 112% of it tall), so the
+      // photo never sticks out of the shrinking card.
+      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+        gsap.fromTo(
+          "[data-about-portrait-frame]",
+          { clipPath: "inset(-60% 10.9% 7.1% 0% round 0 0 3rem 0)" },
+          {
+            clipPath: "inset(-60% 0% 0% 0% round 0 0 2.5rem 0)",
+            ease: "none",
+            scrollTrigger: opening,
+          },
+        );
       });
     },
     { scope: rootRef },
@@ -170,21 +188,25 @@ export function AboutCard({ copy, aboutHref, contactHref }: AboutCardProps) {
 
         {/*
           Portrait: in the flow on small screens. On desktop it is taller than the card so
-          the head breaks out of the top; it is cropped to the column, and its left edge
-          fades out so the arm never covers the text.
+          the head breaks out of the top. The frame is clipped to the card's bottom and
+          right edges (with the same rounded corner), so the photo never sticks out of the
+          card; its left edge fades out so the arm never covers the text.
         */}
         <div className="relative flex items-end justify-center overflow-hidden px-6 lg:static lg:overflow-visible lg:px-0">
           <div
-            data-about-portrait
-            className="relative aspect-[1122/1044] w-full max-w-md origin-bottom lg:absolute lg:right-0 lg:bottom-0 lg:aspect-auto lg:h-[124%] lg:w-[42%] lg:max-w-none lg:[mask-image:linear-gradient(to_right,transparent,black_24%)]"
+            data-about-portrait-frame
+            className="relative aspect-[1122/1044] w-full max-w-md lg:absolute lg:right-0 lg:bottom-0 lg:aspect-auto lg:h-[112%] lg:w-[46%] lg:max-w-none lg:[mask-image:linear-gradient(to_right,transparent,black_22%)] lg:[clip-path:inset(-60%_0%_0%_0%_round_0_0_2.5rem_0)]"
           >
-            <Image
-              src="/images/PersonaImage.png"
-              alt={copy.portraitAlt}
-              fill
-              sizes="(min-width: 1024px) 760px, (min-width: 640px) 448px, 90vw"
-              className="object-cover object-[58%_0%] drop-shadow-[0_30px_40px_rgb(0_0_0/0.45)]"
-            />
+            <div data-about-portrait className="relative size-full origin-bottom">
+              <Image
+                src="/images/PersonaImage.png"
+                alt={copy.portraitAlt}
+                fill
+                quality={90}
+                sizes="(min-width: 1024px) 720px, (min-width: 640px) 448px, 90vw"
+                className="object-cover object-[60%_0%]"
+              />
+            </div>
           </div>
         </div>
       </div>

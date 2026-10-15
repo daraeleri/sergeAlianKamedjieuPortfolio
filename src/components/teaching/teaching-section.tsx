@@ -90,7 +90,11 @@ export function TeachingSection({ copy, disciplines, contactHref }: TeachingSect
           duration: 1.1,
           stagger: 0.12,
           ease: "power4.out",
-          scrollTrigger: { trigger: "[data-teaching-heading]", start: "top 80%" },
+          scrollTrigger: {
+            trigger: "[data-teaching-heading]",
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
         });
         gsap.from("[data-discipline-row]", {
           y: 60,
@@ -98,7 +102,11 @@ export function TeachingSection({ copy, disciplines, contactHref }: TeachingSect
           duration: 0.9,
           ease: "power3.out",
           stagger: 0.1,
-          scrollTrigger: { trigger: "[data-discipline-list]", start: "top 80%" },
+          scrollTrigger: {
+            trigger: "[data-discipline-list]",
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
         });
         return () => split.revert();
       });

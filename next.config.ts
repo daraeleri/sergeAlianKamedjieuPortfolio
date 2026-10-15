@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   poweredByHeader: false,
   typedRoutes: true,
+  images: {
+    // 90 is used for the large portrait in the About card.
+    qualities: [75, 90],
+  },
   experimental: {
     // The root layout lives under the dynamic [lang] segment.
     globalNotFound: true,

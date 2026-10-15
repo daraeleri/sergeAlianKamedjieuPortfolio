@@ -94,7 +94,11 @@ export function BooksSection({ copy, books, author, allBooksHref }: BooksSection
           duration: 0.9,
           stagger: 0.08,
           ease: "power3.out",
-          scrollTrigger: { trigger: "[data-featured-text]", start: "top 80%" },
+          scrollTrigger: {
+            trigger: "[data-featured-text]",
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
         });
         gsap.from("[data-annotation]", {
           opacity: 0,
@@ -102,7 +106,11 @@ export function BooksSection({ copy, books, author, allBooksHref }: BooksSection
           rotate: -30,
           duration: 0.8,
           ease: "back.out(2)",
-          scrollTrigger: { trigger: "[data-featured]", start: "top 60%" },
+          scrollTrigger: {
+            trigger: "[data-featured]",
+            start: "top 60%",
+            toggleActions: "play none none reverse",
+          },
         });
 
         // 3. Shelf cards rise into their tilted positions one after another.
@@ -113,7 +121,11 @@ export function BooksSection({ copy, books, author, allBooksHref }: BooksSection
           duration: 1.1,
           stagger: 0.1,
           ease: "power3.out",
-          scrollTrigger: { trigger: shelfRef.current, start: "top 85%" },
+          scrollTrigger: {
+            trigger: shelfRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
         });
 
         return () => split.revert();
