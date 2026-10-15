@@ -28,22 +28,30 @@
     "portraitAlt": "Portrait of Pastor Serge Alain Kamedjieu"
   },
   "about": {
-    "label": "About",
     "statement": "A shepherd's heart and a teacher's voice, devoted to proclaiming the Word with clarity and leading people into the presence of the Divine Majesty.",
     "statementHighlight": "the presence of the Divine Majesty.",
     "cta": "Read his story",
-    "pillars": [
+    "greetingLead": "Meet",
+    "greetingHighlight": "Pastor Serge Alain Kamedjieu.",
+    "bio": "Pastor, professor of theology and author, he serves the Church through preaching, teaching and writing, helping believers know God deeply and live their faith with conviction.",
+    "secondaryCta": "Invite to speak",
+    "portraitAlt": "Pastor Serge Alain Kamedjieu",
+    "features": [
       {
         "title": "Preaching",
         "description": "Proclaiming the Gospel with clarity, conviction and compassion."
       },
       {
         "title": "Teaching",
-        "description": "Grounding believers in sound doctrine so their faith grows deep roots."
+        "description": "Training students, pastors and leaders in sound theology."
+      },
+      {
+        "title": "Writing",
+        "description": "Books that equip the Church to think and live biblically."
       },
       {
         "title": "Shepherding",
-        "description": "Walking alongside people in prayer, counsel and pastoral care."
+        "description": "Walking alongside people in prayer, counsel and care."
       }
     ]
   },

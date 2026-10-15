@@ -28,22 +28,30 @@
     "portraitAlt": "Portrait du pasteur Serge Alain Kamedjieu"
   },
   "about": {
-    "label": "À propos",
     "statement": "Un cœur de berger et une voix d'enseignant, consacrés à annoncer la Parole avec clarté et à conduire chacun dans la présence de la Divine Majesté.",
     "statementHighlight": "la présence de la Divine Majesté.",
     "cta": "Découvrir son parcours",
-    "pillars": [
+    "greetingLead": "Voici le",
+    "greetingHighlight": "pasteur Serge Alain Kamedjieu.",
+    "bio": "Pasteur, professeur de théologie et auteur, il sert l'Église par la prédication, l'enseignement et l'écriture, aidant les croyants à connaître Dieu en profondeur et à vivre leur foi avec conviction.",
+    "secondaryCta": "Inviter à prêcher",
+    "portraitAlt": "Le pasteur Serge Alain Kamedjieu",
+    "features": [
       {
         "title": "Prédication",
         "description": "Annoncer l'Évangile avec clarté, conviction et compassion."
       },
       {
         "title": "Enseignement",
-        "description": "Enraciner les croyants dans une saine doctrine pour une foi profonde."
+        "description": "Former étudiants, pasteurs et responsables à une saine théologie."
+      },
+      {
+        "title": "Écriture",
+        "description": "Des livres qui équipent l'Église à penser et vivre bibliquement."
       },
       {
         "title": "Accompagnement",
-        "description": "Marcher aux côtés de chacun par la prière, le conseil et le soin pastoral."
+        "description": "Marcher aux côtés de chacun par la prière, le conseil et le soin."
       }
     ]
   },
