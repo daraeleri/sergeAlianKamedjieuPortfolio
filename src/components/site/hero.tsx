@@ -12,27 +12,27 @@ type HeroProps = {
 /** Full-bleed home hero: oversized heading, blue swoosh and portrait cut-out. */
 export function Hero({ locale, copy }: HeroProps) {
   return (
-    <section className="relative isolate overflow-hidden bg-ink text-white">
+    <section className="relative isolate overflow-hidden bg-brand-tint text-ink">
       <Swoosh />
       {/* Soft blue glow behind the portrait */}
       <div
         aria-hidden
-        className="absolute -right-40 bottom-0 -z-10 size-[42rem] rounded-full bg-brand/25 blur-3xl"
+        className="absolute -right-40 bottom-0 -z-10 size-[42rem] rounded-full bg-brand/20 blur-3xl"
       />
 
       <div className="mx-auto grid min-h-svh max-w-7xl items-end gap-6 px-5 pt-28 sm:px-8 md:grid-cols-2 md:gap-0 lg:grid-cols-[1.1fr_1fr] lg:pt-32">
         <div className="pb-4 md:self-center md:pb-24">
-          <p className="inline-flex animate-fade-up items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-white/80 sm:text-sm">
-            <span aria-hidden className="size-1.5 rounded-full bg-brand-soft" />
+          <p className="inline-flex animate-fade-up items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-1.5 text-xs font-medium tracking-wide text-black/70 shadow-sm sm:text-sm">
+            <span aria-hidden className="size-1.5 rounded-full bg-brand" />
             {copy.eyebrow}
           </p>
 
           <h1 className="mt-6 animate-fade-up font-heading text-[2.75rem] leading-[0.95] font-bold tracking-tight [animation-delay:120ms] sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
-            {copy.titleLead} <span className="text-brand-soft">{copy.titleHighlight}</span>{" "}
+            {copy.titleLead} <span className="text-brand">{copy.titleHighlight}</span>{" "}
             {copy.titleTail}
           </h1>
 
-          <p className="mt-6 max-w-lg animate-fade-up text-base leading-relaxed text-white/70 [animation-delay:240ms] sm:text-lg">
+          <p className="mt-6 max-w-lg animate-fade-up text-base leading-relaxed text-black/65 [animation-delay:240ms] sm:text-lg">
             {copy.description}
           </p>
 
@@ -45,7 +45,7 @@ export function Hero({ locale, copy }: HeroProps) {
             </Link>
             <Link
               href={localizePath(locale, "/contact")}
-              className="group inline-flex items-center gap-2 font-medium text-white underline decoration-brand-soft decoration-2 underline-offset-8 hover:decoration-white"
+              className="group inline-flex items-center gap-2 font-medium text-ink underline decoration-brand decoration-2 underline-offset-8 hover:decoration-ink"
             >
               {copy.secondaryCta}
               <span aria-hidden className="transition-transform group-hover:translate-x-1">
@@ -63,10 +63,10 @@ export function Hero({ locale, copy }: HeroProps) {
             height={1044}
             preload
             sizes="(min-width: 1280px) 600px, (min-width: 768px) 48vw, (min-width: 640px) 512px, 92vw"
-            className="relative z-10 h-auto w-full max-w-none animate-fade-up drop-shadow-[0_20px_40px_rgb(0_0_0/0.5)] [animation-delay:200ms] md:-ml-[10%] md:w-[125%] lg:ml-0 lg:w-full"
+            className="relative z-10 h-auto w-full max-w-none animate-fade-up drop-shadow-[0_20px_40px_rgb(0_0_0/0.18)] [animation-delay:200ms] md:-ml-[10%] md:w-[125%] lg:ml-0 lg:w-full"
           />
 
-          <Link
+          {/* <Link
             href={localizePath(locale, "/sermons")}
             className="group absolute bottom-[14%] left-0 z-20 w-40 -rotate-6 animate-fade-up rounded-2xl bg-brand p-4 shadow-xl transition-transform [animation-delay:600ms] hover:-rotate-3 sm:w-48 sm:p-5 lg:top-[18%] lg:bottom-auto lg:-left-6"
           >
@@ -82,21 +82,24 @@ export function Hero({ locale, copy }: HeroProps) {
                 ▶
               </span>
             </span>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </section>
   );
 }
 
-/** Thick royal-blue ribbon that loops behind the portrait, drawn in on load. */
+/**
+ * Thick royal-blue ribbon that loops behind the portrait, drawn in on load.
+ * On phones it is confined to the lower half so it never sits under the text.
+ */
 function Swoosh() {
   return (
     <svg
       aria-hidden
       viewBox="0 0 1440 900"
       preserveAspectRatio="xMidYMid slice"
-      className="absolute inset-0 -z-10 size-full"
+      className="absolute inset-x-0 bottom-0 -z-10 h-1/2 w-full md:inset-y-0 md:h-full"
     >
       <path
         d="M-120 930 C 220 900 460 860 640 740 C 820 620 780 400 980 370 C 1180 340 1200 580 1030 610 C 860 640 880 420 1100 310 C 1280 220 1400 190 1560 150"
