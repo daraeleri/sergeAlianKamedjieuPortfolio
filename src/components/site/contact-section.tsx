@@ -128,7 +128,10 @@ export function ContactSection({ copy, email, location }: ContactSectionProps) {
               </ul>
             </div>
 
-            <dl data-contact-reveal className="mt-8 grid max-w-md gap-3 sm:grid-cols-2 lg:grid-cols-1">
+            <dl
+              data-contact-reveal
+              className="mt-8 grid max-w-md gap-3 sm:grid-cols-2 lg:grid-cols-1"
+            >
               <div className="flex items-center gap-3.5 rounded-2xl bg-white p-3.5 ring-1 ring-black/5">
                 <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-tint text-brand">
                   <MapPin aria-hidden strokeWidth={1.75} className="size-5" />

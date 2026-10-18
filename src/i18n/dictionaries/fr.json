@@ -24,9 +24,13 @@
     "description": "Un enseignement biblique et des messages de foi, d'espérance et d'amour pour affermir votre marche avec Dieu.",
     "primaryCta": "Faire sa connaissance",
     "secondaryCta": "Inviter à prêcher",
-    "cardLabel": "Livres",
-    "cardTitle": "Lire ses ouvrages",
-    "portraitAlt": "Portrait du pasteur Serge Alain Kamedjieu"
+    "portraitAlt": "Portrait du pasteur Serge Alain Kamedjieu",
+    "proof": "Fondateur de JAFAN Ministries · Bafoussam, Cameroun",
+    "noteLeft": "Appelé au ministère en 1996",
+    "noteRight": "Enseigner les nations",
+    "statYears": "ans de ministère",
+    "statDoctorates": "doctorats",
+    "statBooks": "livres"
   },
   "about": {
     "statement": "Un cœur de berger et une voix d'enseignant, consacrés à annoncer la Parole avec clarté et à conduire chacun dans la présence de la Divine Majesté.",

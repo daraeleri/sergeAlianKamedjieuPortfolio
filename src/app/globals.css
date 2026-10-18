@@ -40,6 +40,7 @@
   --color-surface: var(--surface);
   --font-sans: var(--font-rubik);
   --font-heading: var(--font-heading-face);
+  --font-hand: var(--font-hand-face);
 }
 
 @theme {

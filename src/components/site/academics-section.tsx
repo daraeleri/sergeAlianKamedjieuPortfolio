@@ -86,7 +86,11 @@ export function AcademicsSection({ copy }: { copy: Copy }) {
   );
 
   return (
-    <section ref={sectionRef} id="academics" className="bg-white py-20 text-ink sm:py-24">
+    <section
+      ref={sectionRef}
+      id="academics"
+      className="overflow-x-clip bg-white py-20 text-ink sm:py-24"
+    >
       <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
         {/* Sticky intro column */}
         <div className="lg:sticky lg:top-28 lg:self-start">
