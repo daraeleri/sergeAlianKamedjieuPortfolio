@@ -4,11 +4,12 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import { ArrowRight, BookOpen, Crown, Flame, Sparkles, type LucideIcon } from "lucide-react";
+import { ArrowRight, BookOpen } from "lucide-react";
 import type { Route } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import { BookCover, type CoverTheme } from "@/components/site/book-cover";
+import { BookCard, type BookCardBook } from "@/components/site/book-card";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { cn } from "@/lib/utils";
 
@@ -16,21 +17,39 @@ gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
 
 type Copy = Dictionary["books"];
 
-/** Look of each book card, in the order of `books.items` in the dictionaries. */
-const looks: { icon: LucideIcon; cover: CoverTheme; panel: string }[] = [
-  { icon: Flame, cover: "ink", panel: "bg-brand" },
-  { icon: Sparkles, cover: "royal", panel: "bg-brand-soft" },
-  { icon: Crown, cover: "paper", panel: "bg-ink" },
-  { icon: BookOpen, cover: "royal", panel: "bg-[#dfe7ff]" },
-];
+type BooksSectionProps = {
+  copy: Copy;
+  books: BookCardBook[];
+  orderHref: Route;
+};
+
+type CardOptions = { size?: "md" | "lg"; tone?: "tint" | "periwinkle"; className?: string };
 
 /**
- * "Books" section in the BeeToGreen style: big centred heading, four chunky book cards
- * (a coloured panel holding a tilted cover, then title, description and topics), and a
- * royal-blue strip to order a book.
+ * "Books" section as a flexbox bento (after the reference board): a dark banner with the
+ * heading and order button, a royal-blue key-figure card, and the four books as cards
+ * that show the real cover when there is one, or the styled fallback otherwise.
+ *
+ * Desktop columns: [book 1 · figure]  [banner / [book 2 · book 4] [book 3]]
  */
-export function BooksSection({ copy, orderHref }: { copy: Copy; orderHref: Route }) {
+export function BooksSection({ copy, books, orderHref }: BooksSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
+  const [first, second, third, fourth] = books;
+
+  const card = (book: BookCardBook | undefined, options: CardOptions) =>
+    book ? (
+      <div data-books-card className={cn("flex", options.className)}>
+        <BookCard
+          book={book}
+          coverAlt={copy.coverAlt.replace("{title}", book.title)}
+          orderLabel={copy.orderShort}
+          orderHref={orderHref}
+          size={options.size}
+          tone={options.tone}
+          className="w-full"
+        />
+      </div>
+    ) : null;
 
   useGSAP(
     () => {
@@ -49,54 +68,28 @@ export function BooksSection({ copy, orderHref }: { copy: Copy; orderHref: Route
             toggleActions: reverse,
           },
         });
-        gsap.from("[data-books-intro]", {
-          y: 30,
+        gsap.from("[data-books-card]", {
+          y: 80,
           opacity: 0,
+          scale: 0.95,
           duration: 0.9,
-          stagger: 0.1,
-          ease: "power3.out",
+          stagger: 0.08,
+          ease: "back.out(1.3)",
           scrollTrigger: {
-            trigger: "[data-books-heading]",
-            start: "top 75%",
-            toggleActions: reverse,
-          },
-        });
-        gsap.from("[data-book-card]", {
-          y: 90,
-          opacity: 0,
-          scale: 0.94,
-          duration: 0.9,
-          stagger: 0.1,
-          ease: "back.out(1.4)",
-          scrollTrigger: {
-            trigger: "[data-books-grid]",
+            trigger: "[data-books-bento]",
             start: "top 80%",
             toggleActions: reverse,
           },
         });
-        // Covers drift up slightly faster than the page for a little depth.
-        gsap.fromTo(
-          "[data-book-cover]",
-          { yPercent: 10 },
-          {
-            yPercent: -6,
-            ease: "none",
-            scrollTrigger: {
-              trigger: "[data-books-grid]",
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true,
-            },
-          },
-        );
-        gsap.from("[data-books-order]", {
+        gsap.from("[data-books-thumb]", {
           y: 60,
           opacity: 0,
-          duration: 0.9,
-          ease: "power3.out",
+          duration: 1,
+          stagger: 0.1,
+          ease: "back.out(1.6)",
           scrollTrigger: {
-            trigger: "[data-books-order]",
-            start: "top 90%",
+            trigger: "[data-books-bento]",
+            start: "top 75%",
             toggleActions: reverse,
           },
         });
@@ -107,125 +100,133 @@ export function BooksSection({ copy, orderHref }: { copy: Copy; orderHref: Route
   );
 
   return (
-    <section ref={sectionRef} id="books" className="bg-white py-20 text-ink sm:py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        {/* Header */}
-        <div className="mx-auto max-w-4xl text-center">
-          <p
-            data-books-intro
-            className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-1.5 text-xs font-medium tracking-wide text-black/70 shadow-sm sm:text-sm"
-          >
-            <span aria-hidden className="size-1.5 rounded-full bg-brand" />
-            {copy.label}
-          </p>
-          <h2
-            data-books-heading
-            className="mt-6 font-heading text-[2.4rem] leading-[1.02] font-bold tracking-tight text-balance sm:text-6xl lg:text-7xl"
-          >
-            {copy.headingLead} <span className="text-brand">{copy.headingHighlight}</span>
-          </h2>
-          <p
-            data-books-intro
-            className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-black/65 sm:text-lg"
-          >
-            {copy.intro}
-          </p>
+    <section
+      ref={sectionRef}
+      id="books"
+      aria-label={copy.listLabel}
+      className="bg-white px-2 py-20 sm:px-4 sm:py-28 lg:py-32"
+    >
+      <div
+        data-books-bento
+        className="mx-auto flex max-w-7xl flex-col gap-4 px-3 sm:px-4 lg:flex-row lg:gap-5"
+      >
+        {/* Column A: tall book + key figure */}
+        <div className="flex flex-col gap-4 lg:w-[32%] lg:gap-5">
+          {card(first, { size: "lg", tone: "tint", className: "min-h-[30rem] flex-1" })}
+          <div data-books-card className="flex">
+            <div className="relative isolate flex w-full flex-col justify-between overflow-hidden rounded-[1.75rem] bg-brand p-7 text-white">
+              <div
+                aria-hidden
+                className="absolute -right-20 -bottom-24 -z-10 size-64 rounded-full bg-brand-soft/60 blur-3xl"
+              />
+              <BookOpen aria-hidden strokeWidth={1.75} className="size-8 text-white/80" />
+              <div className="mt-8">
+                <p className="font-heading text-7xl leading-none font-bold tracking-tight">
+                  {books.length}
+                </p>
+                <p className="mt-2 font-heading text-lg font-semibold tracking-tight">
+                  {copy.statLabel}
+                </p>
+                <p className="mt-1 text-sm text-white/70">{copy.statNote}</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Book cards */}
-        <ul
-          data-books-grid
-          aria-label={copy.listLabel}
-          className="mt-16 grid gap-4 sm:mt-20 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4"
-        >
-          {copy.items.map((book, i) => {
-            const look = looks[i % looks.length];
-            return (
-              <li key={book.title} data-book-card>
-                <article className="group flex h-full flex-col overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_40px_-24px_rgb(65_105_225/0.45)] ring-1 ring-black/5 transition-transform duration-500 ease-out hover:-translate-y-1.5">
-                  <div
-                    className={cn("relative grid place-items-center px-8 pt-10 pb-12", look.panel)}
-                  >
-                    <div data-book-cover className="w-[72%] max-w-[15rem]">
-                      <BookCover
-                        title={book.title}
-                        author={copy.author}
-                        icon={look.icon}
-                        theme={look.cover}
-                        alt={copy.coverAlt.replace("{title}", book.title)}
-                        className={cn(
-                          "transition-transform duration-500 ease-out group-hover:-translate-y-2 group-hover:rotate-0",
-                          i % 2 ? "rotate-[4deg]" : "-rotate-[4deg]",
-                        )}
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-1 flex-col p-6 sm:p-7">
-                    <p className="text-xs font-medium text-black/45">{copy.languageTag}</p>
-                    <h3 className="mt-2 font-heading text-xl leading-snug font-bold tracking-tight">
-                      {book.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-black/60">{book.description}</p>
-                    <ul className="mt-auto flex flex-wrap gap-2 pt-5">
-                      {book.tags.map((tag) => (
-                        <li
-                          key={tag}
-                          className="rounded-full bg-brand-tint px-3 py-1 text-xs font-medium text-brand-strong"
-                        >
-                          {tag}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </article>
-              </li>
-            );
-          })}
-        </ul>
-
-        {/* Order strip */}
-        <div
-          data-books-order
-          className="relative isolate mt-5 flex flex-col gap-6 overflow-hidden rounded-[2rem] bg-brand p-8 text-white sm:p-10 md:flex-row md:items-center md:justify-between"
-        >
-          <OrderShape />
-          <div className="max-w-xl">
-            <h3 className="font-heading text-2xl leading-tight font-bold tracking-tight sm:text-3xl">
-              {copy.orderTitle}
-            </h3>
-            <p className="mt-2 text-white/80">{copy.orderText}</p>
+        {/* Column B: banner, then two columns of books */}
+        <div className="flex flex-col gap-4 lg:w-[68%] lg:gap-5">
+          <div data-books-card className="flex">
+            <div className="relative isolate flex w-full flex-col gap-8 overflow-hidden rounded-[1.75rem] bg-ink p-7 text-white sm:p-10 md:flex-row md:items-center md:justify-between">
+              <div
+                aria-hidden
+                className="absolute -top-28 -left-20 -z-10 size-80 rounded-full bg-brand/40 blur-3xl"
+              />
+              <div className="max-w-md">
+                <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-white/80 sm:text-sm">
+                  <span aria-hidden className="size-1.5 rounded-full bg-brand-soft" />
+                  {copy.label}
+                </p>
+                <h2
+                  data-books-heading
+                  className="mt-5 font-heading text-4xl leading-[1.02] font-bold tracking-tight text-balance sm:text-5xl"
+                >
+                  {copy.headingLead}{" "}
+                  <span className="text-brand-soft">{copy.headingHighlight}</span>
+                </h2>
+                <p className="mt-4 leading-relaxed text-white/65">{copy.intro}</p>
+                <Link
+                  href={orderHref}
+                  className="group mt-6 inline-flex items-center gap-2 rounded-full bg-white py-2 pr-2 pl-5 font-medium text-ink transition-colors hover:bg-brand-soft"
+                >
+                  {copy.orderCta}
+                  <span className="grid size-8 place-items-center rounded-full bg-ink text-white">
+                    <ArrowRight
+                      aria-hidden
+                      className="size-4 transition-transform group-hover:translate-x-0.5"
+                    />
+                  </span>
+                </Link>
+              </div>
+              <CoverFan books={books} />
+            </div>
           </div>
-          <Link
-            href={orderHref}
-            className="group inline-flex shrink-0 items-center gap-2 self-start rounded-xl bg-white px-6 py-3.5 font-medium text-ink transition-colors hover:bg-ink hover:text-white md:self-auto"
-          >
-            {copy.orderCta}
-            <ArrowRight
-              aria-hidden
-              className="size-4 transition-transform group-hover:translate-x-1"
-            />
-          </Link>
+
+          <div className="flex flex-1 flex-col gap-4 sm:flex-row lg:gap-5">
+            <div className="flex flex-col gap-4 sm:w-1/2 lg:gap-5">
+              {card(second, { tone: "periwinkle", className: "flex-1" })}
+              {card(fourth, { tone: "tint", className: "flex-1" })}
+            </div>
+            <div className="flex flex-col sm:w-1/2">
+              {card(third, { size: "lg", tone: "periwinkle", className: "min-h-[30rem] flex-1" })}
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-/** Soft swoosh behind the order strip (BeeToGreen feel). */
-function OrderShape() {
+/** Decorative fan of small covers in the banner (cover image, or a mini fallback). */
+function CoverFan({ books }: { books: BookCardBook[] }) {
+  const angles = ["-rotate-[10deg]", "-rotate-[2deg]", "rotate-[7deg]"];
   return (
-    <svg
-      aria-hidden
-      viewBox="0 0 400 400"
-      className="absolute -top-40 right-24 -z-10 size-[24rem] text-white/10"
-    >
-      <path
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="46"
-        strokeLinecap="round"
-        d="M40 330C80 220 170 250 210 170s-30-130 40-130 120 90 70 170"
-      />
-    </svg>
+    <div aria-hidden className="relative hidden h-44 w-64 shrink-0 md:block">
+      {books.slice(0, 3).map((book, i) => (
+        <div
+          key={book.slug}
+          className={cn(
+            "absolute top-2",
+            i === 0 && "left-0",
+            i === 1 && "left-[4.5rem] z-10",
+            i === 2 && "left-36",
+          )}
+        >
+          {/* GSAP animates this wrapper; the tilt lives on the inner element. */}
+          <div data-books-thumb>
+            <div
+              className={cn(
+                "relative h-40 w-28 overflow-hidden rounded-lg shadow-[0_20px_40px_-15px_rgb(0_0_0/0.7)] ring-1 ring-white/10",
+                angles[i],
+              )}
+            >
+              {book.cover ? (
+                <Image src={book.cover} alt="" fill sizes="112px" className="object-cover" />
+              ) : (
+                <div
+                  className={cn(
+                    "flex h-full flex-col justify-end p-2.5",
+                    i === 1 ? "bg-brand text-white" : "bg-brand-tint text-brand-strong",
+                  )}
+                >
+                  <span className="font-heading text-[0.7rem] leading-tight font-bold">
+                    {book.title}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }

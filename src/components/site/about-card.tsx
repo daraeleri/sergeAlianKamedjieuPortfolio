@@ -94,12 +94,12 @@ export function AboutCard({ copy, primaryHref, contactHref }: AboutCardProps) {
       });
 
       // Desktop: the photo frame closes in step with the card background (same inset,
-      // converted to the frame's own size: 46% of the card wide, 112% of it tall), so the
+      // converted to the frame's own size: 36% of the card wide, 82% of it tall), so the
       // photo never sticks out of the shrinking card.
       mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
         gsap.fromTo(
           "[data-about-portrait-frame]",
-          { clipPath: "inset(-60% 10.9% 7.1% 0% round 0 0 3rem 0)" },
+          { clipPath: "inset(-60% 13.9% 9.8% 0% round 0 0 3rem 0)" },
           {
             clipPath: "inset(-60% 0% 0% 0% round 0 0 2.5rem 0)",
             ease: "none",
@@ -141,7 +141,7 @@ export function AboutCard({ copy, primaryHref, contactHref }: AboutCardProps) {
         </svg>
       </div>
 
-      <div className="relative grid text-white lg:grid-cols-[1.35fr_1fr]">
+      <div className="relative grid text-white lg:grid-cols-[1.7fr_1fr]">
         <div className="px-6 pt-10 pb-4 sm:px-12 sm:pt-14 lg:py-16 lg:pr-4 lg:pl-14">
           <h3
             data-about-reveal
@@ -203,7 +203,7 @@ export function AboutCard({ copy, primaryHref, contactHref }: AboutCardProps) {
         <div className="relative flex items-end justify-center overflow-hidden px-6 lg:static lg:overflow-visible lg:px-0">
           <div
             data-about-portrait-frame
-            className="relative aspect-[1122/1044] w-full max-w-md lg:absolute lg:right-0 lg:bottom-0 lg:aspect-auto lg:h-[112%] lg:w-[46%] lg:max-w-none lg:[mask-image:linear-gradient(to_right,transparent,black_22%)] lg:[clip-path:inset(-60%_0%_0%_0%_round_0_0_2.5rem_0)]"
+            className="relative aspect-[1122/1044] w-full max-w-xs sm:max-w-sm lg:absolute lg:right-0 lg:bottom-0 lg:aspect-auto lg:h-[82%] lg:w-[36%] lg:max-w-none lg:[mask-image:linear-gradient(to_right,transparent,black_22%)] lg:[clip-path:inset(-60%_0%_0%_0%_round_0_0_2.5rem_0)]"
           >
             <div data-about-portrait className="relative size-full origin-bottom">
               <Image
@@ -211,7 +211,7 @@ export function AboutCard({ copy, primaryHref, contactHref }: AboutCardProps) {
                 alt={copy.portraitAlt}
                 fill
                 quality={90}
-                sizes="(min-width: 1024px) 720px, (min-width: 640px) 448px, 90vw"
+                sizes="(min-width: 1024px) 600px, (min-width: 640px) 384px, 80vw"
                 className="object-cover object-[60%_0%]"
               />
             </div>

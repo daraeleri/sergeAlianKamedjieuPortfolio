@@ -147,7 +147,6 @@
     "headingLead": "Une vision,",
     "headingHighlight": "quatre façons de servir.",
     "intro": "Le Prof. Kamedjieu est le Président Fondateur de JAFAN Ministries, un ministère international qu'il dirige avec son épouse, le Dr Dany Géraldine Kamedjieu, depuis Bafoussam, au Cameroun.",
-    "tablistLabel": "Branches de JAFAN Ministries",
     "items": [
       {
         "name": "Croisades et Missions",
@@ -196,7 +195,15 @@
     ],
     "mottoLabel": "Sa devise",
     "mottoLead": "Restaurer l'Autorité, Manifester la Puissance,",
-    "mottoHighlight": "Transformer les Nations."
+    "mottoHighlight": "Transformer les Nations.",
+    "listLabel": "Branches de JAFAN Ministries",
+    "academyFoundedLabel": "Fondée en",
+    "academyPathLabel": "Parcours d'études",
+    "academyPath": ["Certificat", "Licence", "Master", "Doctorat"],
+    "ctaTitle": "Découvrez JAFAN Ministries",
+    "ctaText": "Croisades, Académie, action humanitaire et église : retrouvez tout le ministère sur son site officiel.",
+    "ctaButton": "Visiter le site de JAFAN",
+    "newTab": "(s'ouvre dans un nouvel onglet)"
   },
   "books": {
     "label": "Livres",
@@ -204,34 +211,37 @@
     "headingHighlight": "le Corps de Christ.",
     "intro": "Quatre ouvrages de référence dans lesquels le Prof. Kamedjieu consigne son enseignement sur le Saint-Esprit, le leadership et l'autorité des Écritures.",
     "listLabel": "Ouvrages du Prof. Serge Alain Kamedjieu",
-    "languageTag": "En français",
-    "author": "Prof. Serge Alain Kamedjieu",
     "coverAlt": "Couverture de {title}",
+    "orderCta": "Commander un livre",
+    "orderShort": "Commander",
+    "statLabel": "ouvrages de référence du Prof. Kamedjieu",
+    "statNote": "Tous publiés en français",
     "items": [
       {
+        "slug": "le-saint-esprit-et-l-eglise",
         "title": "Le Saint-Esprit et l'Église",
         "description": "Une étude sur la place centrale du Paraclet dans la communauté des croyants.",
         "tags": ["Saint-Esprit", "Église"]
       },
       {
+        "slug": "vers-une-plus-grande-manifestation-de-la-puissance-de-dieu",
         "title": "Vers une plus grande manifestation de la puissance de Dieu",
         "description": "Un manuel pour activer le surnaturel divin au quotidien.",
         "tags": ["Puissance de Dieu", "Vie chrétienne"]
       },
       {
+        "slug": "le-leadership-et-la-puissance-du-saint-esprit",
         "title": "Le leadership et la puissance du Saint-Esprit",
         "description": "La synthèse entre gestion organisationnelle et onction spirituelle.",
         "tags": ["Leadership", "Saint-Esprit"]
       },
       {
+        "slug": "l-autorite-des-ecritures",
         "title": "L'autorité des Écritures",
         "description": "Un plaidoyer pour le retour à la suprématie de la Parole de Dieu.",
         "tags": ["Écritures", "Doctrine"]
       }
-    ],
-    "orderTitle": "Vous souhaitez l'un de ses livres ?",
-    "orderText": "Contactez-nous pour commander un exemplaire ou proposer ses ouvrages à votre église, école ou librairie.",
-    "orderCta": "Commander un livre"
+    ]
   },
   "pages": {
     "contact": {

@@ -6,6 +6,11 @@ import { env } from "@/lib/env";
 export const siteConfig = {
   name: "Serge Alain Kamedjieu",
   url: env.NEXT_PUBLIC_SITE_URL,
+  /**
+   * Official JAFAN Ministries website, used by the Ministries call-to-action.
+   * PLACEHOLDER: replace with the real address (".example" never resolves).
+   */
+  jafanUrl: "https://jafan-ministries.example",
 } as const;
 
 type NavItem<K> = {

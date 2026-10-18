@@ -147,7 +147,6 @@
     "headingLead": "One vision,",
     "headingHighlight": "four ways to serve.",
     "intro": "Prof. Kamedjieu is the President-Founder of JAFAN Ministries, an international ministry he leads with his wife, Dr Dany Géraldine Kamedjieu, from Bafoussam, Cameroon.",
-    "tablistLabel": "JAFAN Ministries branches",
     "items": [
       {
         "name": "Crusades & Missions",
@@ -196,7 +195,15 @@
     ],
     "mottoLabel": "His motto",
     "mottoLead": "Restoring authority, manifesting power,",
-    "mottoHighlight": "transforming the nations."
+    "mottoHighlight": "transforming the nations.",
+    "listLabel": "JAFAN Ministries branches",
+    "academyFoundedLabel": "Founded in",
+    "academyPathLabel": "Study path",
+    "academyPath": ["Certificate", "Bachelor's", "Master's", "Doctorate"],
+    "ctaTitle": "Discover JAFAN Ministries",
+    "ctaText": "Crusades, the Academy, humanitarian action and the church: find everything about the ministry on its official website.",
+    "ctaButton": "Visit the JAFAN website",
+    "newTab": "(opens in a new tab)"
   },
   "books": {
     "label": "Books",
@@ -204,34 +211,37 @@
     "headingHighlight": "the Body of Christ.",
     "intro": "Four reference works in which Prof. Kamedjieu sets down his teaching on the Holy Spirit, leadership and the authority of Scripture.",
     "listLabel": "Books by Prof. Serge Alain Kamedjieu",
-    "languageTag": "In French",
-    "author": "Prof. Serge Alain Kamedjieu",
     "coverAlt": "Cover of {title}",
+    "orderCta": "Order a book",
+    "orderShort": "Order",
+    "statLabel": "reference books by Prof. Kamedjieu",
+    "statNote": "All published in French",
     "items": [
       {
+        "slug": "le-saint-esprit-et-l-eglise",
         "title": "Le Saint-Esprit et l'Église",
         "description": "A study of the central place of the Paraclete in the community of believers.",
         "tags": ["Holy Spirit", "Church"]
       },
       {
+        "slug": "vers-une-plus-grande-manifestation-de-la-puissance-de-dieu",
         "title": "Vers une plus grande manifestation de la puissance de Dieu",
         "description": "A handbook for experiencing God's supernatural power in everyday life.",
         "tags": ["Power of God", "Christian life"]
       },
       {
+        "slug": "le-leadership-et-la-puissance-du-saint-esprit",
         "title": "Le leadership et la puissance du Saint-Esprit",
         "description": "Where organisational leadership meets spiritual anointing.",
         "tags": ["Leadership", "Holy Spirit"]
       },
       {
+        "slug": "l-autorite-des-ecritures",
         "title": "L'autorité des Écritures",
         "description": "A plea for a return to the supremacy of the Word of God.",
         "tags": ["Scripture", "Doctrine"]
       }
-    ],
-    "orderTitle": "Would you like one of his books?",
-    "orderText": "Get in touch to order a copy or to bring his books to your church, school or bookshop.",
-    "orderCta": "Order a book"
+    ]
   },
   "pages": {
     "contact": {

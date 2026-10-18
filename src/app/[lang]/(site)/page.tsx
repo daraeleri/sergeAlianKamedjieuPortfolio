@@ -4,6 +4,8 @@ import { AcademicsSection } from "@/components/site/academics-section";
 import { BooksSection } from "@/components/site/books-section";
 import { Hero } from "@/components/site/hero";
 import { MinistriesSection } from "@/components/site/ministries-section";
+import { siteConfig } from "@/config/site";
+import { bookCovers } from "@/content/books";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { localizePath, pageMetadata } from "@/i18n/routing";
 
@@ -29,8 +31,12 @@ export default async function HomePage() {
       <Hero locale={locale} copy={dict.hero} />
       <AboutSection locale={locale} copy={dict.about} />
       <AcademicsSection copy={dict.academics} />
-      <MinistriesSection copy={dict.ministries} />
-      <BooksSection copy={dict.books} orderHref={localizePath(locale, "/contact")} />
+      <MinistriesSection copy={dict.ministries} websiteUrl={siteConfig.jafanUrl} />
+      <BooksSection
+        copy={dict.books}
+        orderHref={localizePath(locale, "/contact")}
+        books={dict.books.items.map((book) => ({ ...book, cover: bookCovers[book.slug] }))}
+      />
     </>
   );
 }
