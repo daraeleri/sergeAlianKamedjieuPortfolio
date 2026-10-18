@@ -203,7 +203,7 @@ export function AboutCard({ copy, primaryHref, contactHref }: AboutCardProps) {
         <div className="relative flex items-end justify-center overflow-hidden px-6 lg:static lg:overflow-visible lg:px-0">
           <div
             data-about-portrait-frame
-            className="relative aspect-[1122/1044] w-full max-w-xs sm:max-w-sm lg:absolute lg:right-0 lg:bottom-0 lg:aspect-auto lg:h-[112%] lg:w-[42%] lg:max-w-none lg:[mask-image:linear-gradient(to_right,transparent,black_22%)] lg:[clip-path:inset(-60%_0%_0%_0%_round_0_0_2.5rem_0)]"
+            className="relative aspect-[3/4] w-full max-w-[15rem] sm:max-w-[18rem] lg:absolute lg:right-0 lg:bottom-0 lg:aspect-auto lg:h-[112%] lg:w-[42%] lg:max-w-none lg:[mask-image:linear-gradient(to_right,transparent,black_22%)] lg:[clip-path:inset(-60%_0%_0%_0%_round_0_0_2.5rem_0)]"
           >
             <div data-about-portrait className="relative size-full origin-bottom">
               <Image
@@ -211,8 +211,8 @@ export function AboutCard({ copy, primaryHref, contactHref }: AboutCardProps) {
                 alt={copy.portraitAlt}
                 fill
                 quality={90}
-                sizes="(min-width: 1024px) 840px, (min-width: 640px) 384px, 80vw"
-                className="object-cover object-[60%_0%]"
+                sizes="(min-width: 1024px) 480px, (min-width: 640px) 288px, 240px"
+                className="object-cover object-top"
               />
             </div>
           </div>

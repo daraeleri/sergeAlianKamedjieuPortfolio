@@ -121,14 +121,14 @@ export async function Hero({ locale, copy }: HeroProps) {
           </div>
 
           {/* Portrait */}
-          <div className="absolute bottom-0 left-1/2 z-10 w-[19rem] -translate-x-1/2 sm:w-[28rem] lg:w-[33rem]">
+          <div className="absolute bottom-0 left-1/2 z-10 w-[13.25rem] -translate-x-1/2 sm:w-[19.5rem] lg:w-[23rem]">
             <Image
               src="/images/PersonaImage.png"
               alt={copy.portraitAlt}
-              width={1122}
-              height={1044}
+              width={960}
+              height={1280}
               preload
-              sizes="(min-width: 1024px) 528px, (min-width: 640px) 448px, 304px"
+              sizes="(min-width: 1024px) 368px, (min-width: 640px) 312px, 212px"
               className="h-auto w-full animate-fade-up drop-shadow-[0_24px_40px_rgb(10_10_10/0.25)] [animation-delay:350ms]"
             />
           </div>
