@@ -7,6 +7,7 @@
     "home": "Home",
     "about": "About",
     "academics": "Academics",
+    "ministries": "Ministries",
     "contact": "Contact",
     "main": "Main",
     "language": "Language",
@@ -139,6 +140,62 @@
         }
       ]
     }
+  },
+  "ministries": {
+    "label": "JAFAN Ministries",
+    "headingLead": "One vision,",
+    "headingHighlight": "four ways to serve.",
+    "intro": "Prof. Kamedjieu is the President-Founder of JAFAN Ministries, an international ministry he leads with his wife, Dr Dany Géraldine Kamedjieu, from Bafoussam, Cameroon.",
+    "tablistLabel": "JAFAN Ministries branches",
+    "items": [
+      {
+        "name": "Crusades & Missions",
+        "tagline": "Evangelism across the nations",
+        "fact": "International",
+        "description": "Evangelistic crusades and conferences that carry the Gospel of salvation across the nations.",
+        "highlights": [
+          "Evangelistic crusades",
+          "International conferences",
+          "Seminars for believers and leaders"
+        ]
+      },
+      {
+        "name": "JAFAN Academy of World Evangelism",
+        "tagline": "Training tomorrow's leaders",
+        "fact": "Founded in 2007",
+        "description": "Founded in 2007 to train Christian leaders. Through partnerships with international schools and universities, the academy offers a complete path from Certificate to Doctorate.",
+        "highlights": [
+          "From Certificate to Doctorate",
+          "International university partnerships",
+          "Led by Prof. Kamedjieu as Chancellor"
+        ]
+      },
+      {
+        "name": "Joseph Store International",
+        "tagline": "Humanitarian action · Gen 41",
+        "fact": "Genesis 41",
+        "description": "The humanitarian branch, inspired by Joseph's prophetic stewardship in Genesis 41, bringing concrete solutions to vulnerable communities.",
+        "highlights": [
+          "Food security",
+          "Social support for vulnerable people",
+          "Stewardship inspired by Genesis 41"
+        ]
+      },
+      {
+        "name": "Church of Christ for Nations",
+        "tagline": "The local church in Bafoussam",
+        "fact": "Bafoussam, Cameroon",
+        "description": "The local church he founded in Bafoussam, in the West Region of Cameroon: a model and training centre for his international outreach.",
+        "highlights": [
+          "Local church in Bafoussam",
+          "Model and training centre",
+          "Base for international outreach"
+        ]
+      }
+    ],
+    "mottoLabel": "His motto",
+    "mottoLead": "Restoring authority, manifesting power,",
+    "mottoHighlight": "transforming the nations."
   },
   "pages": {
     "contact": {

@@ -7,6 +7,7 @@
     "home": "Accueil",
     "about": "À propos",
     "academics": "Parcours",
+    "ministries": "Ministères",
     "contact": "Contact",
     "main": "Principal",
     "language": "Langue",
@@ -139,6 +140,62 @@
         }
       ]
     }
+  },
+  "ministries": {
+    "label": "JAFAN Ministries",
+    "headingLead": "Une vision,",
+    "headingHighlight": "quatre façons de servir.",
+    "intro": "Le Prof. Kamedjieu est le Président Fondateur de JAFAN Ministries, un ministère international qu'il dirige avec son épouse, le Dr Dany Géraldine Kamedjieu, depuis Bafoussam, au Cameroun.",
+    "tablistLabel": "Branches de JAFAN Ministries",
+    "items": [
+      {
+        "name": "Croisades et Missions",
+        "tagline": "L'évangélisation dans les nations",
+        "fact": "International",
+        "description": "Des croisades d'évangélisation et des conférences qui portent l'Évangile du salut à travers les nations.",
+        "highlights": [
+          "Croisades d'évangélisation",
+          "Conférences internationales",
+          "Séminaires pour croyants et leaders"
+        ]
+      },
+      {
+        "name": "JAFAN Academy of World Evangelism",
+        "tagline": "Former les leaders de demain",
+        "fact": "Fondée en 2007",
+        "description": "Fondée en 2007 pour former des leaders chrétiens. Grâce à des partenariats avec des écoles et universités internationales, l'académie propose un cycle complet du Certificat au Doctorat.",
+        "highlights": [
+          "Du Certificat au Doctorat",
+          "Partenariats universitaires internationaux",
+          "Dirigée par le Prof. Kamedjieu, Chancelier"
+        ]
+      },
+      {
+        "name": "Joseph Store International",
+        "tagline": "Action humanitaire · Gen 41",
+        "fact": "Genèse 41",
+        "description": "La branche humanitaire, inspirée de la gestion prophétique de Joseph en Genèse 41, qui apporte des solutions concrètes aux populations vulnérables.",
+        "highlights": [
+          "Sécurité alimentaire",
+          "Soutien social aux personnes vulnérables",
+          "Une gestion inspirée de Genèse 41"
+        ]
+      },
+      {
+        "name": "Church of Christ for Nations",
+        "tagline": "L'église locale à Bafoussam",
+        "fact": "Bafoussam, Cameroun",
+        "description": "L'église locale qu'il a fondée à Bafoussam, dans la Région de l'Ouest du Cameroun : un modèle et un centre de formation pour son rayonnement international.",
+        "highlights": [
+          "Église locale à Bafoussam",
+          "Modèle et centre de formation",
+          "Base du rayonnement international"
+        ]
+      }
+    ],
+    "mottoLabel": "Sa devise",
+    "mottoLead": "Restaurer l'Autorité, Manifester la Puissance,",
+    "mottoHighlight": "Transformer les Nations."
   },
   "pages": {
     "contact": {
