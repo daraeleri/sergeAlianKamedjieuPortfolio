@@ -68,7 +68,7 @@ export function SiteNavbar({ locale, brand, homeHref, links, cta, labels }: Site
         )}
       />
 
-      <div className="relative mx-auto max-w-7xl rounded-2xl bg-white text-ink shadow-[0_8px_30px_rgb(0_0_0/0.12)]">
+      <div className="relative mx-auto max-w-6xl rounded-2xl bg-white text-ink shadow-[0_8px_30px_rgb(0_0_0/0.12)]">
         <div className="flex h-16 items-center justify-between gap-4 px-4 sm:px-5">
           <Link
             href={homeHref}

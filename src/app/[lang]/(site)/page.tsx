@@ -37,6 +37,7 @@ export default async function HomePage() {
       <BooksSection
         copy={dict.books}
         orderHref={sectionHref(locale, "contact")}
+        author={siteConfig.name}
         books={dict.books.items.map((book) => ({ ...book, cover: bookCovers[book.slug] }))}
       />
       <ReachSection copy={dict.reach} />

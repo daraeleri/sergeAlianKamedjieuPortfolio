@@ -18,9 +18,9 @@ type ContactSectionProps = {
 };
 
 /**
- * "Contact / Invitation" section in the BeeToGreen style: a bold royal-blue rounded panel
- * with the invitation pitch, request topics and contact details on the left, and a white
- * form card on the right.
+ * "Contact / Invitation" section: a light rounded panel with the invitation pitch, request
+ * topics and contact details on the left, and a white form card on the right. Royal blue
+ * is kept for the highlight, icons and the send button.
  */
 export function ContactSection({ copy, email, location }: ContactSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -73,13 +73,13 @@ export function ContactSection({ copy, email, location }: ContactSectionProps) {
   );
 
   return (
-    <section ref={sectionRef} id="contact" className="bg-white px-2 pb-2 sm:px-4 sm:pb-4">
-      <div className="relative isolate overflow-hidden rounded-[2rem] bg-brand py-20 text-white sm:rounded-[3rem] sm:py-28 lg:py-32">
+    <section ref={sectionRef} id="contact" className="bg-white px-3 pt-8 pb-20 sm:px-6 sm:pb-24">
+      <div className="relative isolate mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-mist py-14 text-ink sm:py-20">
         {/* Decorative swooshes and glow */}
         <svg
           aria-hidden
           viewBox="0 0 400 400"
-          className="absolute -top-24 -left-28 -z-10 size-[30rem] text-white/[0.08]"
+          className="absolute -top-24 -left-28 -z-10 size-[26rem] text-brand/[0.06]"
         >
           <path
             fill="none"
@@ -91,39 +91,36 @@ export function ContactSection({ copy, email, location }: ContactSectionProps) {
         </svg>
         <div
           aria-hidden
-          className="absolute -right-40 -bottom-40 -z-10 size-[36rem] rounded-full bg-brand-soft/40 blur-3xl"
+          className="absolute -right-40 -bottom-40 -z-10 size-[30rem] rounded-full bg-brand-soft/20 blur-3xl"
         />
 
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+        <div className="grid gap-10 px-5 sm:px-10 lg:grid-cols-[1fr_1.1fr] lg:gap-14 lg:px-12">
           {/* Pitch and details */}
           <div className="lg:pt-6">
             <p
               data-contact-reveal
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-medium tracking-wide text-white sm:text-sm"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-xs font-medium text-black/65"
             >
-              <span aria-hidden className="size-1.5 rounded-full bg-white" />
+              <span aria-hidden className="size-1.5 rounded-full bg-brand" />
               {copy.label}
             </p>
             <h2
               data-contact-heading
-              className="mt-6 font-heading text-[2.4rem] leading-[1.02] font-bold tracking-tight text-balance sm:text-6xl"
+              className="mt-5 font-heading text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-5xl"
             >
-              {copy.headingLead} <span className="text-ink">{copy.headingHighlight}</span>
+              {copy.headingLead} <span className="text-brand">{copy.headingHighlight}</span>
             </h2>
-            <p
-              data-contact-reveal
-              className="mt-6 max-w-lg text-base leading-relaxed text-white/85 sm:text-lg"
-            >
+            <p data-contact-reveal className="mt-5 max-w-lg leading-relaxed text-black/60">
               {copy.intro}
             </p>
 
             <div data-contact-reveal className="mt-8">
-              <p className="text-sm font-medium text-white/70">{copy.reasonsLabel}</p>
+              <p className="text-sm font-medium text-black/50">{copy.reasonsLabel}</p>
               <ul className="mt-3 flex flex-wrap gap-2">
                 {copy.reasons.map((reason) => (
                   <li
                     key={reason}
-                    className="rounded-full bg-white/15 px-3.5 py-1.5 text-sm font-medium ring-1 ring-white/20"
+                    className="rounded-full bg-white px-3 py-1.5 text-[0.8rem] font-medium ring-1 ring-black/5"
                   >
                     {reason}
                   </li>
@@ -131,23 +128,23 @@ export function ContactSection({ copy, email, location }: ContactSectionProps) {
               </ul>
             </div>
 
-            <dl data-contact-reveal className="mt-10 grid gap-4 sm:grid-cols-2">
-              <div className="flex items-center gap-4 rounded-2xl bg-white/10 p-4 ring-1 ring-white/15">
-                <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-white text-brand">
+            <dl data-contact-reveal className="mt-8 grid max-w-md gap-3 sm:grid-cols-2 lg:grid-cols-1">
+              <div className="flex items-center gap-3.5 rounded-2xl bg-white p-3.5 ring-1 ring-black/5">
+                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-tint text-brand">
                   <MapPin aria-hidden strokeWidth={1.75} className="size-5" />
                 </span>
                 <div>
-                  <dt className="text-xs text-white/70">{copy.locationLabel}</dt>
-                  <dd className="font-medium">{location}</dd>
+                  <dt className="text-xs text-black/50">{copy.locationLabel}</dt>
+                  <dd className="text-sm font-medium">{location}</dd>
                 </div>
               </div>
-              <div className="flex items-center gap-4 rounded-2xl bg-white/10 p-4 ring-1 ring-white/15">
-                <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-white text-brand">
+              <div className="flex items-center gap-3.5 rounded-2xl bg-white p-3.5 ring-1 ring-black/5">
+                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-tint text-brand">
                   <Mail aria-hidden strokeWidth={1.75} className="size-5" />
                 </span>
                 <div className="min-w-0">
-                  <dt className="text-xs text-white/70">{copy.emailLabel}</dt>
-                  <dd className="truncate font-medium">
+                  <dt className="text-xs text-black/50">{copy.emailLabel}</dt>
+                  <dd className="truncate text-sm font-medium">
                     <a href={`mailto:${email}`} className="underline-offset-4 hover:underline">
                       {email}
                     </a>
@@ -160,7 +157,7 @@ export function ContactSection({ copy, email, location }: ContactSectionProps) {
           {/* Form card */}
           <div
             data-contact-card
-            className="relative rounded-[2rem] bg-white p-6 text-ink shadow-[0_40px_80px_-40px_rgb(10_10_10/0.6)] sm:p-9"
+            className="relative rounded-[1.5rem] bg-white p-6 text-ink shadow-[0_24px_60px_-30px_rgb(10_10_10/0.3)] sm:p-8"
           >
             <ContactForm copy={copy.form} email={email} />
           </div>

@@ -5,6 +5,7 @@ import { profile } from "@/content/profile";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { sectionHref } from "@/i18n/routing";
+import { currentYear } from "@/lib/current-year";
 import { cn } from "@/lib/utils";
 
 type AboutSectionProps = {
@@ -26,8 +27,8 @@ export async function AboutSection({ locale, copy }: AboutSectionProps) {
   ];
 
   return (
-    <section id="about" className="bg-white py-20 text-ink sm:py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+    <section id="about" className="bg-white py-20 text-ink sm:py-24 lg:py-28">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Statement text={copy.statement} highlight={copy.statementHighlight} />
         <AboutCard
           copy={copy}
@@ -61,7 +62,7 @@ function Statement({ text, highlight }: { text: string; highlight: string }) {
   const last = Math.max(words.length - 1, 1);
 
   return (
-    <p className="reveal-text mx-auto max-w-5xl text-center font-heading text-[1.75rem] leading-[1.15] font-medium tracking-tight text-balance sm:text-4xl md:text-5xl lg:text-[3.5rem]">
+    <p className="reveal-text mx-auto max-w-4xl text-center font-heading text-[1.6rem] leading-[1.18] font-medium tracking-tight text-balance sm:text-3xl md:text-4xl lg:text-[2.6rem]">
       {words.map(({ word, highlighted }, i) => (
         <span key={i}>
           <span
@@ -74,10 +75,4 @@ function Statement({ text, highlight }: { text: string; highlight: string }) {
       ))}
     </p>
   );
-}
-
-/** Current year, cached so the page can still be prerendered (Cache Components). */
-async function currentYear() {
-  "use cache";
-  return new Date().getFullYear();
 }

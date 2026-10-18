@@ -119,7 +119,7 @@ export function ReachSection({ copy }: { copy: Dictionary["reach"] }) {
   return (
     <section
       ref={sectionRef}
-      className="overflow-x-clip bg-white px-5 pt-28 pb-16 sm:px-8 sm:pt-36 sm:pb-24"
+      className="overflow-x-clip bg-white px-5 pt-24 pb-12 sm:px-8 sm:pt-32 sm:pb-16"
     >
       <div className="relative mx-auto flex max-w-6xl flex-col rounded-[2rem] bg-[#ebf0ff] ring-1 ring-brand/10 lg:grid lg:min-h-[28rem] lg:grid-cols-[1.25fr_1fr]">
         {/* Map: above the text on small screens; on desktop it breaks out of the card's
@@ -211,10 +211,10 @@ export function ReachSection({ copy }: { copy: Dictionary["reach"] }) {
           <p className="text-xs font-semibold tracking-[0.2em] text-brand-strong uppercase">
             {copy.eyebrow}
           </p>
-          <h2 className="mt-4 font-heading text-4xl leading-[1.05] font-bold tracking-tight text-balance sm:text-5xl">
+          <h2 className="mt-4 font-heading text-3xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-4xl">
             {copy.headingLead} <span className="text-brand">{copy.headingHighlight}</span>
           </h2>
-          <p className="mt-6 leading-relaxed text-black/65">{rich(copy.body)}</p>
+          <p className="mt-5 text-[0.95rem] leading-relaxed text-black/65">{rich(copy.body)}</p>
           <p className="mt-5 text-sm text-black/55">{rich(copy.meta)}</p>
         </div>
       </div>

@@ -45,7 +45,9 @@ function ContactFormInner({
         <span className="grid size-16 place-items-center rounded-full bg-brand-tint text-brand">
           <CircleCheck aria-hidden strokeWidth={1.75} className="size-8" />
         </span>
-        <h3 className="mt-6 font-heading text-3xl font-bold tracking-tight">{copy.successTitle}</h3>
+        <h3 className="mt-6 font-heading text-2xl font-semibold tracking-tight">
+          {copy.successTitle}
+        </h3>
         <p className="mt-3 max-w-sm leading-relaxed text-black/60">{copy.successText}</p>
         <button
           type="button"
@@ -66,13 +68,15 @@ function ContactFormInner({
 
   const inputClass = (name?: ContactField) =>
     cn(
-      "mt-2 w-full rounded-xl border bg-brand-tint/60 px-4 py-3 text-ink outline-none transition-colors placeholder:text-black/35 focus:border-brand focus:bg-white focus:ring-4 focus:ring-brand/15",
+      "mt-2 w-full rounded-xl border bg-mist px-4 py-2.5 text-ink outline-none transition-colors placeholder:text-black/35 focus:border-brand focus:bg-white focus:ring-4 focus:ring-brand/15",
       name && invalid.has(name) ? "border-red-500" : "border-black/10",
     );
 
   return (
     <form action={formAction} noValidate className="space-y-5">
-      <h3 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">{copy.title}</h3>
+      <h3 className="font-heading text-xl font-semibold tracking-tight sm:text-2xl">
+        {copy.title}
+      </h3>
 
       {/* Honeypot for bots: hidden from people and assistive technology. */}
       <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
@@ -197,7 +201,7 @@ function ContactFormInner({
         <button
           type="submit"
           disabled={pending}
-          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-brand px-6 py-3.5 font-medium text-white shadow-[0_10px_30px_-10px] shadow-brand transition-colors hover:bg-brand-strong disabled:cursor-wait disabled:opacity-70"
+          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-brand px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-strong disabled:cursor-wait disabled:opacity-70"
         >
           {pending ? (
             <>

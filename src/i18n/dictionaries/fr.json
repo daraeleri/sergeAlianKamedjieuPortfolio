@@ -200,8 +200,6 @@
     "academyFoundedLabel": "Fondée en",
     "academyPathLabel": "Parcours d'études",
     "academyPath": ["Certificat", "Licence", "Master", "Doctorat"],
-    "ctaTitle": "Découvrez JAFAN Ministries",
-    "ctaText": "Croisades, Académie, action humanitaire et église : retrouvez tout le ministère sur son site officiel.",
     "ctaButton": "Visiter le site de JAFAN",
     "newTab": "(s'ouvre dans un nouvel onglet)"
   },
@@ -299,6 +297,22 @@
         "unavailable": "Les messages en ligne ne sont pas encore disponibles. Écrivez-nous directement à {email}."
       }
     }
+  },
+  "footer": {
+    "statementLead": "",
+    "words": ["Portons", "Proclamons", "Partageons"],
+    "statementTail": "l’Évangile jusqu’aux nations, ensemble.",
+    "emailLabel": "E-mail",
+    "copyEmail": "Copier l’adresse e-mail",
+    "copied": "Copiée",
+    "inviteLabel": "Invitations",
+    "ministryLabel": "JAFAN Ministries",
+    "ministryLink": "Visiter le site",
+    "menuLabel": "Menu",
+    "ministriesLabel": "Ministères",
+    "booksLabel": "Livres",
+    "languageLabel": "Langue",
+    "rights": "Tous droits réservés."
   },
   "dashboard": {
     "title": "Tableau de bord",

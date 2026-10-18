@@ -112,7 +112,7 @@ export function AboutCard({ copy, primaryHref, contactHref }: AboutCardProps) {
   );
 
   return (
-    <div ref={rootRef} className="relative mt-20 sm:mt-28 lg:mt-48">
+    <div ref={rootRef} className="relative mt-16 sm:mt-24 lg:mt-36">
       {/* Background layer: clipped separately so the portrait can break out of the top. */}
       <div
         data-about-bg
@@ -142,28 +142,28 @@ export function AboutCard({ copy, primaryHref, contactHref }: AboutCardProps) {
       </div>
 
       <div className="relative grid text-white lg:grid-cols-[1.4fr_1fr]">
-        <div className="px-6 pt-10 pb-4 sm:px-12 sm:pt-14 lg:py-16 lg:pr-4 lg:pl-14">
+        <div className="px-6 pt-9 pb-4 sm:px-10 sm:pt-12 lg:py-12 lg:pr-4 lg:pl-12">
           <h3
             data-about-reveal
-            className="font-heading text-3xl leading-tight font-bold tracking-tight sm:text-4xl"
+            className="font-heading text-2xl leading-tight font-semibold tracking-tight sm:text-3xl"
           >
             {copy.greetingLead} <span className="text-brand-soft">{copy.greetingHighlight}</span>
           </h3>
           <p
             data-about-reveal
-            className="mt-5 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg"
+            className="mt-4 max-w-xl text-[0.95rem] leading-relaxed text-white/75"
           >
             {copy.bio}
           </p>
 
-          <ul className="mt-10 grid gap-x-8 gap-y-7 sm:grid-cols-2">
+          <ul className="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2">
             {copy.features.map((feature, i) => (
               <li key={feature.title} data-about-reveal className="flex gap-4">
-                <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-[#0a1430] text-brand-soft ring-1 ring-white/10">
+                <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-[#0a1430] text-brand-soft ring-1 ring-white/10">
                   <FeatureIcon icon={featureIcons[i]} />
                 </span>
                 <div>
-                  <p className="font-heading text-lg font-semibold tracking-tight sm:text-xl">
+                  <p className="font-heading text-base font-semibold tracking-tight">
                     {feature.title}
                   </p>
                   <p className="mt-1 text-sm leading-relaxed text-white/65">
@@ -174,10 +174,10 @@ export function AboutCard({ copy, primaryHref, contactHref }: AboutCardProps) {
             ))}
           </ul>
 
-          <div data-about-reveal className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
+          <div data-about-reveal className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
             <Link
               href={primaryHref}
-              className="group inline-flex items-center gap-3 rounded-xl bg-brand px-6 py-3.5 font-medium text-white shadow-[0_10px_30px_-10px] shadow-brand transition-colors hover:bg-brand-strong"
+              className="group inline-flex items-center gap-2.5 rounded-xl bg-brand px-5 py-3 text-sm font-medium text-white shadow-[0_10px_30px_-10px] shadow-brand transition-colors hover:bg-brand-strong"
             >
               {copy.cta}
               <ArrowRight
@@ -187,7 +187,7 @@ export function AboutCard({ copy, primaryHref, contactHref }: AboutCardProps) {
             </Link>
             <Link
               href={contactHref}
-              className="font-medium text-white underline decoration-brand-soft decoration-2 underline-offset-8 hover:decoration-white"
+              className="text-sm font-medium text-white underline decoration-brand-soft decoration-2 underline-offset-8 hover:decoration-white"
             >
               {copy.secondaryCta}
             </Link>
@@ -223,5 +223,5 @@ export function AboutCard({ copy, primaryHref, contactHref }: AboutCardProps) {
 }
 
 function FeatureIcon({ icon: Icon = BookOpen }: { icon?: LucideIcon }) {
-  return <Icon aria-hidden strokeWidth={1.75} className="size-6" />;
+  return <Icon aria-hidden strokeWidth={1.75} className="size-5" />;
 }

@@ -200,8 +200,6 @@
     "academyFoundedLabel": "Founded in",
     "academyPathLabel": "Study path",
     "academyPath": ["Certificate", "Bachelor's", "Master's", "Doctorate"],
-    "ctaTitle": "Discover JAFAN Ministries",
-    "ctaText": "Crusades, the Academy, humanitarian action and the church: find everything about the ministry on its official website.",
     "ctaButton": "Visit the JAFAN website",
     "newTab": "(opens in a new tab)"
   },
@@ -299,6 +297,22 @@
         "unavailable": "Online messages are not available yet. Please email us directly at {email}."
       }
     }
+  },
+  "footer": {
+    "statementLead": "Let’s",
+    "words": ["carry", "proclaim", "share"],
+    "statementTail": "the Gospel to the nations, together.",
+    "emailLabel": "Email",
+    "copyEmail": "Copy email address",
+    "copied": "Copied",
+    "inviteLabel": "Invitations",
+    "ministryLabel": "JAFAN Ministries",
+    "ministryLink": "Visit the website",
+    "menuLabel": "Menu",
+    "ministriesLabel": "Ministries",
+    "booksLabel": "Books",
+    "languageLabel": "Language",
+    "rights": "All rights reserved."
   },
   "dashboard": {
     "title": "Dashboard",

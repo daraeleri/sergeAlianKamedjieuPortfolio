@@ -7,6 +7,7 @@
   --brand-soft: #7b9bff; /* blue text on black (7.5:1) */
   --ink: #0a0a0a; /* near-black sections */
   --brand-tint: #f3f6ff; /* light blue-white section background */
+  --mist: #f4f5f8; /* neutral light-grey panels and cards */
 
   --background: #ffffff;
   --foreground: #0a0a0a;
@@ -31,6 +32,7 @@
   --color-brand-soft: var(--brand-soft);
   --color-ink: var(--ink);
   --color-brand-tint: var(--brand-tint);
+  --color-mist: var(--mist);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
@@ -99,7 +101,37 @@ body {
   }
 }
 
+/*
+ * Footer statement: the highlighted verb cycles through three words (the list repeats the
+ * first word at the end so the loop is seamless). Each word is 1.1em tall.
+ */
+.footer-words {
+  animation: footer-words 7.5s cubic-bezier(0.7, 0, 0.2, 1) infinite;
+}
+
+@keyframes footer-words {
+  0%,
+  28% {
+    transform: translateY(0);
+  }
+  33%,
+  61% {
+    transform: translateY(-1.1em);
+  }
+  66%,
+  94% {
+    transform: translateY(-2.2em);
+  }
+  100% {
+    transform: translateY(-3.3em);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .footer-words {
+    animation: none;
+  }
+
   *,
   *::before,
   *::after {
