@@ -246,10 +246,51 @@
       }
     ]
   },
-  "pages": {
-    "contact": {
-      "title": "Contact",
-      "description": "Demandes de prière, invitations et renseignements."
+  "contact": {
+    "label": "Contact",
+    "headingLead": "Invitez le Prof. Kamedjieu",
+    "headingHighlight": "dans votre nation.",
+    "intro": "Conférences, séminaires, croisades, cours ou commande de livres : présentez-nous votre demande et nous vous répondrons.",
+    "reasonsLabel": "Nous pouvons vous aider pour",
+    "reasons": [
+      "Conférences",
+      "Séminaires",
+      "Croisades d'évangélisation",
+      "Cours et formations",
+      "Commandes de livres",
+      "Demandes de prière"
+    ],
+    "locationLabel": "Basé à",
+    "emailLabel": "E-mail",
+    "form": {
+      "title": "Envoyer une demande",
+      "name": "Nom complet",
+      "email": "Adresse e-mail",
+      "organization": "Église ou organisation",
+      "optional": "facultatif",
+      "type": "Type de demande",
+      "types": {
+        "invitation": "Invitation à prêcher",
+        "books": "Commande de livres",
+        "prayer": "Demande de prière",
+        "other": "Autre"
+      },
+      "message": "Votre message",
+      "messagePlaceholder": "Parlez-nous de votre événement, des dates et du lieu…",
+      "privacy": "Vos informations servent uniquement à répondre à votre demande.",
+      "submit": "Envoyer la demande",
+      "sending": "Envoi…",
+      "successTitle": "Merci !",
+      "successText": "Votre message a bien été envoyé. Nous vous répondrons dès que possible.",
+      "sendAnother": "Envoyer un autre message",
+      "errors": {
+        "name": "Veuillez indiquer votre nom.",
+        "email": "Veuillez saisir une adresse e-mail valide.",
+        "type": "Veuillez choisir un type de demande.",
+        "message": "Veuillez écrire un message d'au moins 10 caractères.",
+        "generic": "Une erreur est survenue. Réessayez ou écrivez-nous directement.",
+        "unavailable": "Les messages en ligne ne sont pas encore disponibles. Écrivez-nous directement à {email}."
+      }
     }
   },
   "dashboard": {

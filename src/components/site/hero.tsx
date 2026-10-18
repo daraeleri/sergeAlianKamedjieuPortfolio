@@ -1,10 +1,9 @@
 import { ArrowRight } from "lucide-react";
-import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import type { Locale } from "@/i18n/config";
-import { localizePath } from "@/i18n/routing";
+import { sectionHref } from "@/i18n/routing";
 
 type HeroProps = {
   locale: Locale;
@@ -57,13 +56,13 @@ export function Hero({ locale, copy }: HeroProps) {
 
           <div className="mt-8 flex animate-fade-up flex-wrap items-center gap-x-6 gap-y-4 [animation-delay:360ms]">
             <Link
-              href={`${localizePath(locale, "/")}#about` as Route}
+              href={sectionHref(locale, "about")}
               className="rounded-xl bg-brand px-6 py-3.5 font-medium text-white shadow-[0_10px_30px_-10px] shadow-brand transition-colors hover:bg-brand-strong"
             >
               {copy.primaryCta}
             </Link>
             <Link
-              href={localizePath(locale, "/contact")}
+              href={sectionHref(locale, "contact")}
               className="group inline-flex items-center gap-2 font-medium text-ink underline decoration-brand decoration-2 underline-offset-8 hover:decoration-ink"
             >
               {copy.secondaryCta}
@@ -87,7 +86,7 @@ export function Hero({ locale, copy }: HeroProps) {
           />
 
           {/* <Link
-            href={localizePath(locale, "/about")}
+            href={sectionHref(locale, "about")}
             className="group absolute bottom-[14%] left-0 z-20 w-40 -rotate-6 animate-fade-up rounded-2xl bg-brand p-4 shadow-xl transition-transform [animation-delay:600ms] hover:-rotate-3 sm:w-48 sm:p-5 lg:top-[18%] lg:bottom-auto lg:-left-6"
           >
             <span className="text-xs font-medium tracking-wide text-white/75 uppercase">

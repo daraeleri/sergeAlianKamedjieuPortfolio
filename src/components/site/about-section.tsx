@@ -1,11 +1,10 @@
-import type { Route } from "next";
 import type { CSSProperties } from "react";
 import { AboutCard } from "@/components/site/about-card";
 import { AboutStats } from "@/components/site/about-stats";
 import { profile } from "@/content/profile";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { localizePath } from "@/i18n/routing";
+import { sectionHref } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
 type AboutSectionProps = {
@@ -32,8 +31,8 @@ export async function AboutSection({ locale, copy }: AboutSectionProps) {
         <Statement text={copy.statement} highlight={copy.statementHighlight} />
         <AboutCard
           copy={copy}
-          primaryHref={`${localizePath(locale, "/")}#academics` as Route}
-          contactHref={localizePath(locale, "/contact")}
+          primaryHref={sectionHref(locale, "academics")}
+          contactHref={sectionHref(locale, "contact")}
         />
         <AboutStats stats={stats} label={copy.statsLabel} />
       </div>

@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { AboutSection } from "@/components/site/about-section";
 import { AcademicsSection } from "@/components/site/academics-section";
 import { BooksSection } from "@/components/site/books-section";
+import { ContactSection } from "@/components/site/contact-section";
 import { Hero } from "@/components/site/hero";
 import { MinistriesSection } from "@/components/site/ministries-section";
 import { siteConfig } from "@/config/site";
 import { bookCovers } from "@/content/books";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
-import { localizePath, pageMetadata } from "@/i18n/routing";
+import { pageMetadata, sectionHref } from "@/i18n/routing";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
@@ -34,8 +35,13 @@ export default async function HomePage() {
       <MinistriesSection copy={dict.ministries} websiteUrl={siteConfig.jafanUrl} />
       <BooksSection
         copy={dict.books}
-        orderHref={localizePath(locale, "/contact")}
+        orderHref={sectionHref(locale, "contact")}
         books={dict.books.items.map((book) => ({ ...book, cover: bookCovers[book.slug] }))}
+      />
+      <ContactSection
+        copy={dict.contact}
+        email={siteConfig.contactEmail}
+        location={siteConfig.location}
       />
     </>
   );

@@ -246,10 +246,51 @@
       }
     ]
   },
-  "pages": {
-    "contact": {
-      "title": "Contact",
-      "description": "Prayer requests, speaking invitations and enquiries."
+  "contact": {
+    "label": "Contact",
+    "headingLead": "Invite Prof. Kamedjieu",
+    "headingHighlight": "to your nation.",
+    "intro": "Conferences, seminars, crusades, courses or a book order: tell us about your request and we will get back to you.",
+    "reasonsLabel": "We can help with",
+    "reasons": [
+      "Conferences",
+      "Seminars",
+      "Evangelistic crusades",
+      "Courses & training",
+      "Book orders",
+      "Prayer requests"
+    ],
+    "locationLabel": "Based in",
+    "emailLabel": "Email",
+    "form": {
+      "title": "Send a request",
+      "name": "Full name",
+      "email": "Email address",
+      "organization": "Church or organisation",
+      "optional": "optional",
+      "type": "Type of request",
+      "types": {
+        "invitation": "Speaking invitation",
+        "books": "Book order",
+        "prayer": "Prayer request",
+        "other": "Other"
+      },
+      "message": "Your message",
+      "messagePlaceholder": "Tell us about your event, the dates and the location…",
+      "privacy": "We only use your details to answer your request.",
+      "submit": "Send request",
+      "sending": "Sending…",
+      "successTitle": "Thank you!",
+      "successText": "Your message has been sent. We will get back to you as soon as possible.",
+      "sendAnother": "Send another message",
+      "errors": {
+        "name": "Please enter your name.",
+        "email": "Please enter a valid email address.",
+        "type": "Please choose a type of request.",
+        "message": "Please write a message of at least 10 characters.",
+        "generic": "Something went wrong. Please try again, or email us directly.",
+        "unavailable": "Online messages are not available yet. Please email us directly at {email}."
+      }
     }
   },
   "dashboard": {

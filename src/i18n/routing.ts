@@ -5,6 +5,11 @@ import { locales, ogLocales, type Locale } from "./config";
 /** A path without the locale prefix, e.g. "/" or "/about". */
 export type Pathname = "/" | `/${string}`;
 
+/** Link to a section of the one-page home page: sectionHref("fr", "contact") -> "/fr#contact". */
+export function sectionHref(locale: Locale, id: string): Route {
+  return `/${locale}#${id}` as Route;
+}
+
 /** Prefix a path with the locale: localizePath("fr", "/about") -> "/fr/about". */
 export function localizePath(locale: Locale, pathname: Pathname): Route {
   return (pathname === "/" ? `/${locale}` : `/${locale}${pathname}`) as Route;

@@ -11,6 +11,13 @@ export const siteConfig = {
    * PLACEHOLDER: replace with the real address (".example" never resolves).
    */
   jafanUrl: "https://jafan-ministries.example",
+  /**
+   * Public contact email shown in the Contact section, as written in his biography.
+   * CONFIRM the spelling ("minitries") before launch.
+   */
+  contactEmail: "jafanminitries@gmail.com",
+  /** City shown in the Contact section. */
+  location: "Bafoussam, Cameroon",
 } as const;
 
 type NavItem<K> = {
@@ -27,7 +34,7 @@ export const siteNav: NavItem<keyof Dictionary["nav"]>[] = [
   { key: "academics", href: "/", hash: "academics" },
   { key: "ministries", href: "/", hash: "ministries" },
   { key: "books", href: "/", hash: "books" },
-  { key: "contact", href: "/contact" },
+  { key: "contact", href: "/", hash: "contact" },
 ];
 
 export const dashboardNav: NavItem<keyof Dictionary["dashboard"]["nav"]>[] = [
