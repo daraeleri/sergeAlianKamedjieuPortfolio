@@ -1,5 +1,8 @@
+import type { Route } from "next";
 import type { CSSProperties } from "react";
 import { AboutCard } from "@/components/site/about-card";
+import { AboutStats } from "@/components/site/about-stats";
+import { profile } from "@/content/profile";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { localizePath } from "@/i18n/routing";
@@ -12,18 +15,27 @@ type AboutSectionProps = {
 
 /**
  * Home "About" section: a large statement that brightens word by word on scroll,
- * followed by the navy introduction card with the portrait and CTAs.
+ * followed by the navy introduction card with the portrait and CTAs, and a row of key figures.
  */
-export function AboutSection({ locale, copy }: AboutSectionProps) {
+export async function AboutSection({ locale, copy }: AboutSectionProps) {
+  const year = await currentYear();
+  const stats = [
+    { value: year - profile.callingYear, ...copy.stats.ministry },
+    { value: profile.doctorates, ...copy.stats.doctorates },
+    { value: profile.books, ...copy.stats.books },
+    { value: profile.academyFounded, ...copy.stats.academy },
+  ];
+
   return (
     <section id="about" className="bg-white py-20 text-ink sm:py-28 lg:py-36">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Statement text={copy.statement} highlight={copy.statementHighlight} />
         <AboutCard
           copy={copy}
-          aboutHref={localizePath(locale, "/about")}
+          primaryHref={`${localizePath(locale, "/")}#academics` as Route}
           contactHref={localizePath(locale, "/contact")}
         />
+        <AboutStats stats={stats} label={copy.statsLabel} />
       </div>
     </section>
   );
@@ -63,4 +75,10 @@ function Statement({ text, highlight }: { text: string; highlight: string }) {
       ))}
     </p>
   );
+}
+
+/** Current year, cached so the page can still be prerendered (Cache Components). */
+async function currentYear() {
+  "use cache";
+  return new Date().getFullYear();
 }

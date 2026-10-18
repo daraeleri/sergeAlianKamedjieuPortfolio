@@ -8,12 +8,18 @@ export const siteConfig = {
   url: env.NEXT_PUBLIC_SITE_URL,
 } as const;
 
-type NavItem<K> = { key: K; href: Pathname };
+type NavItem<K> = {
+  key: K;
+  href: Pathname;
+  /** Section id on that page, for one-page anchors such as "about". */
+  hash?: string;
+};
 
+/** One-page site: most items scroll to a section of the home page. */
 export const siteNav: NavItem<keyof Dictionary["nav"]>[] = [
   { key: "home", href: "/" },
-  { key: "about", href: "/about" },
-  { key: "teaching", href: "/teaching" },
+  { key: "about", href: "/", hash: "about" },
+  { key: "academics", href: "/", hash: "academics" },
   { key: "contact", href: "/contact" },
 ];
 

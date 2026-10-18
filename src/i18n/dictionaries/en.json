@@ -1,12 +1,12 @@
 {
   "site": {
     "title": "Pastor Serge Alain Kamedjieu",
-    "description": "Pastor, professor of theology and author. Teaching, writing and ministry."
+    "description": "Prof. Serge Alain Kamedjieu: theologian, international evangelist, author and founder of JAFAN Ministries in Bafoussam, Cameroon."
   },
   "nav": {
     "home": "Home",
     "about": "About",
-    "teaching": "Teaching",
+    "academics": "Academics",
     "contact": "Contact",
     "main": "Main",
     "language": "Language",
@@ -29,40 +29,118 @@
   "about": {
     "statement": "A shepherd's heart and a teacher's voice, devoted to proclaiming the Word with clarity and leading people into the presence of the Divine Majesty.",
     "statementHighlight": "the presence of the Divine Majesty.",
-    "cta": "Read his story",
+    "cta": "See his academic path",
     "greetingLead": "Meet",
-    "greetingHighlight": "Pastor Serge Alain Kamedjieu.",
-    "bio": "Pastor, professor of theology and author, he serves the Church through preaching, teaching and writing, helping believers know God deeply and live their faith with conviction.",
+    "greetingHighlight": "Prof. Serge Alain Kamedjieu.",
+    "bio": "Theologian, international evangelist and expert in Christian leadership, he is the founder of JAFAN Ministries and of the Church of Christ for Nations in Bafoussam, Cameroon. Converted at 16 and called to ministry in 1996, he has given his life to equipping the Body of Christ, alongside his wife, Dr Dany Géraldine Kamedjieu.",
     "secondaryCta": "Invite to speak",
-    "portraitAlt": "Pastor Serge Alain Kamedjieu",
+    "portraitAlt": "Prof. Serge Alain Kamedjieu",
     "features": [
       {
-        "title": "Preaching",
-        "description": "Proclaiming the Gospel with clarity, conviction and compassion."
+        "title": "Professor & theologian",
+        "description": "Professeur Agrégé and Chancellor of the JAFAN Academy of World Evangelism."
       },
       {
-        "title": "Teaching",
-        "description": "Training students, pastors and leaders in sound theology."
+        "title": "International evangelist",
+        "description": "Crusades and conferences that carry the Gospel to the nations."
       },
       {
-        "title": "Writing",
-        "description": "Books that equip the Church to think and live biblically."
+        "title": "Author",
+        "description": "Four books on the Holy Spirit, leadership and the authority of Scripture."
       },
       {
-        "title": "Shepherding",
-        "description": "Walking alongside people in prayer, counsel and care."
+        "title": "Humanitarian",
+        "description": "Joseph Store International (Gen 41) supports vulnerable communities with food security."
       }
-    ]
+    ],
+    "statsLabel": "Key figures",
+    "stats": {
+      "ministry": {
+        "label": "Years of ministry",
+        "detail": "Called to ministry in 1996"
+      },
+      "doctorates": {
+        "label": "Doctorates",
+        "detail": "Theology and Christian Leadership"
+      },
+      "books": {
+        "label": "Books published",
+        "detail": "On the Holy Spirit, leadership and Scripture"
+      },
+      "academy": {
+        "label": "JAFAN Academy founded",
+        "detail": "Training leaders from Certificate to Doctorate"
+      }
+    }
+  },
+  "academics": {
+    "label": "Academic background",
+    "headingLead": "A scholar formed",
+    "headingHighlight": "for the nations.",
+    "intro": "Alongside his pastoral and evangelistic ministry, Prof. Kamedjieu has pursued rigorous studies with international institutions, from missiology to two doctorates.",
+    "cardsLabel": "Degrees and distinctions",
+    "featured": {
+      "eyebrow": "Highest rank",
+      "title": "Professeur Agrégé",
+      "description": "Raised to the rank of Professeur Agrégé by Bethany Theological School of Missions, affiliated with the Pontifical Catholic University of America.",
+      "tag": "Chancellor, JAFAN Academy of World Evangelism"
+    },
+    "doctorates": {
+      "title": "Doctorates",
+      "items": [
+        {
+          "title": "Doctorate in Theology",
+          "org": "Bethany Theological School of Missions"
+        },
+        {
+          "title": "Doctorate in Christian Leadership",
+          "org": "Bethany Theological School of Missions"
+        },
+        {
+          "title": "Honorary Doctorate",
+          "org": "Apostolos Bible University",
+          "year": "2022"
+        }
+      ]
+    },
+    "degrees": {
+      "title": "Degrees & diplomas",
+      "items": [
+        {
+          "title": "Master in Christian Leadership",
+          "org": "Logos International Missions"
+        },
+        {
+          "title": "Bachelor's and Master's degrees",
+          "org": "Bethany Theological School of Missions"
+        },
+        {
+          "title": "Diploma in Theology",
+          "org": "All Nations for Christ Bible Institute (Archbishop Benson Idahosa)"
+        },
+        {
+          "title": "Diploma in Missiology",
+          "org": "Disciples for the Nations Ministries",
+          "year": "1998–2000"
+        }
+      ]
+    },
+    "recent": {
+      "title": "2025 · Canada",
+      "subtitle": "Continuing education",
+      "items": [
+        {
+          "title": "Foundational Servant Leadership",
+          "org": "Jaffray Centre for Global Initiatives, Ambrose University"
+        },
+        {
+          "title": "Diploma in Leadership & Management",
+          "org": "Canadian university"
+        }
+      ]
+    }
   },
   "pages": {
-    "about": {
-      "title": "About",
-      "description": "Biography, calling and ministry journey."
-    },
-    "teaching": {
-      "title": "Teaching",
-      "description": "Academic work, courses and lectures in theology."
-    },
     "contact": {
       "title": "Contact",
       "description": "Prayer requests, speaking invitations and enquiries."

@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import { SiteNavbar } from "@/components/site/site-navbar";
 import { siteConfig, siteNav } from "@/config/site";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
@@ -14,7 +15,12 @@ export async function SiteHeader() {
       homeHref={localizePath(locale, "/")}
       links={siteNav
         .filter((item) => item.key !== "home")
-        .map((item) => ({ href: localizePath(locale, item.href), label: dict.nav[item.key] }))}
+        .map((item) => ({
+          href: (item.hash
+            ? `${localizePath(locale, item.href)}#${item.hash}`
+            : localizePath(locale, item.href)) as Route,
+          label: dict.nav[item.key],
+        }))}
       cta={{ href: localizePath(locale, "/contact"), label: dict.nav.cta }}
       labels={{
         main: dict.nav.main,

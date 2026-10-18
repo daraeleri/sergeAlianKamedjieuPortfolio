@@ -3,7 +3,14 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, GraduationCap, HandHeart, Mic, PenLine, type LucideIcon } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  GraduationCap,
+  HandHeart,
+  Megaphone,
+  type LucideIcon,
+} from "lucide-react";
 import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,19 +21,20 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 type AboutCardProps = {
   copy: Dictionary["about"];
-  aboutHref: Route;
+  /** Primary button target, e.g. the Academic background section. */
+  primaryHref: Route;
   contactHref: Route;
 };
 
 /** Icon for each feature, in the order of `about.features` in the dictionaries. */
-const featureIcons: LucideIcon[] = [Mic, GraduationCap, PenLine, HandHeart];
+const featureIcons: LucideIcon[] = [GraduationCap, Megaphone, BookOpen, HandHeart];
 
 /**
  * Navy introduction card under the About statement: greeting, short bio, a 2×2 grid
  * of icon features and CTAs, with the portrait breaking out of the top on desktop.
  * On scroll the background opens up, the portrait rises and the features fade in.
  */
-export function AboutCard({ copy, aboutHref, contactHref }: AboutCardProps) {
+export function AboutCard({ copy, primaryHref, contactHref }: AboutCardProps) {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -168,7 +176,7 @@ export function AboutCard({ copy, aboutHref, contactHref }: AboutCardProps) {
 
           <div data-about-reveal className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
             <Link
-              href={aboutHref}
+              href={primaryHref}
               className="group inline-flex items-center gap-3 rounded-xl bg-brand px-6 py-3.5 font-medium text-white shadow-[0_10px_30px_-10px] shadow-brand transition-colors hover:bg-brand-strong"
             >
               {copy.cta}
@@ -214,6 +222,6 @@ export function AboutCard({ copy, aboutHref, contactHref }: AboutCardProps) {
   );
 }
 
-function FeatureIcon({ icon: Icon = PenLine }: { icon?: LucideIcon }) {
+function FeatureIcon({ icon: Icon = BookOpen }: { icon?: LucideIcon }) {
   return <Icon aria-hidden strokeWidth={1.75} className="size-6" />;
 }

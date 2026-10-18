@@ -1,12 +1,12 @@
 {
   "site": {
     "title": "Pasteur Serge Alain Kamedjieu",
-    "description": "Pasteur, professeur de théologie et auteur. Enseignement, écriture et ministère."
+    "description": "Prof. Serge Alain Kamedjieu : théologien, évangéliste international, auteur et fondateur de JAFAN Ministries à Bafoussam, Cameroun."
   },
   "nav": {
     "home": "Accueil",
     "about": "À propos",
-    "teaching": "Enseignement",
+    "academics": "Parcours",
     "contact": "Contact",
     "main": "Principal",
     "language": "Langue",
@@ -29,40 +29,118 @@
   "about": {
     "statement": "Un cœur de berger et une voix d'enseignant, consacrés à annoncer la Parole avec clarté et à conduire chacun dans la présence de la Divine Majesté.",
     "statementHighlight": "la présence de la Divine Majesté.",
-    "cta": "Découvrir son parcours",
+    "cta": "Voir son parcours académique",
     "greetingLead": "Voici le",
-    "greetingHighlight": "pasteur Serge Alain Kamedjieu.",
-    "bio": "Pasteur, professeur de théologie et auteur, il sert l'Église par la prédication, l'enseignement et l'écriture, aidant les croyants à connaître Dieu en profondeur et à vivre leur foi avec conviction.",
+    "greetingHighlight": "Prof. Serge Alain Kamedjieu.",
+    "bio": "Théologien, évangéliste international et expert en leadership chrétien, il est le fondateur de JAFAN Ministries et de la Church of Christ for Nations à Bafoussam, au Cameroun. Converti à 16 ans et appelé au ministère en 1996, il consacre sa vie à l'équipement du Corps de Christ, aux côtés de son épouse, le Dr Dany Géraldine Kamedjieu.",
     "secondaryCta": "Inviter à prêcher",
-    "portraitAlt": "Le pasteur Serge Alain Kamedjieu",
+    "portraitAlt": "Le Prof. Serge Alain Kamedjieu",
     "features": [
       {
-        "title": "Prédication",
-        "description": "Annoncer l'Évangile avec clarté, conviction et compassion."
+        "title": "Professeur et théologien",
+        "description": "Professeur Agrégé et Chancelier de la JAFAN Academy of World Evangelism."
       },
       {
-        "title": "Enseignement",
-        "description": "Former étudiants, pasteurs et responsables à une saine théologie."
+        "title": "Évangéliste international",
+        "description": "Des croisades et conférences qui portent l'Évangile aux nations."
       },
       {
-        "title": "Écriture",
-        "description": "Des livres qui équipent l'Église à penser et vivre bibliquement."
+        "title": "Auteur",
+        "description": "Quatre ouvrages sur le Saint-Esprit, le leadership et l'autorité des Écritures."
       },
       {
-        "title": "Accompagnement",
-        "description": "Marcher aux côtés de chacun par la prière, le conseil et le soin."
+        "title": "Humanitaire",
+        "description": "Joseph Store International (Gen 41) soutient les populations vulnérables par la sécurité alimentaire."
       }
-    ]
+    ],
+    "statsLabel": "Chiffres clés",
+    "stats": {
+      "ministry": {
+        "label": "Années de ministère",
+        "detail": "Appelé au ministère en 1996"
+      },
+      "doctorates": {
+        "label": "Doctorats",
+        "detail": "Théologie et Leadership chrétien"
+      },
+      "books": {
+        "label": "Ouvrages publiés",
+        "detail": "Sur le Saint-Esprit, le leadership et les Écritures"
+      },
+      "academy": {
+        "label": "Fondation de la JAFAN Academy",
+        "detail": "Former des leaders du Certificat au Doctorat"
+      }
+    }
+  },
+  "academics": {
+    "label": "Parcours académique",
+    "headingLead": "Un érudit formé",
+    "headingHighlight": "pour les nations.",
+    "intro": "Parallèlement à son ministère pastoral et d'évangéliste, le Prof. Kamedjieu a poursuivi des études rigoureuses auprès d'institutions internationales, de la missiologie à deux doctorats.",
+    "cardsLabel": "Diplômes et distinctions",
+    "featured": {
+      "eyebrow": "Plus haut grade",
+      "title": "Professeur Agrégé",
+      "description": "Élevé au rang de Professeur Agrégé par la Bethany Theological School of Missions, affiliée à la Pontifical Catholic University of America.",
+      "tag": "Chancelier, JAFAN Academy of World Evangelism"
+    },
+    "doctorates": {
+      "title": "Doctorats",
+      "items": [
+        {
+          "title": "Doctorat en Théologie",
+          "org": "Bethany Theological School of Missions"
+        },
+        {
+          "title": "Doctorat en Leadership chrétien",
+          "org": "Bethany Theological School of Missions"
+        },
+        {
+          "title": "Doctorat Honoris Causa",
+          "org": "Apostolos Bible University",
+          "year": "2022"
+        }
+      ]
+    },
+    "degrees": {
+      "title": "Diplômes",
+      "items": [
+        {
+          "title": "Master en Leadership chrétien",
+          "org": "Logos International Missions"
+        },
+        {
+          "title": "Licence et Master",
+          "org": "Bethany Theological School of Missions"
+        },
+        {
+          "title": "Diplôme en Théologie",
+          "org": "All Nations for Christ Bible Institute (Archevêque Benson Idahosa)"
+        },
+        {
+          "title": "Diplôme en Missiologie",
+          "org": "Disciples for the Nations Ministries",
+          "year": "1998–2000"
+        }
+      ]
+    },
+    "recent": {
+      "title": "2025 · Canada",
+      "subtitle": "Formation continue",
+      "items": [
+        {
+          "title": "Foundational Servant Leadership",
+          "org": "Jaffray Centre for Global Initiatives, Ambrose University"
+        },
+        {
+          "title": "Diplôme en Leadership et Management",
+          "org": "Université canadienne"
+        }
+      ]
+    }
   },
   "pages": {
-    "about": {
-      "title": "À propos",
-      "description": "Biographie, appel et parcours dans le ministère."
-    },
-    "teaching": {
-      "title": "Enseignement",
-      "description": "Travaux académiques, cours et conférences en théologie."
-    },
     "contact": {
       "title": "Contact",
       "description": "Demandes de prière, invitations et renseignements."
