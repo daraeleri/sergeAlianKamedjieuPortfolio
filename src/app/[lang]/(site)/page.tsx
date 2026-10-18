@@ -5,6 +5,7 @@ import { BooksSection } from "@/components/site/books-section";
 import { ContactSection } from "@/components/site/contact-section";
 import { Hero } from "@/components/site/hero";
 import { MinistriesSection } from "@/components/site/ministries-section";
+import { ReachSection } from "@/components/site/reach-section";
 import { siteConfig } from "@/config/site";
 import { bookCovers } from "@/content/books";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
@@ -38,6 +39,7 @@ export default async function HomePage() {
         orderHref={sectionHref(locale, "contact")}
         books={dict.books.items.map((book) => ({ ...book, cover: bookCovers[book.slug] }))}
       />
+      <ReachSection copy={dict.reach} />
       <ContactSection
         copy={dict.contact}
         email={siteConfig.contactEmail}
