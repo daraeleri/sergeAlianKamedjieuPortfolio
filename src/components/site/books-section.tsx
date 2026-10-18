@@ -4,11 +4,11 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import { ArrowRight, BookOpen } from "lucide-react";
+import { ArrowRight, BookOpen, ChevronDown } from "lucide-react";
 import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useId, useRef, useState } from "react";
 import { BookCard, type BookCardBook } from "@/components/site/book-card";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { cn } from "@/lib/utils";
@@ -31,10 +31,23 @@ type CardOptions = { size?: "md" | "lg"; tone?: "tint" | "periwinkle"; className
  * that show the real cover when there is one, or the styled fallback otherwise.
  *
  * Desktop columns: [book 1 · figure]  [banner / [book 2 · book 4] [book 3]]
+ * With more than four books, the bento keeps the first four and the banner's main button
+ * becomes "See all N books", which expands a grid of the remaining books underneath.
  */
+const FEATURED_COUNT = 4;
 export function BooksSection({ copy, books, orderHref }: BooksSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [first, second, third, fourth] = books;
+  const extra = books.slice(FEATURED_COUNT);
+  const hasMore = extra.length > 0;
+  const [expanded, setExpanded] = useState(false);
+  const moreId = useId();
+
+  const toggleMore = () => {
+    setExpanded((value) => !value);
+    // The page height changes once the panel has opened or closed.
+    window.setTimeout(() => ScrollTrigger.refresh(), 550);
+  };
 
   const card = (book: BookCardBook | undefined, options: CardOptions) =>
     book ? (
@@ -112,8 +125,8 @@ export function BooksSection({ copy, books, orderHref }: BooksSectionProps) {
       >
         {/* Column A: tall book + key figure */}
         <div className="flex flex-col gap-4 lg:w-[32%] lg:gap-5">
-          {card(first, { size: "lg", tone: "tint", className: "min-h-[30rem] flex-1" })}
-          <div data-books-card className="flex">
+          {card(first, { size: "lg", tone: "tint", className: "min-h-[30rem] lg:h-[34rem]" })}
+          <div data-books-card className="flex lg:flex-1">
             <div className="relative isolate flex w-full flex-col justify-between overflow-hidden rounded-[1.75rem] bg-brand p-7 text-white">
               <div
                 aria-hidden
@@ -154,18 +167,49 @@ export function BooksSection({ copy, books, orderHref }: BooksSectionProps) {
                   <span className="text-brand-soft">{copy.headingHighlight}</span>
                 </h2>
                 <p className="mt-4 leading-relaxed text-white/65">{copy.intro}</p>
-                <Link
-                  href={orderHref}
-                  className="group mt-6 inline-flex items-center gap-2 rounded-full bg-white py-2 pr-2 pl-5 font-medium text-ink transition-colors hover:bg-brand-soft"
-                >
-                  {copy.orderCta}
-                  <span className="grid size-8 place-items-center rounded-full bg-ink text-white">
-                    <ArrowRight
-                      aria-hidden
-                      className="size-4 transition-transform group-hover:translate-x-0.5"
-                    />
-                  </span>
-                </Link>
+                {hasMore ? (
+                  <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
+                    <button
+                      type="button"
+                      onClick={toggleMore}
+                      aria-expanded={expanded}
+                      aria-controls={moreId}
+                      className="group inline-flex items-center gap-2 rounded-full bg-white py-2 pr-2 pl-5 font-medium text-ink transition-colors hover:bg-brand-soft"
+                    >
+                      {expanded
+                        ? copy.seeLess
+                        : copy.seeMore.replace("{count}", String(books.length))}
+                      <span className="grid size-8 place-items-center rounded-full bg-ink text-white">
+                        <ChevronDown
+                          aria-hidden
+                          className={cn(
+                            "size-4 transition-transform duration-300",
+                            expanded && "rotate-180",
+                          )}
+                        />
+                      </span>
+                    </button>
+                    <Link
+                      href={orderHref}
+                      className="font-medium text-white underline decoration-brand-soft decoration-2 underline-offset-8 hover:decoration-white"
+                    >
+                      {copy.orderCta}
+                    </Link>
+                  </div>
+                ) : (
+                  <Link
+                    href={orderHref}
+                    className="group mt-6 inline-flex items-center gap-2 rounded-full bg-white py-2 pr-2 pl-5 font-medium text-ink transition-colors hover:bg-brand-soft"
+                  >
+                    {copy.orderCta}
+                    <span className="grid size-8 place-items-center rounded-full bg-ink text-white">
+                      <ArrowRight
+                        aria-hidden
+                        className="size-4 transition-transform group-hover:translate-x-0.5"
+                      />
+                    </span>
+                  </Link>
+                )}
               </div>
               <CoverFan books={books} />
             </div>
@@ -182,6 +226,54 @@ export function BooksSection({ copy, books, orderHref }: BooksSectionProps) {
           </div>
         </div>
       </div>
+
+      {/* Remaining books (only when there are more than four) */}
+      {hasMore ? (
+        <div
+          id={moreId}
+          className={cn(
+            "mx-auto grid max-w-7xl px-3 transition-[grid-template-rows] duration-500 ease-out sm:px-4",
+            expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+          )}
+        >
+          <div className="overflow-hidden" inert={!expanded}>
+            <h3 className="sr-only">{copy.moreLabel}</h3>
+            <ul className="flex flex-wrap gap-4 pt-4 lg:gap-5 lg:pt-5">
+              {extra.map((book, i) => (
+                <li
+                  key={book.slug}
+                  className={cn(
+                    "flex w-full transition-all duration-500 ease-out sm:w-[calc((100%-1rem)/2)] lg:w-[calc((100%-2.5rem)/3)]",
+                    expanded ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
+                  )}
+                  style={{ transitionDelay: expanded ? `${i * 60}ms` : "0ms" }}
+                >
+                  <BookCard
+                    book={book}
+                    coverAlt={copy.coverAlt.replace("{title}", book.title)}
+                    orderLabel={copy.orderShort}
+                    orderHref={orderHref}
+                    tone={i % 2 ? "periwinkle" : "tint"}
+                    className="w-full"
+                  />
+                </li>
+              ))}
+            </ul>
+            <div className="flex justify-center pt-8">
+              <button
+                type="button"
+                onClick={toggleMore}
+                aria-expanded={expanded}
+                aria-controls={moreId}
+                className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 font-medium text-white transition-colors hover:bg-brand"
+              >
+                {copy.seeLess}
+                <ChevronDown aria-hidden className="size-4 rotate-180" />
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }

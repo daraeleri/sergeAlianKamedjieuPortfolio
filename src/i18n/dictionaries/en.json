@@ -216,6 +216,9 @@
     "orderShort": "Order",
     "statLabel": "reference books by Prof. Kamedjieu",
     "statNote": "All published in French",
+    "seeMore": "See all {count} books",
+    "seeLess": "Show fewer books",
+    "moreLabel": "More books",
     "items": [
       {
         "slug": "le-saint-esprit-et-l-eglise",

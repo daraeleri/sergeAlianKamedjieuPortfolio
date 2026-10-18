@@ -216,6 +216,9 @@
     "orderShort": "Commander",
     "statLabel": "ouvrages de référence du Prof. Kamedjieu",
     "statNote": "Tous publiés en français",
+    "seeMore": "Voir les {count} livres",
+    "seeLess": "Afficher moins de livres",
+    "moreLabel": "Autres livres",
     "items": [
       {
         "slug": "le-saint-esprit-et-l-eglise",
