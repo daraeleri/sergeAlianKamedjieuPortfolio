@@ -8,6 +8,7 @@
     "about": "À propos",
     "academics": "Parcours",
     "ministries": "Ministères",
+    "books": "Livres",
     "contact": "Contact",
     "main": "Principal",
     "language": "Langue",
@@ -196,6 +197,41 @@
     "mottoLabel": "Sa devise",
     "mottoLead": "Restaurer l'Autorité, Manifester la Puissance,",
     "mottoHighlight": "Transformer les Nations."
+  },
+  "books": {
+    "label": "Livres",
+    "headingLead": "Des livres pour équiper",
+    "headingHighlight": "le Corps de Christ.",
+    "intro": "Quatre ouvrages de référence dans lesquels le Prof. Kamedjieu consigne son enseignement sur le Saint-Esprit, le leadership et l'autorité des Écritures.",
+    "listLabel": "Ouvrages du Prof. Serge Alain Kamedjieu",
+    "languageTag": "En français",
+    "author": "Prof. Serge Alain Kamedjieu",
+    "coverAlt": "Couverture de {title}",
+    "items": [
+      {
+        "title": "Le Saint-Esprit et l'Église",
+        "description": "Une étude sur la place centrale du Paraclet dans la communauté des croyants.",
+        "tags": ["Saint-Esprit", "Église"]
+      },
+      {
+        "title": "Vers une plus grande manifestation de la puissance de Dieu",
+        "description": "Un manuel pour activer le surnaturel divin au quotidien.",
+        "tags": ["Puissance de Dieu", "Vie chrétienne"]
+      },
+      {
+        "title": "Le leadership et la puissance du Saint-Esprit",
+        "description": "La synthèse entre gestion organisationnelle et onction spirituelle.",
+        "tags": ["Leadership", "Saint-Esprit"]
+      },
+      {
+        "title": "L'autorité des Écritures",
+        "description": "Un plaidoyer pour le retour à la suprématie de la Parole de Dieu.",
+        "tags": ["Écritures", "Doctrine"]
+      }
+    ],
+    "orderTitle": "Vous souhaitez l'un de ses livres ?",
+    "orderText": "Contactez-nous pour commander un exemplaire ou proposer ses ouvrages à votre église, école ou librairie.",
+    "orderCta": "Commander un livre"
   },
   "pages": {
     "contact": {

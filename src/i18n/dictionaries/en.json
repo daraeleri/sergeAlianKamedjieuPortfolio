@@ -8,6 +8,7 @@
     "about": "About",
     "academics": "Academics",
     "ministries": "Ministries",
+    "books": "Books",
     "contact": "Contact",
     "main": "Main",
     "language": "Language",
@@ -196,6 +197,41 @@
     "mottoLabel": "His motto",
     "mottoLead": "Restoring authority, manifesting power,",
     "mottoHighlight": "transforming the nations."
+  },
+  "books": {
+    "label": "Books",
+    "headingLead": "Books that equip",
+    "headingHighlight": "the Body of Christ.",
+    "intro": "Four reference works in which Prof. Kamedjieu sets down his teaching on the Holy Spirit, leadership and the authority of Scripture.",
+    "listLabel": "Books by Prof. Serge Alain Kamedjieu",
+    "languageTag": "In French",
+    "author": "Prof. Serge Alain Kamedjieu",
+    "coverAlt": "Cover of {title}",
+    "items": [
+      {
+        "title": "Le Saint-Esprit et l'Église",
+        "description": "A study of the central place of the Paraclete in the community of believers.",
+        "tags": ["Holy Spirit", "Church"]
+      },
+      {
+        "title": "Vers une plus grande manifestation de la puissance de Dieu",
+        "description": "A handbook for experiencing God's supernatural power in everyday life.",
+        "tags": ["Power of God", "Christian life"]
+      },
+      {
+        "title": "Le leadership et la puissance du Saint-Esprit",
+        "description": "Where organisational leadership meets spiritual anointing.",
+        "tags": ["Leadership", "Holy Spirit"]
+      },
+      {
+        "title": "L'autorité des Écritures",
+        "description": "A plea for a return to the supremacy of the Word of God.",
+        "tags": ["Scripture", "Doctrine"]
+      }
+    ],
+    "orderTitle": "Would you like one of his books?",
+    "orderText": "Get in touch to order a copy or to bring his books to your church, school or bookshop.",
+    "orderCta": "Order a book"
   },
   "pages": {
     "contact": {

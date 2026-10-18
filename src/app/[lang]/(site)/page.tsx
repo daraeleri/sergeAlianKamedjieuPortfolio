@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { AboutSection } from "@/components/site/about-section";
 import { AcademicsSection } from "@/components/site/academics-section";
+import { BooksSection } from "@/components/site/books-section";
 import { Hero } from "@/components/site/hero";
 import { MinistriesSection } from "@/components/site/ministries-section";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
-import { pageMetadata } from "@/i18n/routing";
+import { localizePath, pageMetadata } from "@/i18n/routing";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
@@ -29,6 +30,7 @@ export default async function HomePage() {
       <AboutSection locale={locale} copy={dict.about} />
       <AcademicsSection copy={dict.academics} />
       <MinistriesSection copy={dict.ministries} />
+      <BooksSection copy={dict.books} orderHref={localizePath(locale, "/contact")} />
     </>
   );
 }
