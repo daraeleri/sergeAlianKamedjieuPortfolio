@@ -1,19 +1,23 @@
 import "server-only";
 import { siteConfig } from "@/config/site";
 import type { Locale } from "@/i18n/config";
-import type { Email } from "./send";
+import { ART_HEIGHT, ART_WIDTH } from "@/lib/newsletter-art";
 import {
   button,
   details,
   emailImage,
-  eyebrow,
-  heading,
-  image,
+  featured,
+  heroArt,
   layout,
+  panel,
   paragraph,
+  promo,
   quote,
+  supporting,
   url,
+  type Card,
 } from "./layout";
+import type { Email } from "./send";
 
 /**
  * Every email the site sends. Subscriber emails use the subscriber's language; the
@@ -24,35 +28,38 @@ const name = siteConfig.name;
 
 const copy = {
   en: {
+    stayConnected: "Stay connected",
+    links: { website: "Website", articles: "Articles", books: "Books", contact: "Contact" },
+    unsubscribe: "Unsubscribe",
     confirm: {
       subject: "Confirm your subscription",
       preview: `One click and you'll get new articles and books from ${name}.`,
-      title: "Confirm your subscription",
-      body: `Thank you for wanting to receive the teachings of ${name}. Please confirm your email address to start receiving new articles and books.`,
-      cta: "Confirm my subscription",
-      ignore: "If you didn't sign up, ignore this email: you won't be subscribed.",
-      footer: "You received this email because this address was entered on our newsletter form.",
+      title: "Thanks for joining us",
+      body: `To start receiving the teachings of ${name}, please confirm that this is your email address.`,
+      cta: "Confirm my email address",
+      note: "Didn't sign up? Ignore this email and you won't be subscribed.",
+      reason: "You received this because this address was entered on our newsletter form.",
     },
     welcome: {
       subject: "Welcome! Your subscription is confirmed",
       preview: "You'll be the first to know about new articles and books.",
-      title: "Welcome, and thank you",
-      body: "Your subscription is confirmed. You'll receive an email whenever a new article or book is published. Nothing else, and you can leave at any time.",
+      title: "Welcome to the family",
+      body: "Your subscription is confirmed. You'll receive one email whenever a new article or book is published, nothing else.",
       cta: "Read the latest articles",
-      footer: "You're receiving this because you subscribed to the newsletter.",
     },
-    article: {
-      eyebrow: "New article",
-      cta: "Read the article",
-      footer: "You're receiving this because you subscribed to new articles and books.",
+    article: { eyebrow: "New article", cta: "Read the article" },
+    book: { eyebrow: "New book", cta: "Discover the book" },
+    moreToRead: "More to read",
+    read: "Read",
+    bookPromo: { title: (title: string) => `From the bookshelf: ${title}`, cta: "Learn more" },
+    invitePromo: {
+      title: `Invite ${name} to speak`,
+      text: "For a conference, a crusade or a seminar, send an invitation through the website and it will be answered personally.",
+      cta: "Send an invitation",
     },
-    book: {
-      eyebrow: "New book",
-      cta: "Discover the book",
-      footer: "You're receiving this because you subscribed to new articles and books.",
-    },
-    unsubscribe: "Unsubscribe",
+    subscriberReason: "You're receiving this because you subscribed to new articles and books.",
     author: {
+      reason: "Notification from your website's dashboard.",
       message: {
         subject: (sender: string) => `New message from ${sender}`,
         title: "You have a new message",
@@ -89,40 +96,46 @@ const copy = {
         book: "new book",
         cta: "Open the dashboard",
       },
-      footer: "Notification from your website's dashboard.",
     },
   },
   fr: {
+    stayConnected: "Restons en contact",
+    links: { website: "Site web", articles: "Articles", books: "Livres", contact: "Contact" },
+    unsubscribe: "Se désinscrire",
     confirm: {
       subject: "Confirmez votre inscription",
       preview: `Un clic et vous recevrez les nouveaux articles et livres de ${name}.`,
-      title: "Confirmez votre inscription",
-      body: `Merci de vouloir recevoir les enseignements de ${name}. Confirmez votre adresse e-mail pour recevoir les nouveaux articles et livres.`,
-      cta: "Confirmer mon inscription",
-      ignore: "Si vous ne vous êtes pas inscrit, ignorez cet e-mail : vous ne serez pas abonné.",
-      footer:
+      title: "Merci de nous rejoindre",
+      body: `Pour recevoir les enseignements de ${name}, confirmez qu'il s'agit bien de votre adresse e-mail.`,
+      cta: "Confirmer mon adresse e-mail",
+      note: "Vous ne vous êtes pas inscrit ? Ignorez cet e-mail : vous ne serez pas abonné.",
+      reason:
         "Vous recevez cet e-mail car cette adresse a été saisie dans notre formulaire d'inscription.",
     },
     welcome: {
       subject: "Bienvenue ! Votre inscription est confirmée",
       preview: "Vous serez le premier informé des nouveaux articles et livres.",
-      title: "Bienvenue, et merci",
-      body: "Votre inscription est confirmée. Vous recevrez un e-mail à chaque nouvel article ou livre publié. Rien d'autre, et vous pouvez vous désinscrire à tout moment.",
+      title: "Bienvenue dans la famille",
+      body: "Votre inscription est confirmée. Vous recevrez un e-mail à chaque nouvel article ou livre publié, rien d'autre.",
       cta: "Lire les derniers articles",
-      footer: "Vous recevez cet e-mail car vous êtes abonné à la newsletter.",
     },
-    article: {
-      eyebrow: "Nouvel article",
-      cta: "Lire l'article",
-      footer: "Vous recevez cet e-mail car vous êtes abonné aux nouveaux articles et livres.",
+    article: { eyebrow: "Nouvel article", cta: "Lire l'article" },
+    book: { eyebrow: "Nouveau livre", cta: "Découvrir le livre" },
+    moreToRead: "À lire aussi",
+    read: "Lire",
+    bookPromo: {
+      title: (title: string) => `Dans la bibliothèque : ${title}`,
+      cta: "En savoir plus",
     },
-    book: {
-      eyebrow: "Nouveau livre",
-      cta: "Découvrir le livre",
-      footer: "Vous recevez cet e-mail car vous êtes abonné aux nouveaux articles et livres.",
+    invitePromo: {
+      title: `Inviter ${name} à prêcher`,
+      text: "Pour une conférence, une croisade ou un séminaire, envoyez une invitation depuis le site : elle recevra une réponse personnelle.",
+      cta: "Envoyer une invitation",
     },
-    unsubscribe: "Se désinscrire",
+    subscriberReason:
+      "Vous recevez cet e-mail car vous êtes abonné aux nouveaux articles et livres.",
     author: {
+      reason: "Notification du tableau de bord de votre site.",
       message: {
         subject: (sender: string) => `Nouveau message de ${sender}`,
         title: "Vous avez un nouveau message",
@@ -160,13 +173,23 @@ const copy = {
         book: "nouveau livre",
         cta: "Ouvrir le tableau de bord",
       },
-      footer: "Notification du tableau de bord de votre site.",
     },
   },
 } satisfies Record<Locale, unknown>;
 
 const authorLocale: Locale = process.env.AUTHOR_LOCALE === "fr" ? "fr" : "en";
 const languageNames: Record<string, string> = { en: "English", fr: "Français" };
+
+/* ---------- Shared pieces ---------- */
+
+type Bilingual = { en: string; fr: string };
+const pick = (value: Bilingual, locale: Locale) => value[locale] || value.en || value.fr;
+
+/** Recent articles and the latest book, for the supporting and promo sections. */
+export type Extras = {
+  articles: { id: string; title: Bilingual; excerpt: Bilingual; cover?: string | null }[];
+  book?: { title: string; description: Bilingual; cover?: string | null };
+};
 
 /** Links for one subscriber. Tokens sit after "#" so they never reach server logs. */
 export function subscriberLinks(locale: Locale, token: string) {
@@ -180,12 +203,65 @@ export function subscriberLinks(locale: Locale, token: string) {
 
 /** Headers that give newsletters the inbox's own "Unsubscribe" button. */
 function listHeaders(locale: Locale, token: string) {
-  const links = subscriberLinks(locale, token);
   return {
-    "List-Unsubscribe": `<${links.oneClick}>`,
+    "List-Unsubscribe": `<${subscriberLinks(locale, token).oneClick}>`,
     "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
   };
 }
+
+function footerLinks(locale: Locale) {
+  const c = copy[locale].links;
+  return [
+    { label: c.website, href: url(`/${locale}`) },
+    { label: c.articles, href: url(`/${locale}/articles`) },
+    { label: c.books, href: url(`/${locale}#books`) },
+    { label: c.contact, href: url(`/${locale}#contact`) },
+  ];
+}
+
+function subscriberFooter(locale: Locale, token: string) {
+  return {
+    stayConnected: copy[locale].stayConnected,
+    links: footerLinks(locale),
+    reason: copy[locale].subscriberReason,
+    unsubscribe: {
+      label: copy[locale].unsubscribe,
+      href: subscriberLinks(locale, token).unsubscribe,
+    },
+  };
+}
+
+function articleCards(locale: Locale, extras: Extras, exclude?: string): Card[] {
+  return extras.articles
+    .filter((article) => article.id !== exclude)
+    .slice(0, 2)
+    .map((article) => ({
+      title: pick(article.title, locale),
+      text: pick(article.excerpt, locale),
+      image: emailImage(article.cover),
+      link: { label: copy[locale].read, href: url(`/${locale}/articles/${article.id}`) },
+    }));
+}
+
+function bookPromo(locale: Locale, extras: Extras) {
+  if (!extras.book) return invitePromo(locale);
+  const c = copy[locale].bookPromo;
+  return promo({
+    title: c.title(extras.book.title),
+    text: pick(extras.book.description, locale),
+    cta: { label: c.cta, href: url(`/${locale}#books`) },
+  });
+}
+
+function invitePromo(locale: Locale) {
+  const c = copy[locale].invitePromo;
+  return promo({ ...c, cta: { label: c.cta, href: url(`/${locale}#contact`) } });
+}
+
+const textFooter = (locale: Locale, unsubscribe?: string) =>
+  `\n\n— ${name} · ${siteConfig.location}${unsubscribe ? `\n${copy[locale].unsubscribe}: ${unsubscribe}` : ""}`;
+
+/* ---------- Subscriber emails ---------- */
 
 type Subscriber = { email: string; locale: Locale; token: string };
 
@@ -198,21 +274,30 @@ export function confirmEmail({ email, locale, token }: Subscriber): Email {
     html: layout({
       lang: locale,
       preview: c.preview,
-      footer: c.footer,
-      body:
-        heading(c.title) +
-        paragraph(c.body) +
-        button(c.cta, link) +
-        paragraph(c.ignore, "font-size:13px;margin:0;"),
+      sections: [
+        featured({
+          image: { src: heroArt(), alt: "", width: ART_WIDTH, height: ART_HEIGHT },
+          title: c.title,
+          text: c.body,
+          cta: { label: c.cta, href: link },
+          note: c.note,
+        }),
+      ],
+      footer: {
+        stayConnected: copy[locale].stayConnected,
+        links: footerLinks(locale),
+        reason: c.reason,
+      },
     }),
-    text: `${c.title}\n\n${c.body}\n\n${c.cta}: ${link}\n\n${c.ignore}`,
+    text: `${c.title}\n\n${c.body}\n\n${c.cta}: ${link}\n\n${c.note}${textFooter(locale)}`,
   };
 }
 
-export function welcomeEmail({ email, locale, token }: Subscriber): Email {
+export function welcomeEmail(subscriber: Subscriber, extras: Extras): Email {
+  const { email, locale, token } = subscriber;
   const c = copy[locale].welcome;
-  const links = subscriberLinks(locale, token);
   const articles = url(`/${locale}/articles`);
+  const unsubscribe = subscriberLinks(locale, token).unsubscribe;
   return {
     to: email,
     subject: c.subject,
@@ -220,11 +305,19 @@ export function welcomeEmail({ email, locale, token }: Subscriber): Email {
     html: layout({
       lang: locale,
       preview: c.preview,
-      footer: c.footer,
-      unsubscribe: { label: copy[locale].unsubscribe, href: links.unsubscribe },
-      body: heading(c.title) + paragraph(c.body) + button(c.cta, articles),
+      sections: [
+        featured({
+          image: { src: heroArt(), alt: "", width: ART_WIDTH, height: ART_HEIGHT },
+          title: c.title,
+          text: c.body,
+          cta: { label: c.cta, href: articles },
+        }),
+        supporting(copy[locale].moreToRead, articleCards(locale, extras)),
+        bookPromo(locale, extras),
+      ].filter(Boolean),
+      footer: subscriberFooter(locale, token),
     }),
-    text: `${c.title}\n\n${c.body}\n\n${c.cta}: ${articles}\n\n${copy[locale].unsubscribe}: ${links.unsubscribe}`,
+    text: `${c.title}\n\n${c.body}\n\n${c.cta}: ${articles}${textFooter(locale, unsubscribe)}`,
   };
 }
 
@@ -236,7 +329,11 @@ export type AnnouncedArticle = {
   cover?: string | null;
 };
 
-export function articleEmail(subscriber: Subscriber, article: AnnouncedArticle): Email {
+export function articleEmail(
+  subscriber: Subscriber,
+  article: AnnouncedArticle,
+  extras: Extras,
+): Email {
   const { locale, token } = subscriber;
   const c = copy[locale].article;
   const link = url(`/${locale}/articles/${article.id}`);
@@ -249,22 +346,27 @@ export function articleEmail(subscriber: Subscriber, article: AnnouncedArticle):
     html: layout({
       lang: locale,
       preview: article.excerpt,
-      footer: c.footer,
-      unsubscribe: { label: copy[locale].unsubscribe, href: unsubscribe },
-      body:
-        (cover ? image(cover, article.title) : "") +
-        eyebrow(article.category ? `${c.eyebrow} · ${article.category}` : c.eyebrow) +
-        heading(article.title) +
-        paragraph(article.excerpt) +
-        button(c.cta, link),
+      sections: [
+        featured({
+          image: cover ? { src: cover, alt: article.title } : undefined,
+          banner: cover ? undefined : article.category || c.eyebrow,
+          eyebrow: article.category ? `${c.eyebrow} · ${article.category}` : c.eyebrow,
+          title: article.title,
+          text: article.excerpt,
+          cta: { label: c.cta, href: link },
+        }),
+        supporting(copy[locale].moreToRead, articleCards(locale, extras, article.id)),
+        bookPromo(locale, extras),
+      ].filter(Boolean),
+      footer: subscriberFooter(locale, token),
     }),
-    text: `${c.eyebrow}\n\n${article.title}\n\n${article.excerpt}\n\n${c.cta}: ${link}\n\n${copy[locale].unsubscribe}: ${unsubscribe}`,
+    text: `${c.eyebrow}\n\n${article.title}\n\n${article.excerpt}\n\n${c.cta}: ${link}${textFooter(locale, unsubscribe)}`,
   };
 }
 
 export type AnnouncedBook = { title: string; description: string; cover?: string | null };
 
-export function bookEmail(subscriber: Subscriber, book: AnnouncedBook): Email {
+export function bookEmail(subscriber: Subscriber, book: AnnouncedBook, extras: Extras): Email {
   const { locale, token } = subscriber;
   const c = copy[locale].book;
   const link = url(`/${locale}#books`);
@@ -277,22 +379,38 @@ export function bookEmail(subscriber: Subscriber, book: AnnouncedBook): Email {
     html: layout({
       lang: locale,
       preview: book.description,
-      footer: c.footer,
-      unsubscribe: { label: copy[locale].unsubscribe, href: unsubscribe },
-      body:
-        (cover
-          ? `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;"><tr><td>${image(cover, book.title, 220)}</td></tr></table>`
-          : "") +
-        eyebrow(c.eyebrow) +
-        heading(book.title) +
-        paragraph(book.description) +
-        button(c.cta, link),
+      sections: [
+        featured({
+          image: cover ? { src: cover, alt: book.title, width: 200 } : undefined,
+          banner: cover ? undefined : book.title,
+          eyebrow: c.eyebrow,
+          title: book.title,
+          text: book.description,
+          cta: { label: c.cta, href: link },
+        }),
+        supporting(copy[locale].moreToRead, articleCards(locale, extras)),
+        invitePromo(locale),
+      ].filter(Boolean),
+      footer: subscriberFooter(locale, token),
     }),
-    text: `${c.eyebrow}\n\n${book.title}\n\n${book.description}\n\n${c.cta}: ${link}\n\n${copy[locale].unsubscribe}: ${unsubscribe}`,
+    text: `${c.eyebrow}\n\n${book.title}\n\n${book.description}\n\n${c.cta}: ${link}${textFooter(locale, unsubscribe)}`,
   };
 }
 
 /* ---------- Author notifications ---------- */
+
+function authorLayout(preview: string, title: string, blocks: string[]) {
+  return layout({
+    lang: authorLocale,
+    preview,
+    sections: [panel(title, blocks)],
+    footer: {
+      stayConnected: copy[authorLocale].stayConnected,
+      links: footerLinks(authorLocale),
+      reason: copy[authorLocale].author.reason,
+    },
+  });
+}
 
 export function authorMessageEmail(
   to: string,
@@ -317,17 +435,12 @@ export function authorMessageEmail(
     to,
     replyTo: message.email,
     subject: c.subject(message.name),
-    html: layout({
-      lang: authorLocale,
-      preview: message.message.slice(0, 120),
-      footer: copy[authorLocale].author.footer,
-      body:
-        heading(c.title) +
-        paragraph(c.intro) +
-        details(rows) +
-        quote(message.message) +
-        button(c.cta, link),
-    }),
+    html: authorLayout(message.message.slice(0, 120), c.title, [
+      paragraph(c.intro),
+      details(rows),
+      quote(message.message),
+      button({ label: c.cta, href: link }),
+    ]),
     text: `${c.title}\n\n${rows.map(([k, v]) => `${k}: ${v}`).join("\n")}\n\n${message.message}\n\n${c.cta}: ${link}`,
   };
 }
@@ -346,12 +459,11 @@ export function authorSubscriberEmail(
   return {
     to,
     subject: c.subject,
-    html: layout({
-      lang: authorLocale,
-      preview: c.intro(total),
-      footer: copy[authorLocale].author.footer,
-      body: heading(c.title) + paragraph(c.intro(total)) + details(rows) + button(c.cta, link),
-    }),
+    html: authorLayout(c.intro(total), c.title, [
+      paragraph(c.intro(total)),
+      details(rows),
+      button({ label: c.cta, href: link }),
+    ]),
     text: `${c.title}\n\n${c.intro(total)}\n\n${rows.map(([k, v]) => `${k}: ${v}`).join("\n")}\n\n${c.cta}: ${link}`,
   };
 }
@@ -369,16 +481,11 @@ export function authorReportEmail(
   return {
     to,
     subject: c.subject(report.title),
-    html: layout({
-      lang: authorLocale,
-      preview: intro,
-      footer: copy[authorLocale].author.footer,
-      body:
-        heading(c.title) +
-        paragraph(intro) +
-        (failed ? paragraph(c.failed(failed), "color:#b42318;") : "") +
-        button(c.cta, link),
-    }),
+    html: authorLayout(intro, c.title, [
+      paragraph(intro),
+      ...(failed ? [paragraph(c.failed(failed), "color:#b42318;")] : []),
+      button({ label: c.cta, href: link }),
+    ]),
     text: `${c.title}\n\n${intro}${failed ? `\n${c.failed(failed)}` : ""}\n\n${c.cta}: ${link}`,
   };
 }

@@ -11,6 +11,7 @@ import {
   bookEmail,
   confirmEmail,
   welcomeEmail,
+  type Extras,
 } from "@/lib/email/templates";
 
 /**
@@ -21,6 +22,45 @@ import {
 
 const newToken = () => randomBytes(24).toString("base64url");
 const asLocale = (value: string): Locale => (hasLocale(value) ? value : "en");
+
+/** Recent articles and the latest book, shown under the main content of emails. */
+async function getExtras(exclude: { bookId?: string } = {}): Promise<Extras> {
+  const [articles, book] = await Promise.all([
+    db.article.findMany({
+      where: { status: "published" },
+      orderBy: { publishedAt: "desc" },
+      take: 3,
+      select: {
+        id: true,
+        titleEn: true,
+        titleFr: true,
+        excerptEn: true,
+        excerptFr: true,
+        cover: true,
+      },
+    }),
+    db.book.findFirst({
+      where: { status: "published", ...(exclude.bookId ? { id: { not: exclude.bookId } } : {}) },
+      orderBy: { createdAt: "desc" },
+      select: { title: true, descriptionEn: true, descriptionFr: true, cover: true },
+    }),
+  ]);
+  return {
+    articles: articles.map((row) => ({
+      id: row.id,
+      title: { en: row.titleEn, fr: row.titleFr },
+      excerpt: { en: row.excerptEn, fr: row.excerptFr },
+      cover: row.cover,
+    })),
+    book: book
+      ? {
+          title: book.title,
+          description: { en: book.descriptionEn, fr: book.descriptionFr },
+          cover: book.cover,
+        }
+      : undefined,
+  };
+}
 
 /**
  * Starts a subscription and sends the confirmation email. Someone already subscribed
@@ -59,9 +99,12 @@ export async function confirm(token: string): Promise<ConfirmResult> {
 
   after(async () => {
     const locale = asLocale(subscriber.locale);
-    const total = await db.subscriber.count({ where: { status: "active" } });
+    const [total, extras] = await Promise.all([
+      db.subscriber.count({ where: { status: "active" } }),
+      getExtras(),
+    ]);
     await Promise.all([
-      sendEmail(welcomeEmail({ email: subscriber.email, locale, token: subscriber.token })),
+      sendEmail(welcomeEmail({ email: subscriber.email, locale, token: subscriber.token }, extras)),
       sendEmail(authorSubscriberEmail(emailConfig.authorEmail, subscriber, total)),
     ]);
   });
@@ -125,15 +168,20 @@ export async function announceArticle(id: string): Promise<AnnounceResult> {
 
   const { subscribers } = ready;
   after(async () => {
+    const extras = await getExtras();
     const emails = subscribers.map((subscriber) => {
       const fr = subscriber.locale === "fr";
-      return articleEmail(subscriber, {
-        id: article!.id,
-        title: (fr ? article!.titleFr : article!.titleEn) || article!.titleEn || article!.titleFr,
-        excerpt: (fr ? article!.excerptFr : article!.excerptEn) || article!.excerptEn,
-        category: (fr ? article!.categoryFr : article!.categoryEn) || article!.categoryEn,
-        cover: article!.cover,
-      });
+      return articleEmail(
+        subscriber,
+        {
+          id: article!.id,
+          title: (fr ? article!.titleFr : article!.titleEn) || article!.titleEn || article!.titleFr,
+          excerpt: (fr ? article!.excerptFr : article!.excerptEn) || article!.excerptEn,
+          category: (fr ? article!.categoryFr : article!.categoryEn) || article!.categoryEn,
+          cover: article!.cover,
+        },
+        extras,
+      );
     });
     const sent = await sendEmails(emails);
     await db.article.update({ where: { id }, data: { announcedTo: sent } });
@@ -163,14 +211,19 @@ export async function announceBook(id: string): Promise<AnnounceResult> {
 
   const { subscribers } = ready;
   after(async () => {
+    const extras = await getExtras({ bookId: id });
     const emails = subscribers.map((subscriber) =>
-      bookEmail(subscriber, {
-        title: book!.title,
-        description:
-          (subscriber.locale === "fr" ? book!.descriptionFr : book!.descriptionEn) ||
-          book!.descriptionEn,
-        cover: book!.cover,
-      }),
+      bookEmail(
+        subscriber,
+        {
+          title: book!.title,
+          description:
+            (subscriber.locale === "fr" ? book!.descriptionFr : book!.descriptionEn) ||
+            book!.descriptionEn,
+          cover: book!.cover,
+        },
+        extras,
+      ),
     );
     const sent = await sendEmails(emails);
     await db.book.update({ where: { id }, data: { announcedTo: sent } });

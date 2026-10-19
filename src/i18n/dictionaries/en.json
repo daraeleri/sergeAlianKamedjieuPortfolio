@@ -401,7 +401,8 @@
       "sending": "Subscribing…",
       "success": "Almost done: check your inbox and click the link to confirm.",
       "invalid": "Please enter a valid email address.",
-      "error": "Something went wrong. Please try again in a moment."
+      "error": "Something went wrong. Please try again in a moment.",
+      "note": "No spam. Unsubscribe in one click."
     }
   },
   "dashboard": {
@@ -767,14 +768,23 @@
     },
     "unsubscribe": {
       "metaTitle": "Unsubscribe",
-      "title": "Unsubscribe from the newsletter",
-      "text": "You'll stop receiving emails about new articles and books.",
+      "title": "Leave the newsletter?",
+      "text": "You'll stop receiving emails about new articles and books. Nothing else changes.",
       "button": "Unsubscribe",
       "working": "Unsubscribing…",
       "done": "You're unsubscribed",
       "doneText": "You won't receive any more emails. You can subscribe again at any time from the website.",
       "invalid": "This link doesn't work",
-      "invalidText": "Open the unsubscribe link from your most recent email."
+      "invalidText": "Open the unsubscribe link from your most recent email.",
+      "note": "You can subscribe again at any time.",
+      "keep": "Keep my subscription"
+    },
+    "privacy": "We'll never share your email or send you spam.",
+    "status": {
+      "checking": "Checking",
+      "confirmed": "Confirmed",
+      "unsubscribed": "Unsubscribed",
+      "error": "Link problem"
     }
   }
 }

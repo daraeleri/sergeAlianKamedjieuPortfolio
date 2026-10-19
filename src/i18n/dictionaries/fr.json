@@ -401,7 +401,8 @@
       "sending": "Inscription…",
       "success": "Presque terminé : ouvrez votre boîte de réception et cliquez sur le lien pour confirmer.",
       "invalid": "Veuillez saisir une adresse e-mail valide.",
-      "error": "Une erreur est survenue. Réessayez dans un instant."
+      "error": "Une erreur est survenue. Réessayez dans un instant.",
+      "note": "Pas de spam. Désinscription en un clic."
     }
   },
   "dashboard": {
@@ -767,14 +768,23 @@
     },
     "unsubscribe": {
       "metaTitle": "Se désinscrire",
-      "title": "Se désinscrire de la newsletter",
-      "text": "Vous ne recevrez plus d'e-mails sur les nouveaux articles et livres.",
+      "title": "Quitter la newsletter ?",
+      "text": "Vous ne recevrez plus d'e-mails sur les nouveaux articles et livres. Rien d'autre ne change.",
       "button": "Me désinscrire",
       "working": "Désinscription…",
       "done": "Vous êtes désinscrit",
       "doneText": "Vous ne recevrez plus d'e-mails. Vous pouvez vous réabonner à tout moment depuis le site.",
       "invalid": "Ce lien ne fonctionne pas",
-      "invalidText": "Ouvrez le lien de désinscription de votre e-mail le plus récent."
+      "invalidText": "Ouvrez le lien de désinscription de votre e-mail le plus récent.",
+      "note": "Vous pouvez vous réabonner à tout moment.",
+      "keep": "Rester abonné"
+    },
+    "privacy": "Nous ne partagerons jamais votre adresse et n'enverrons pas de spam.",
+    "status": {
+      "checking": "Vérification",
+      "confirmed": "Confirmé",
+      "unsubscribed": "Désinscrit",
+      "error": "Problème de lien"
     }
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, CircleCheck, Loader2 } from "lucide-react";
+import { ArrowRight, CircleCheck, Loader2, ShieldCheck } from "lucide-react";
 import { useActionState, useId } from "react";
 import { subscribeToNewsletter, type SubscribeState } from "@/app/actions/newsletter";
 import type { Locale } from "@/i18n/config";
@@ -95,7 +95,12 @@ export function NewsletterForm({ copy, locale }: { copy: Copy; locale: Locale })
             <p id={ids.status} role="alert" className="mt-2 text-sm text-rose-300">
               {state.status === "invalid" ? copy.invalid : copy.error}
             </p>
-          ) : null}
+          ) : (
+            <p className="mt-2.5 flex items-center gap-1.5 text-xs text-white/40">
+              <ShieldCheck aria-hidden className="size-3.5" />
+              {copy.note}
+            </p>
+          )}
         </form>
       )}
     </section>
