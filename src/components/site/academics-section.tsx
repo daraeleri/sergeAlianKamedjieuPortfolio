@@ -1,6 +1,7 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
@@ -111,41 +112,48 @@ export function AcademicsSection({ copy }: { copy: Copy }) {
             {copy.intro}
           </p>
 
-          {/* Highest distinction */}
-          <div
-            data-academics-intro
-            className="relative isolate mt-8 overflow-hidden rounded-2xl bg-brand-tint p-6 ring-1 ring-brand/10"
-          >
-            <svg
-              aria-hidden
-              viewBox="0 0 400 400"
-              className="absolute -right-16 -bottom-20 -z-10 size-56 text-brand/10"
-            >
-              <path
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="46"
-                strokeLinecap="round"
-                d="M40 330C80 220 170 250 210 170s-30-130 40-130 120 90 70 170"
-              />
-            </svg>
-            <div className="flex items-center gap-3">
-              <span className="grid size-10 place-items-center rounded-xl bg-brand text-white">
-                <GraduationCap aria-hidden strokeWidth={1.75} className="size-5" />
-              </span>
-              <p className="text-xs font-semibold tracking-[0.14em] text-brand-strong uppercase">
-                {copy.featured.eyebrow}
+          {/* Highest distinction, with the portrait standing behind its top edge */}
+          <div data-academics-intro className="mt-8">
+            <Image
+              src="/images/pictureAcademics.png"
+              alt=""
+              width={584}
+              height={851}
+              sizes="15rem"
+              className="mx-auto block h-auto w-56 sm:w-60"
+            />
+            <div className="relative isolate z-10 -mt-32 overflow-hidden rounded-2xl bg-brand-tint p-6 ring-1 ring-brand/10">
+              <svg
+                aria-hidden
+                viewBox="0 0 400 400"
+                className="absolute -right-16 -bottom-20 -z-10 size-56 text-brand/10"
+              >
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="46"
+                  strokeLinecap="round"
+                  d="M40 330C80 220 170 250 210 170s-30-130 40-130 120 90 70 170"
+                />
+              </svg>
+              <div className="flex items-center gap-3">
+                <span className="grid size-10 place-items-center rounded-xl bg-brand text-white">
+                  <GraduationCap aria-hidden strokeWidth={1.75} className="size-5" />
+                </span>
+                <p className="text-xs font-semibold tracking-[0.14em] text-brand-strong uppercase">
+                  {copy.featured.eyebrow}
+                </p>
+              </div>
+              <h3 className="mt-4 font-heading text-2xl font-semibold tracking-tight">
+                {copy.featured.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-black/60">
+                {copy.featured.description}
+              </p>
+              <p className="mt-4 inline-flex rounded-full bg-white px-3 py-1 text-xs font-medium text-black/70 ring-1 ring-black/5">
+                {copy.featured.tag}
               </p>
             </div>
-            <h3 className="mt-4 font-heading text-2xl font-semibold tracking-tight">
-              {copy.featured.title}
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-black/60">
-              {copy.featured.description}
-            </p>
-            <p className="mt-4 inline-flex rounded-full bg-white px-3 py-1 text-xs font-medium text-black/70 ring-1 ring-black/5">
-              {copy.featured.tag}
-            </p>
           </div>
         </div>
 
