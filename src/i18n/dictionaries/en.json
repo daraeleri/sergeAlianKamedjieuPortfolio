@@ -607,7 +607,7 @@
         "errors": {
           "already-sent": "This was already sent.",
           "no-subscribers": "There are no active subscribers.",
-          "email-off": "Email sending isn't set up (RESEND_API_KEY).",
+          "email-off": "Email sending isn't set up (BREVO_API_KEY).",
           "not-published": "Publish it first.",
           "unauthorized": "Your session ended. Sign in again.",
           "failed": "Couldn't send. Please try again."
@@ -732,7 +732,7 @@
         "unsubscribed": "Unsubscribed"
       },
       "emailOff": "Emails are not being sent yet",
-      "emailOffText": "Add RESEND_API_KEY and EMAIL_FROM to the environment variables (see .env.example) so confirmation and announcement emails go out."
+      "emailOffText": "Add BREVO_API_KEY and EMAIL_FROM to the environment variables (see .env.example) so confirmation and announcement emails go out."
     }
   },
   "notFound": {

@@ -607,7 +607,7 @@
         "errors": {
           "already-sent": "Ceci a déjà été envoyé.",
           "no-subscribers": "Il n'y a aucun abonné actif.",
-          "email-off": "L'envoi d'e-mails n'est pas configuré (RESEND_API_KEY).",
+          "email-off": "L'envoi d'e-mails n'est pas configuré (BREVO_API_KEY).",
           "not-published": "Publiez-le d'abord.",
           "unauthorized": "Votre session a expiré. Reconnectez-vous.",
           "failed": "Envoi impossible. Réessayez."
@@ -732,7 +732,7 @@
         "unsubscribed": "Désinscrit"
       },
       "emailOff": "Les e-mails ne sont pas encore envoyés",
-      "emailOffText": "Ajoutez RESEND_API_KEY et EMAIL_FROM aux variables d'environnement (voir .env.example) pour envoyer les e-mails de confirmation et d'annonce."
+      "emailOffText": "Ajoutez BREVO_API_KEY et EMAIL_FROM aux variables d'environnement (voir .env.example) pour envoyer les e-mails de confirmation et d'annonce."
     }
   },
   "notFound": {

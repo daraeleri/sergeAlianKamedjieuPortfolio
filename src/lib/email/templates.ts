@@ -91,7 +91,7 @@ const copy = {
         intro: (kind: string, sent: number, total: number) =>
           `The ${kind} was emailed to ${sent} of ${total} subscribers.`,
         failed: (failed: number) =>
-          `${failed} could not be sent. Check the email settings (RESEND_API_KEY, EMAIL_FROM).`,
+          `${failed} could not be sent. Check the email settings (BREVO_API_KEY, EMAIL_FROM).`,
         article: "new article",
         book: "new book",
         cta: "Open the dashboard",
@@ -168,7 +168,7 @@ const copy = {
         intro: (kind: string, sent: number, total: number) =>
           `Le ${kind} a été envoyé à ${sent} abonnés sur ${total}.`,
         failed: (failed: number) =>
-          `${failed} n'ont pas pu être envoyés. Vérifiez les réglages e-mail (RESEND_API_KEY, EMAIL_FROM).`,
+          `${failed} n'ont pas pu être envoyés. Vérifiez les réglages e-mail (BREVO_API_KEY, EMAIL_FROM).`,
         article: "nouvel article",
         book: "nouveau livre",
         cta: "Ouvrir le tableau de bord",

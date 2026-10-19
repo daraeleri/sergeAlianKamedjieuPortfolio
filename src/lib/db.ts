@@ -27,6 +27,10 @@ function withVerifiedSsl(url: string) {
 
 const globalForDb = globalThis as unknown as { db?: ReturnType<typeof createClient> };
 
-export const db = globalForDb.db ?? createClient();
+// After `prisma generate` (a schema change), the cached client is an instance of the
+// previous PrismaClient and lacks the new models, so it is replaced instead of reused.
+const cached = globalForDb.db instanceof PrismaClient ? globalForDb.db : undefined;
+
+export const db = cached ?? createClient();
 
 if (process.env.NODE_ENV !== "production") globalForDb.db = db;
