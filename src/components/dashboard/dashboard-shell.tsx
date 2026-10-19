@@ -11,6 +11,7 @@ import {
   LogOut,
   Menu,
   Settings,
+  Users,
   X,
   type LucideIcon,
 } from "lucide-react";
@@ -27,7 +28,8 @@ import { localizePath } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
 type Copy = Dictionary["dashboard"];
-type NavKey = "overview" | "analytics" | "articles" | "books" | "messages" | "settings";
+type NavKey =
+  "overview" | "analytics" | "articles" | "books" | "messages" | "subscribers" | "settings";
 type NavGroup = {
   label: keyof Copy["nav"];
   items: { key: NavKey; icon: LucideIcon; path: string }[];
@@ -50,7 +52,10 @@ const groups: NavGroup[] = [
   },
   {
     label: "engagement",
-    items: [{ key: "messages", icon: Inbox, path: "/dashboard/messages" }],
+    items: [
+      { key: "messages", icon: Inbox, path: "/dashboard/messages" },
+      { key: "subscribers", icon: Users, path: "/dashboard/subscribers" },
+    ],
   },
   {
     label: "system",

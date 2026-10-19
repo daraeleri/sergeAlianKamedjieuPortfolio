@@ -421,8 +421,11 @@ export function useServerSave<T>(
   const [state, setState] = useState<{
     status: "idle" | "saving" | "saved" | "error";
     savedAt?: number;
+    /** Database id once the record exists (null for a new, unsaved one). */
+    id: string | null;
   }>({
     status: "idle",
+    id: initialId,
   });
 
   const save = useCallback(
@@ -439,7 +442,7 @@ export function useServerSave<T>(
           if (result.ok) {
             const created = id.current === null;
             id.current = result.id;
-            setState({ status: "saved", savedAt: Date.parse(result.updatedAt) });
+            setState({ status: "saved", savedAt: Date.parse(result.updatedAt), id: result.id });
             if (created) onCreated?.(result.id);
           } else {
             setState((current) => ({ ...current, status: "error" }));

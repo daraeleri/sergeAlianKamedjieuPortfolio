@@ -390,7 +390,19 @@
     "ministriesLabel": "Ministries",
     "booksLabel": "Books",
     "languageLabel": "Language",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "newsletter": {
+      "label": "Newsletter",
+      "title": "New articles and books, straight to your inbox",
+      "intro": "One email when something new is published. Nothing else, and you can leave at any time.",
+      "emailLabel": "Email address",
+      "placeholder": "you@example.com",
+      "submit": "Subscribe",
+      "sending": "Subscribing…",
+      "success": "Almost done: check your inbox and click the link to confirm.",
+      "invalid": "Please enter a valid email address.",
+      "error": "Something went wrong. Please try again in a moment."
+    }
   },
   "dashboard": {
     "title": "Dashboard",
@@ -413,6 +425,7 @@
       "articles": "Articles",
       "books": "Books",
       "messages": "Messages",
+      "subscribers": "Subscribers",
       "settings": "Settings"
     },
     "common": {
@@ -579,7 +592,26 @@
       "back": "Back",
       "storageFull": "This draft is too large to keep on this device (large images). It stays open here until you leave.",
       "savedLocally": "Saved on this device · {time}",
-      "saveFailed": "Couldn't save online. Kept on this device; retrying on your next change."
+      "saveFailed": "Couldn't save online. Kept on this device; retrying on your next change.",
+      "announce": {
+        "title": "Email subscribers",
+        "text": "Send this to the {count} active subscribers, each in their language. It can only be sent once.",
+        "textNone": "No active subscribers yet. Once people subscribe, you can email them from here.",
+        "publishFirst": "Publish it first, then you can email it to your subscribers.",
+        "button": "Send to subscribers",
+        "confirm": "Email this to {count} subscribers now?",
+        "sending": "Sending…",
+        "queued": "On its way to {count} subscribers. You'll get a report by email.",
+        "sent": "Sent to {count} subscribers on {date}.",
+        "errors": {
+          "already-sent": "This was already sent.",
+          "no-subscribers": "There are no active subscribers.",
+          "email-off": "Email sending isn't set up (RESEND_API_KEY).",
+          "not-published": "Publish it first.",
+          "unauthorized": "Your session ended. Sign in again.",
+          "failed": "Couldn't send. Please try again."
+        }
+      }
     },
     "analytics": {
       "title": "Analytics",
@@ -677,6 +709,29 @@
       "jafanUrl": "JAFAN Ministries website",
       "save": "Save changes",
       "saved": "Saved on this device (sample)."
+    },
+    "subscribers": {
+      "title": "Subscribers",
+      "description": "People who receive an email when you publish a new article or book.",
+      "active": "Active",
+      "pending": "Awaiting confirmation",
+      "unsubscribed": "Unsubscribed",
+      "email": "Email",
+      "language": "Language",
+      "status": "Status",
+      "joined": "Joined",
+      "empty": "No subscribers yet",
+      "emptyText": "Visitors can subscribe from the newsletter form at the bottom of every page.",
+      "remove": "Remove",
+      "removeConfirm": "Remove {email} from the list? This can't be undone.",
+      "exportCsv": "Export CSV",
+      "statuses": {
+        "pending": "Pending",
+        "active": "Active",
+        "unsubscribed": "Unsubscribed"
+      },
+      "emailOff": "Emails are not being sent yet",
+      "emailOffText": "Add RESEND_API_KEY and EMAIL_FROM to the environment variables (see .env.example) so confirmation and announcement emails go out."
     }
   },
   "notFound": {
@@ -696,5 +751,30 @@
     "backToSite": "Back to the site",
     "signOut": "Sign out",
     "metaTitle": "Sign in"
+  },
+  "newsletter": {
+    "backHome": "Back to the website",
+    "readArticles": "Read the articles",
+    "confirm": {
+      "metaTitle": "Confirm subscription",
+      "checking": "Confirming your subscription…",
+      "confirmed": "You're subscribed",
+      "confirmedText": "Thank you! You'll receive an email whenever a new article or book is published.",
+      "already": "You're already subscribed",
+      "alreadyText": "This address is already confirmed. Nothing else to do.",
+      "invalid": "This link doesn't work",
+      "invalidText": "It may have expired or been replaced by a newer one. Subscribe again from the bottom of any page."
+    },
+    "unsubscribe": {
+      "metaTitle": "Unsubscribe",
+      "title": "Unsubscribe from the newsletter",
+      "text": "You'll stop receiving emails about new articles and books.",
+      "button": "Unsubscribe",
+      "working": "Unsubscribing…",
+      "done": "You're unsubscribed",
+      "doneText": "You won't receive any more emails. You can subscribe again at any time from the website.",
+      "invalid": "This link doesn't work",
+      "invalidText": "Open the unsubscribe link from your most recent email."
+    }
   }
 }

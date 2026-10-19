@@ -35,6 +35,9 @@ model Article {
   bodyEn      Json          @default("[]")
   bodyFr      Json          @default("[]")
   publishedAt DateTime?
+  /// When it was emailed to newsletter subscribers, and to how many.
+  announcedAt DateTime?
+  announcedTo Int?
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
 
@@ -54,6 +57,9 @@ model Book {
   year          Int?
   /// Order on the home page, lowest first.
   position      Int           @default(0)
+  /// When it was emailed to newsletter subscribers, and to how many.
+  announcedAt   DateTime?
+  announcedTo   Int?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
 
@@ -128,6 +134,28 @@ model Event {
 
   @@index([type, createdAt])
   @@index([articleId])
+}
+
+enum SubscriberStatus {
+  /// Signed up, waiting for the click in the confirmation email.
+  pending
+  active
+  unsubscribed
+}
+
+/// Newsletter subscriber. The token is the secret in confirmation and unsubscribe links.
+model Subscriber {
+  id             String           @id @default(cuid())
+  email          String           @unique
+  /// Language of the emails they receive ("en" or "fr").
+  locale         String           @default("en")
+  status         SubscriberStatus @default(pending)
+  token          String           @unique
+  createdAt      DateTime         @default(now())
+  confirmedAt    DateTime?
+  unsubscribedAt DateTime?
+
+  @@index([status])
 }
 
 model User {

@@ -27,7 +27,11 @@ export type ArticleDoc = {
   views: number;
   reads: number;
   shares: number;
+  /** When it was emailed to newsletter subscribers. */
+  announced?: Announcement;
 };
+
+export type Announcement = { at: string; to: number };
 
 export type BookDoc = {
   id: string;
@@ -41,6 +45,16 @@ export type BookDoc = {
   updatedAt: string;
   views: number;
   orders: number;
+  announced?: Announcement;
+};
+
+export type SubscriberRow = {
+  id: string;
+  email: string;
+  locale: string;
+  status: "pending" | "active" | "unsubscribed";
+  /** ISO date-time. */
+  createdAt: string;
 };
 
 export type MessageType = "invitation" | "books" | "prayer" | "other";

@@ -5,7 +5,7 @@ import { EditorSkeleton } from "@/components/dashboard/ui";
 import { ArticleEditor } from "@/components/dashboard/editor/article-editor";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { localizePath } from "@/i18n/routing";
-import { getDashboardArticle } from "@/lib/dashboard/data";
+import { getActiveSubscriberCount, getDashboardArticle } from "@/lib/dashboard/data";
 
 type Props = PageProps<"/[lang]/dashboard/articles/[id]">;
 
@@ -28,7 +28,10 @@ export default function EditArticlePage({ params }: Props) {
 /** Reads the URL, so it renders inside the Suspense boundary above (instant navigation). */
 async function ArticleEditorLoader({ params }: { params: Props["params"] }) {
   const [{ id }, locale, dict] = await Promise.all([params, getLocale(), getDictionary()]);
-  const article = await getDashboardArticle(id);
+  const [article, subscribers] = await Promise.all([
+    getDashboardArticle(id),
+    getActiveSubscriberCount(),
+  ]);
   if (!article) notFound();
 
   return (
@@ -38,6 +41,8 @@ async function ArticleEditorLoader({ params }: { params: Props["params"] }) {
       copy={dict.dashboard}
       backHref={localizePath(locale, "/dashboard/articles")}
       updatedAt={article.updatedAt}
+      announced={article.announced}
+      subscribers={subscribers}
       initial={{
         status: article.status,
         category: article.category,

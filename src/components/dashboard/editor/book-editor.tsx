@@ -9,8 +9,9 @@ import { BookCard } from "@/components/site/book-card";
 import { saveBook } from "@/app/actions/content";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { bookReadiness } from "@/lib/dashboard/readiness";
-import { contentStatuses, type BookDoc } from "@/lib/dashboard/types";
+import { contentStatuses, type Announcement, type BookDoc } from "@/lib/dashboard/types";
 import { cn } from "@/lib/utils";
+import { AnnouncePanel } from "./announce-panel";
 import {
   CompactReadiness,
   CoverField,
@@ -37,6 +38,8 @@ export function BookEditor({
   id,
   initial,
   updatedAt,
+  announced,
+  subscribers,
   copy,
   locale,
   backHref,
@@ -46,6 +49,10 @@ export function BookEditor({
   id: string;
   initial: Draft;
   updatedAt?: string;
+  /** When it was emailed to subscribers, if it was. */
+  announced?: Announcement;
+  /** Active newsletter subscribers. */
+  subscribers: number;
   copy: Dictionary["dashboard"];
   locale: string;
   backHref: Route;
@@ -315,6 +322,16 @@ export function BookEditor({
                 author={author}
               />
             </section>
+            <AnnouncePanel
+              kind="book"
+              id={server.id}
+              published={draft.status === "published"}
+              busy={pending || server.status === "saving"}
+              announced={announced}
+              subscribers={subscribers}
+              copy={editor.announce}
+              locale={locale}
+            />
           </ReadinessPanel>
         </aside>
       </div>

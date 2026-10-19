@@ -19,9 +19,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function DashboardLayout({ children }: LayoutProps<"/[lang]/dashboard">) {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
   const user = await requireUser(locale);
-  const [openDrafts, unread] = await Promise.all([
+  const [openDrafts, unread, subscribers] = await Promise.all([
     db.article.count({ where: { status: { not: "published" } } }),
     db.message.count({ where: { read: false } }),
+    db.subscriber.count({ where: { status: "active" } }),
   ]);
 
   return (
@@ -31,7 +32,7 @@ export default async function DashboardLayout({ children }: LayoutProps<"/[lang]
       signOutLabel={dict.auth.signOut}
       languageLabel={dict.nav.language}
       user={{ name: user.name, avatar: "/images/PersonaImage.png" }}
-      badges={{ articles: openDrafts, messages: unread }}
+      badges={{ articles: openDrafts, messages: unread, subscribers }}
     >
       {children}
     </DashboardShell>

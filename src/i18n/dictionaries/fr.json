@@ -390,7 +390,19 @@
     "ministriesLabel": "Ministères",
     "booksLabel": "Livres",
     "languageLabel": "Langue",
-    "rights": "Tous droits réservés."
+    "rights": "Tous droits réservés.",
+    "newsletter": {
+      "label": "Newsletter",
+      "title": "Les nouveaux articles et livres, directement dans votre boîte",
+      "intro": "Un e-mail à chaque nouvelle publication. Rien d'autre, et vous pouvez vous désinscrire à tout moment.",
+      "emailLabel": "Adresse e-mail",
+      "placeholder": "vous@exemple.com",
+      "submit": "S'abonner",
+      "sending": "Inscription…",
+      "success": "Presque terminé : ouvrez votre boîte de réception et cliquez sur le lien pour confirmer.",
+      "invalid": "Veuillez saisir une adresse e-mail valide.",
+      "error": "Une erreur est survenue. Réessayez dans un instant."
+    }
   },
   "dashboard": {
     "title": "Tableau de bord",
@@ -413,6 +425,7 @@
       "articles": "Articles",
       "books": "Livres",
       "messages": "Messages",
+      "subscribers": "Abonnés",
       "settings": "Paramètres"
     },
     "common": {
@@ -579,7 +592,26 @@
       "back": "Retour",
       "storageFull": "Ce brouillon est trop lourd pour être gardé sur cet appareil (images volumineuses). Il reste ouvert ici jusqu’à ce que vous quittiez la page.",
       "savedLocally": "Enregistré sur cet appareil · {time}",
-      "saveFailed": "Enregistrement en ligne impossible. Conservé sur cet appareil ; nouvel essai à la prochaine modification."
+      "saveFailed": "Enregistrement en ligne impossible. Conservé sur cet appareil ; nouvel essai à la prochaine modification.",
+      "announce": {
+        "title": "Envoyer aux abonnés",
+        "text": "Envoyez ceci aux {count} abonnés actifs, chacun dans sa langue. L'envoi ne se fait qu'une fois.",
+        "textNone": "Aucun abonné actif pour l'instant. Quand des personnes s'abonneront, vous pourrez leur écrire d'ici.",
+        "publishFirst": "Publiez-le d'abord, puis vous pourrez l'envoyer à vos abonnés.",
+        "button": "Envoyer aux abonnés",
+        "confirm": "Envoyer ceci à {count} abonnés maintenant ?",
+        "sending": "Envoi…",
+        "queued": "En route vers {count} abonnés. Vous recevrez un rapport par e-mail.",
+        "sent": "Envoyé à {count} abonnés le {date}.",
+        "errors": {
+          "already-sent": "Ceci a déjà été envoyé.",
+          "no-subscribers": "Il n'y a aucun abonné actif.",
+          "email-off": "L'envoi d'e-mails n'est pas configuré (RESEND_API_KEY).",
+          "not-published": "Publiez-le d'abord.",
+          "unauthorized": "Votre session a expiré. Reconnectez-vous.",
+          "failed": "Envoi impossible. Réessayez."
+        }
+      }
     },
     "analytics": {
       "title": "Statistiques",
@@ -677,6 +709,29 @@
       "jafanUrl": "Site de JAFAN Ministries",
       "save": "Enregistrer",
       "saved": "Enregistré sur cet appareil (exemple)."
+    },
+    "subscribers": {
+      "title": "Abonnés",
+      "description": "Les personnes qui reçoivent un e-mail quand vous publiez un nouvel article ou livre.",
+      "active": "Actifs",
+      "pending": "En attente de confirmation",
+      "unsubscribed": "Désinscrits",
+      "email": "E-mail",
+      "language": "Langue",
+      "status": "Statut",
+      "joined": "Inscription",
+      "empty": "Aucun abonné pour l'instant",
+      "emptyText": "Les visiteurs peuvent s'abonner avec le formulaire en bas de chaque page.",
+      "remove": "Retirer",
+      "removeConfirm": "Retirer {email} de la liste ? C'est définitif.",
+      "exportCsv": "Exporter en CSV",
+      "statuses": {
+        "pending": "En attente",
+        "active": "Actif",
+        "unsubscribed": "Désinscrit"
+      },
+      "emailOff": "Les e-mails ne sont pas encore envoyés",
+      "emailOffText": "Ajoutez RESEND_API_KEY et EMAIL_FROM aux variables d'environnement (voir .env.example) pour envoyer les e-mails de confirmation et d'annonce."
     }
   },
   "notFound": {
@@ -696,5 +751,30 @@
     "backToSite": "Retour au site",
     "signOut": "Se déconnecter",
     "metaTitle": "Connexion"
+  },
+  "newsletter": {
+    "backHome": "Retour au site",
+    "readArticles": "Lire les articles",
+    "confirm": {
+      "metaTitle": "Confirmer l'inscription",
+      "checking": "Confirmation de votre inscription…",
+      "confirmed": "Vous êtes abonné",
+      "confirmedText": "Merci ! Vous recevrez un e-mail à chaque nouvel article ou livre publié.",
+      "already": "Vous êtes déjà abonné",
+      "alreadyText": "Cette adresse est déjà confirmée. Rien d'autre à faire.",
+      "invalid": "Ce lien ne fonctionne pas",
+      "invalidText": "Il a peut-être expiré ou été remplacé par un plus récent. Réinscrivez-vous depuis le bas de n'importe quelle page."
+    },
+    "unsubscribe": {
+      "metaTitle": "Se désinscrire",
+      "title": "Se désinscrire de la newsletter",
+      "text": "Vous ne recevrez plus d'e-mails sur les nouveaux articles et livres.",
+      "button": "Me désinscrire",
+      "working": "Désinscription…",
+      "done": "Vous êtes désinscrit",
+      "doneText": "Vous ne recevrez plus d'e-mails. Vous pouvez vous réabonner à tout moment depuis le site.",
+      "invalid": "Ce lien ne fonctionne pas",
+      "invalidText": "Ouvrez le lien de désinscription de votre e-mail le plus récent."
+    }
   }
 }

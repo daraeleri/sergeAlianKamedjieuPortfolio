@@ -10,8 +10,9 @@ import type { ArticleTheme } from "@/content/articles";
 import { saveArticle } from "@/app/actions/content";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { articleReadiness, countWords } from "@/lib/dashboard/readiness";
-import { contentStatuses, type ArticleDoc } from "@/lib/dashboard/types";
+import { contentStatuses, type Announcement, type ArticleDoc } from "@/lib/dashboard/types";
 import { cn } from "@/lib/utils";
+import { AnnouncePanel } from "./announce-panel";
 import { BlockEditor } from "./block-editor";
 import {
   CompactReadiness,
@@ -36,6 +37,8 @@ export function ArticleEditor({
   id,
   initial,
   updatedAt,
+  announced,
+  subscribers,
   copy,
   locale,
   backHref,
@@ -44,6 +47,10 @@ export function ArticleEditor({
   initial: Draft;
   /** Last server update (ISO), to know whether the local draft is newer. */
   updatedAt?: string;
+  /** When it was emailed to subscribers, if it was. */
+  announced?: Announcement;
+  /** Active newsletter subscribers. */
+  subscribers: number;
   copy: Dictionary["dashboard"];
   locale: string;
   backHref: Route;
@@ -280,6 +287,16 @@ export function ArticleEditor({
                 ))}
               </ul>
             </section>
+            <AnnouncePanel
+              kind="article"
+              id={server.id}
+              published={draft.status === "published"}
+              busy={pending || server.status === "saving"}
+              announced={announced}
+              subscribers={subscribers}
+              copy={editor.announce}
+              locale={locale}
+            />
           </ReadinessPanel>
         </aside>
       </div>

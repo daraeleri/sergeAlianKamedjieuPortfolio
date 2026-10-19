@@ -2,6 +2,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import { CopyEmail } from "@/components/site/copy-email";
+import { NewsletterForm } from "@/components/site/newsletter-form";
 import { siteConfig, siteNav } from "@/config/site";
 import { localeLabels, locales } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
@@ -117,6 +118,8 @@ export async function SiteFooter() {
             </a>
           </div>
         </div>
+
+        <NewsletterForm copy={copy.newsletter} locale={locale} />
 
         <hr className="mt-12 border-white/10" />
 

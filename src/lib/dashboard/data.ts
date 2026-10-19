@@ -13,6 +13,7 @@ import type {
   InboxMessage,
   Referrer,
   ShareChannel,
+  SubscriberRow,
 } from "./types";
 
 /**
@@ -70,7 +71,14 @@ function toArticleDoc(
     views: stats?.views ?? 0,
     reads: stats?.reads ?? 0,
     shares: stats?.shares ?? 0,
+    announced: announcement(row),
   };
+}
+
+function announcement(row: { announcedAt: Date | null; announcedTo: number | null }) {
+  return row.announcedAt
+    ? { at: row.announcedAt.toISOString(), to: row.announcedTo ?? 0 }
+    : undefined;
 }
 
 function toBookDoc(row: Book): BookDoc {
@@ -87,6 +95,7 @@ function toBookDoc(row: Book): BookDoc {
     // Book pages and per-book orders aren't tracked yet; orders arrive as messages.
     views: 0,
     orders: 0,
+    announced: announcement(row),
   };
 }
 
@@ -115,6 +124,24 @@ export async function getDashboardBook(id: string) {
   await connection();
   const row = await db.book.findUnique({ where: { id } });
   return row ? toBookDoc(row) : undefined;
+}
+
+/** Number of confirmed newsletter subscribers. */
+export async function getActiveSubscriberCount() {
+  await connection();
+  return db.subscriber.count({ where: { status: "active" } });
+}
+
+export async function getSubscribers(): Promise<SubscriberRow[]> {
+  await connection();
+  const rows = await db.subscriber.findMany({ orderBy: { createdAt: "desc" } });
+  return rows.map((row) => ({
+    id: row.id,
+    email: row.email,
+    locale: row.locale,
+    status: row.status,
+    createdAt: row.createdAt.toISOString(),
+  }));
 }
 
 export async function getMessages(): Promise<InboxMessage[]> {
