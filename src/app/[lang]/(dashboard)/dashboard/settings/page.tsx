@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/ui/page-header";
+import { DashboardPageHeader } from "@/components/dashboard/dashboard-shell";
+import { SettingsForm } from "@/components/dashboard/settings-form";
+import { siteConfig } from "@/config/site";
 import { getDictionary } from "@/i18n/get-dictionary";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -8,6 +10,22 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function DashboardSettingsPage() {
-  const { title, description } = (await getDictionary()).dashboard.settings;
-  return <PageHeader title={title} description={description} />;
+  const dict = await getDictionary();
+  const copy = dict.dashboard.settings;
+  return (
+    <>
+      <DashboardPageHeader title={copy.title} description={copy.description} />
+      <SettingsForm
+        copy={copy}
+        avatar="/images/PersonaImage.png"
+        initial={{
+          name: siteConfig.name,
+          role: dict.articles.detail.authorRole,
+          email: siteConfig.contactEmail,
+          location: siteConfig.location,
+          jafanUrl: siteConfig.jafanUrl,
+        }}
+      />
+    </>
+  );
 }

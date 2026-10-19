@@ -204,7 +204,12 @@
     "listLabel": "JAFAN Ministries branches",
     "academyFoundedLabel": "Founded in",
     "academyPathLabel": "Study path",
-    "academyPath": ["Certificate", "Bachelor's", "Master's", "Doctorate"],
+    "academyPath": [
+      "Certificate",
+      "Bachelor's",
+      "Master's",
+      "Doctorate"
+    ],
     "ctaButton": "Visit the JAFAN website",
     "newTab": "(opens in a new tab)"
   },
@@ -227,25 +232,37 @@
         "slug": "le-saint-esprit-et-l-eglise",
         "title": "Le Saint-Esprit et l'Église",
         "description": "A study of the central place of the Paraclete in the community of believers.",
-        "tags": ["Holy Spirit", "Church"]
+        "tags": [
+          "Holy Spirit",
+          "Church"
+        ]
       },
       {
         "slug": "vers-une-plus-grande-manifestation-de-la-puissance-de-dieu",
         "title": "Vers une plus grande manifestation de la puissance de Dieu",
         "description": "A handbook for experiencing God's supernatural power in everyday life.",
-        "tags": ["Power of God", "Christian life"]
+        "tags": [
+          "Power of God",
+          "Christian life"
+        ]
       },
       {
         "slug": "le-leadership-et-la-puissance-du-saint-esprit",
         "title": "Le leadership et la puissance du Saint-Esprit",
         "description": "Where organisational leadership meets spiritual anointing.",
-        "tags": ["Leadership", "Holy Spirit"]
+        "tags": [
+          "Leadership",
+          "Holy Spirit"
+        ]
       },
       {
         "slug": "l-autorite-des-ecritures",
         "title": "L'autorité des Écritures",
         "description": "A plea for a return to the supremacy of the Word of God.",
-        "tags": ["Scripture", "Doctrine"]
+        "tags": [
+          "Scripture",
+          "Doctrine"
+        ]
       }
     ]
   },
@@ -378,7 +395,11 @@
   },
   "footer": {
     "statementLead": "Let’s",
-    "words": ["carry", "proclaim", "share"],
+    "words": [
+      "carry",
+      "proclaim",
+      "share"
+    ],
     "statementTail": "the Gospel to the nations, together.",
     "emailLabel": "Email",
     "copyEmail": "Copy email address",
@@ -394,29 +415,237 @@
   },
   "dashboard": {
     "title": "Dashboard",
-    "viewSite": "← View site",
+    "workspace": "JAFAN Ministries",
+    "workspaceRole": "Portfolio workspace",
+    "viewSite": "View site",
+    "searchPlaceholder": "Search…",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "notifications": "Notifications",
+    "sampleNotice": "Sample data: figures, drafts and messages are examples until the database is connected.",
+    "userRole": "Administrator",
     "nav": {
       "label": "Dashboard",
+      "main": "Main menu",
+      "content": "Content",
+      "engagement": "Engagement",
+      "system": "System",
       "overview": "Overview",
-      "teaching": "Teaching",
+      "analytics": "Analytics",
+      "articles": "Articles",
+      "books": "Books",
       "messages": "Messages",
       "settings": "Settings"
     },
+    "common": {
+      "views": "Views",
+      "reads": "Reads",
+      "shares": "Shares",
+      "vsLastMonth": "vs last month",
+      "updated": "Updated",
+      "status": "Status",
+      "progress": "Progress",
+      "category": "Category",
+      "all": "All",
+      "edit": "Edit",
+      "seeAll": "See all",
+      "newArticle": "New article",
+      "newBook": "New book",
+      "table": "Table",
+      "board": "Board",
+      "percentReady": "{percent}% ready",
+      "noResults": "No results.",
+      "last12Months": "Last 12 months"
+    },
+    "status": {
+      "idea": "Idea",
+      "draft": "Draft",
+      "review": "In review",
+      "scheduled": "Scheduled",
+      "published": "Published"
+    },
     "overview": {
       "title": "Overview",
-      "description": "Welcome back. Manage your site content from here."
+      "description": "Your ministry content and audience at a glance.",
+      "greeting": "Welcome back, {name}",
+      "greetingText": "Here is how your articles and books are reaching people.",
+      "kpis": {
+        "views": "Total views",
+        "reads": "Article reads",
+        "shares": "Shares",
+        "invitations": "Invitation requests"
+      },
+      "trendTitle": "Audience trend",
+      "trendTotal": "Views this year",
+      "legendViews": "Page views",
+      "legendReads": "Article reads",
+      "pipelineTitle": "Publishing pipeline",
+      "pipelineText": "Drafts on their way to publication",
+      "topTitle": "Top articles",
+      "messagesTitle": "Recent messages",
+      "activityTitle": "Recent activity",
+      "activity": {
+        "published": "Article published",
+        "invitation": "New invitation request",
+        "draft": "Draft updated",
+        "share": "Article shared {count} times today"
+      }
     },
-    "teaching": {
-      "title": "Teaching",
-      "description": "Manage courses, lectures and publications."
+    "articles": {
+      "title": "Articles",
+      "description": "Write, review and publish your teachings.",
+      "search": "Search articles",
+      "columns": {
+        "title": "Article",
+        "status": "Status",
+        "progress": "Publish progress",
+        "views": "Views",
+        "shares": "Shares",
+        "updated": "Updated"
+      }
+    },
+    "books": {
+      "title": "Books",
+      "description": "Manage your books and follow order requests.",
+      "search": "Search books",
+      "orders": "Order requests",
+      "pages": "{count} pages"
+    },
+    "editor": {
+      "newArticle": "New article",
+      "newBook": "New book",
+      "editArticle": "Edit article",
+      "editBook": "Edit book",
+      "saveDraft": "Save draft",
+      "saving": "Saving…",
+      "savedAt": "Saved on this device · {time}",
+      "notSaved": "Not saved yet",
+      "publish": "Publish",
+      "publishHint": "Complete every step to publish.",
+      "published": "Published (sample: the site is not updated until the database is connected).",
+      "language": "Language",
+      "languages": {
+        "en": "English",
+        "fr": "Français"
+      },
+      "fields": {
+        "title": "Title",
+        "titlePlaceholder": "Give your article a clear title",
+        "bookTitlePlaceholder": "Book title",
+        "category": "Category",
+        "categoryPlaceholder": "e.g. Holy Spirit",
+        "excerpt": "Summary",
+        "excerptHint": "Shown on the article cards and in search results.",
+        "description": "Description",
+        "descriptionHint": "Shown on the book card.",
+        "cover": "Cover image",
+        "coverHint": "JPG or PNG. Articles: landscape, at least 1600 px wide. Books: the front cover.",
+        "upload": "Upload image",
+        "replace": "Replace",
+        "remove": "Remove",
+        "body": "Article",
+        "bodyHint": "Build the article with blocks, like on Medium. Images can go anywhere.",
+        "tags": "Topics",
+        "tagsHint": "Separate topics with commas.",
+        "pages": "Pages",
+        "year": "Year",
+        "status": "Status"
+      },
+      "blocks": {
+        "add": "Add block",
+        "p": "Paragraph",
+        "h2": "Heading",
+        "verse": "Bible verse",
+        "quote": "Quote",
+        "list": "List",
+        "image": "Image",
+        "textPlaceholder": "Start writing…",
+        "headingPlaceholder": "Section heading",
+        "versePlaceholder": "Verse text",
+        "reference": "Reference, e.g. John 3:16",
+        "quotePlaceholder": "A sentence worth highlighting",
+        "cite": "Author (optional)",
+        "listPlaceholder": "One item per line",
+        "caption": "Caption (optional)",
+        "alt": "Describe the image (for screen readers)",
+        "moveUp": "Move up",
+        "moveDown": "Move down",
+        "remove": "Remove block"
+      },
+      "readiness": {
+        "title": "Publish readiness",
+        "ready": "Ready to publish",
+        "left": "{count} steps left"
+      },
+      "checks": {
+        "title": "A clear title (10+ characters)",
+        "category": "A category",
+        "excerpt": "A summary of 80+ characters",
+        "cover": "A cover image",
+        "length": "At least 150 words",
+        "headings": "At least 2 section headings",
+        "translation": "Title and summary in both languages",
+        "description": "A description of 80+ characters",
+        "tags": "At least one topic",
+        "pages": "Number of pages",
+        "year": "Publication year",
+        "bookTranslation": "Description in both languages"
+      },
+      "stats": {
+        "words": "{count} words",
+        "readTime": "{count} min read",
+        "blocks": "{count} blocks"
+      },
+      "restore": "A more recent version of this draft is saved on this device.",
+      "restoreAction": "Restore it",
+      "back": "Back",
+      "storageFull": "This draft is too large to keep on this device (large images). It stays open here until you leave."
+    },
+    "analytics": {
+      "title": "Analytics",
+      "description": "Who reads, shares and engages with your content.",
+      "viewsTitle": "Views by month",
+      "sharesTitle": "Shares by channel",
+      "channels": {
+        "whatsapp": "WhatsApp",
+        "copy": "Copied link",
+        "email": "Email",
+        "native": "Device share"
+      },
+      "countriesTitle": "Visitors by country",
+      "languagesTitle": "Reading language",
+      "contentTitle": "Content performance",
+      "avgRead": "Avg. reading time",
+      "returning": "Returning readers",
+      "bookOrders": "Book order requests",
+      "minutes": "{count} min"
     },
     "messages": {
       "title": "Messages",
-      "description": "Contact form submissions and prayer requests."
+      "description": "Invitations, book orders and prayer requests from the contact form.",
+      "unread": "Unread",
+      "all": "All",
+      "reply": "Reply by email",
+      "markRead": "Mark as read",
+      "markUnread": "Mark as unread",
+      "select": "Select a message to read it.",
+      "received": "Received {date}",
+      "from": "From"
     },
     "settings": {
       "title": "Settings",
-      "description": "Profile, site details and account settings."
+      "description": "Profile and site details.",
+      "profile": "Profile",
+      "profileText": "How you appear on articles and in the dashboard.",
+      "site": "Site details",
+      "siteText": "Used across the public site.",
+      "name": "Full name",
+      "role": "Title",
+      "email": "Contact email",
+      "location": "Location",
+      "jafanUrl": "JAFAN Ministries website",
+      "save": "Save changes",
+      "saved": "Saved on this device (sample)."
     }
   },
   "notFound": {

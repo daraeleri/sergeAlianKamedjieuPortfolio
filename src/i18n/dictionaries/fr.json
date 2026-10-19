@@ -204,7 +204,12 @@
     "listLabel": "Branches de JAFAN Ministries",
     "academyFoundedLabel": "Fondée en",
     "academyPathLabel": "Parcours d'études",
-    "academyPath": ["Certificat", "Licence", "Master", "Doctorat"],
+    "academyPath": [
+      "Certificat",
+      "Licence",
+      "Master",
+      "Doctorat"
+    ],
     "ctaButton": "Visiter le site de JAFAN",
     "newTab": "(s'ouvre dans un nouvel onglet)"
   },
@@ -227,25 +232,37 @@
         "slug": "le-saint-esprit-et-l-eglise",
         "title": "Le Saint-Esprit et l'Église",
         "description": "Une étude sur la place centrale du Paraclet dans la communauté des croyants.",
-        "tags": ["Saint-Esprit", "Église"]
+        "tags": [
+          "Saint-Esprit",
+          "Église"
+        ]
       },
       {
         "slug": "vers-une-plus-grande-manifestation-de-la-puissance-de-dieu",
         "title": "Vers une plus grande manifestation de la puissance de Dieu",
         "description": "Un manuel pour activer le surnaturel divin au quotidien.",
-        "tags": ["Puissance de Dieu", "Vie chrétienne"]
+        "tags": [
+          "Puissance de Dieu",
+          "Vie chrétienne"
+        ]
       },
       {
         "slug": "le-leadership-et-la-puissance-du-saint-esprit",
         "title": "Le leadership et la puissance du Saint-Esprit",
         "description": "La synthèse entre gestion organisationnelle et onction spirituelle.",
-        "tags": ["Leadership", "Saint-Esprit"]
+        "tags": [
+          "Leadership",
+          "Saint-Esprit"
+        ]
       },
       {
         "slug": "l-autorite-des-ecritures",
         "title": "L'autorité des Écritures",
         "description": "Un plaidoyer pour le retour à la suprématie de la Parole de Dieu.",
-        "tags": ["Écritures", "Doctrine"]
+        "tags": [
+          "Écritures",
+          "Doctrine"
+        ]
       }
     ]
   },
@@ -378,7 +395,11 @@
   },
   "footer": {
     "statementLead": "",
-    "words": ["Portons", "Proclamons", "Partageons"],
+    "words": [
+      "Portons",
+      "Proclamons",
+      "Partageons"
+    ],
     "statementTail": "l’Évangile jusqu’aux nations, ensemble.",
     "emailLabel": "E-mail",
     "copyEmail": "Copier l’adresse e-mail",
@@ -394,29 +415,237 @@
   },
   "dashboard": {
     "title": "Tableau de bord",
-    "viewSite": "← Voir le site",
+    "workspace": "JAFAN Ministries",
+    "workspaceRole": "Espace portfolio",
+    "viewSite": "Voir le site",
+    "searchPlaceholder": "Rechercher…",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "notifications": "Notifications",
+    "sampleNotice": "Données d’exemple : chiffres, brouillons et messages sont fictifs jusqu’à la connexion de la base de données.",
+    "userRole": "Administrateur",
     "nav": {
       "label": "Tableau de bord",
-      "overview": "Vue d'ensemble",
-      "teaching": "Enseignement",
+      "main": "Menu principal",
+      "content": "Contenu",
+      "engagement": "Engagement",
+      "system": "Système",
+      "overview": "Vue d’ensemble",
+      "analytics": "Statistiques",
+      "articles": "Articles",
+      "books": "Livres",
       "messages": "Messages",
       "settings": "Paramètres"
     },
-    "overview": {
-      "title": "Vue d'ensemble",
-      "description": "Bon retour. Gérez le contenu du site depuis cet espace."
+    "common": {
+      "views": "Vues",
+      "reads": "Lectures",
+      "shares": "Partages",
+      "vsLastMonth": "vs mois dernier",
+      "updated": "Modifié",
+      "status": "Statut",
+      "progress": "Progression",
+      "category": "Catégorie",
+      "all": "Tous",
+      "edit": "Modifier",
+      "seeAll": "Tout voir",
+      "newArticle": "Nouvel article",
+      "newBook": "Nouveau livre",
+      "table": "Tableau",
+      "board": "Kanban",
+      "percentReady": "Prêt à {percent} %",
+      "noResults": "Aucun résultat.",
+      "last12Months": "12 derniers mois"
     },
-    "teaching": {
-      "title": "Enseignement",
-      "description": "Gérer les cours, conférences et publications."
+    "status": {
+      "idea": "Idée",
+      "draft": "Brouillon",
+      "review": "En relecture",
+      "scheduled": "Programmé",
+      "published": "Publié"
+    },
+    "overview": {
+      "title": "Vue d’ensemble",
+      "description": "Votre contenu et votre audience en un coup d’œil.",
+      "greeting": "Bon retour, {name}",
+      "greetingText": "Voici comment vos articles et livres touchent les gens.",
+      "kpis": {
+        "views": "Vues totales",
+        "reads": "Lectures d’articles",
+        "shares": "Partages",
+        "invitations": "Demandes d’invitation"
+      },
+      "trendTitle": "Tendance de l’audience",
+      "trendTotal": "Vues cette année",
+      "legendViews": "Pages vues",
+      "legendReads": "Lectures d’articles",
+      "pipelineTitle": "Chaîne de publication",
+      "pipelineText": "Brouillons en route vers la publication",
+      "topTitle": "Articles les plus lus",
+      "messagesTitle": "Messages récents",
+      "activityTitle": "Activité récente",
+      "activity": {
+        "published": "Article publié",
+        "invitation": "Nouvelle demande d’invitation",
+        "draft": "Brouillon modifié",
+        "share": "Article partagé {count} fois aujourd’hui"
+      }
+    },
+    "articles": {
+      "title": "Articles",
+      "description": "Rédigez, relisez et publiez vos enseignements.",
+      "search": "Rechercher des articles",
+      "columns": {
+        "title": "Article",
+        "status": "Statut",
+        "progress": "Progression",
+        "views": "Vues",
+        "shares": "Partages",
+        "updated": "Modifié"
+      }
+    },
+    "books": {
+      "title": "Livres",
+      "description": "Gérez vos livres et suivez les demandes de commande.",
+      "search": "Rechercher des livres",
+      "orders": "Demandes de commande",
+      "pages": "{count} pages"
+    },
+    "editor": {
+      "newArticle": "Nouvel article",
+      "newBook": "Nouveau livre",
+      "editArticle": "Modifier l’article",
+      "editBook": "Modifier le livre",
+      "saveDraft": "Enregistrer le brouillon",
+      "saving": "Enregistrement…",
+      "savedAt": "Enregistré sur cet appareil · {time}",
+      "notSaved": "Pas encore enregistré",
+      "publish": "Publier",
+      "publishHint": "Complétez chaque étape pour publier.",
+      "published": "Publié (exemple : le site n’est mis à jour qu’une fois la base de données connectée).",
+      "language": "Langue",
+      "languages": {
+        "en": "English",
+        "fr": "Français"
+      },
+      "fields": {
+        "title": "Titre",
+        "titlePlaceholder": "Donnez un titre clair à votre article",
+        "bookTitlePlaceholder": "Titre du livre",
+        "category": "Catégorie",
+        "categoryPlaceholder": "ex. Saint-Esprit",
+        "excerpt": "Résumé",
+        "excerptHint": "Affiché sur les cartes d’article et dans les résultats de recherche.",
+        "description": "Description",
+        "descriptionHint": "Affichée sur la carte du livre.",
+        "cover": "Image de couverture",
+        "coverHint": "JPG ou PNG. Articles : paysage, au moins 1600 px de large. Livres : la première de couverture.",
+        "upload": "Téléverser une image",
+        "replace": "Remplacer",
+        "remove": "Retirer",
+        "body": "Article",
+        "bodyHint": "Construisez l’article par blocs, comme sur Medium. Les images peuvent aller partout.",
+        "tags": "Thèmes",
+        "tagsHint": "Séparez les thèmes par des virgules.",
+        "pages": "Pages",
+        "year": "Année",
+        "status": "Statut"
+      },
+      "blocks": {
+        "add": "Ajouter un bloc",
+        "p": "Paragraphe",
+        "h2": "Intertitre",
+        "verse": "Verset biblique",
+        "quote": "Citation",
+        "list": "Liste",
+        "image": "Image",
+        "textPlaceholder": "Commencez à écrire…",
+        "headingPlaceholder": "Intertitre de section",
+        "versePlaceholder": "Texte du verset",
+        "reference": "Référence, ex. Jean 3:16",
+        "quotePlaceholder": "Une phrase à mettre en avant",
+        "cite": "Auteur (facultatif)",
+        "listPlaceholder": "Un élément par ligne",
+        "caption": "Légende (facultatif)",
+        "alt": "Décrivez l’image (pour les lecteurs d’écran)",
+        "moveUp": "Monter",
+        "moveDown": "Descendre",
+        "remove": "Supprimer le bloc"
+      },
+      "readiness": {
+        "title": "Prêt à publier ?",
+        "ready": "Prêt à publier",
+        "left": "Encore {count} étapes"
+      },
+      "checks": {
+        "title": "Un titre clair (10+ caractères)",
+        "category": "Une catégorie",
+        "excerpt": "Un résumé de 80+ caractères",
+        "cover": "Une image de couverture",
+        "length": "Au moins 150 mots",
+        "headings": "Au moins 2 intertitres",
+        "translation": "Titre et résumé dans les deux langues",
+        "description": "Une description de 80+ caractères",
+        "tags": "Au moins un thème",
+        "pages": "Nombre de pages",
+        "year": "Année de publication",
+        "bookTranslation": "Description dans les deux langues"
+      },
+      "stats": {
+        "words": "{count} mots",
+        "readTime": "{count} min de lecture",
+        "blocks": "{count} blocs"
+      },
+      "restore": "Une version plus récente de ce brouillon est enregistrée sur cet appareil.",
+      "restoreAction": "La restaurer",
+      "back": "Retour",
+      "storageFull": "Ce brouillon est trop lourd pour être gardé sur cet appareil (images volumineuses). Il reste ouvert ici jusqu’à ce que vous quittiez la page."
+    },
+    "analytics": {
+      "title": "Statistiques",
+      "description": "Qui lit, partage et interagit avec votre contenu.",
+      "viewsTitle": "Vues par mois",
+      "sharesTitle": "Partages par canal",
+      "channels": {
+        "whatsapp": "WhatsApp",
+        "copy": "Lien copié",
+        "email": "E-mail",
+        "native": "Partage de l’appareil"
+      },
+      "countriesTitle": "Visiteurs par pays",
+      "languagesTitle": "Langue de lecture",
+      "contentTitle": "Performance du contenu",
+      "avgRead": "Temps de lecture moyen",
+      "returning": "Lecteurs fidèles",
+      "bookOrders": "Demandes de commande de livres",
+      "minutes": "{count} min"
     },
     "messages": {
       "title": "Messages",
-      "description": "Messages du formulaire de contact et demandes de prière."
+      "description": "Invitations, commandes de livres et demandes de prière reçues par le formulaire.",
+      "unread": "Non lus",
+      "all": "Tous",
+      "reply": "Répondre par e-mail",
+      "markRead": "Marquer comme lu",
+      "markUnread": "Marquer comme non lu",
+      "select": "Sélectionnez un message pour le lire.",
+      "received": "Reçu le {date}",
+      "from": "De"
     },
     "settings": {
       "title": "Paramètres",
-      "description": "Profil, informations du site et paramètres du compte."
+      "description": "Profil et informations du site.",
+      "profile": "Profil",
+      "profileText": "Votre présentation sur les articles et dans le tableau de bord.",
+      "site": "Informations du site",
+      "siteText": "Utilisées sur tout le site public.",
+      "name": "Nom complet",
+      "role": "Titre",
+      "email": "E-mail de contact",
+      "location": "Localisation",
+      "jafanUrl": "Site de JAFAN Ministries",
+      "save": "Enregistrer",
+      "saved": "Enregistré sur cet appareil (exemple)."
     }
   },
   "notFound": {

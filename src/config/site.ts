@@ -37,10 +37,3 @@ export const siteNav: NavItem<keyof Dictionary["nav"]>[] = [
   { key: "articles", href: "/", hash: "articles" },
   { key: "contact", href: "/", hash: "contact" },
 ];
-
-export const dashboardNav: NavItem<keyof Dictionary["dashboard"]["nav"]>[] = [
-  { key: "overview", href: "/dashboard" },
-  { key: "teaching", href: "/dashboard/teaching" },
-  { key: "messages", href: "/dashboard/messages" },
-  { key: "settings", href: "/dashboard/settings" },
-];

@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, CalendarDays, Clock } from "lucide-react";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -47,7 +48,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  * cover, then the article with a sticky sidebar (details, table of contents, invitation),
  * the author box and other articles.
  */
-export default async function ArticlePage({ params }: Props) {
+export default function ArticlePage({ params }: Props) {
+  return (
+    <Suspense fallback={<ArticleSkeleton />}>
+      <Article params={params} />
+    </Suspense>
+  );
+}
+
+/** Placeholder while the article reads its URL (instant navigation). */
+function ArticleSkeleton() {
+  return (
+    <div aria-hidden className="mx-auto max-w-6xl animate-pulse px-5 pt-32 pb-24 sm:px-8 sm:pt-36">
+      <div className="h-4 w-24 rounded bg-black/5" />
+      <div className="mt-8 h-12 max-w-2xl rounded-lg bg-black/5" />
+      <div className="mt-4 h-6 max-w-xl rounded bg-black/5" />
+      <div className="mt-10 aspect-[21/9] rounded-[2rem] bg-black/5" />
+    </div>
+  );
+}
+
+async function Article({ params }: { params: Props["params"] }) {
   const { locale, dict, articles, article, body } = await loadArticle(params);
   const copy = dict.articles;
   const detail = copy.detail;
