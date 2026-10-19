@@ -2,6 +2,7 @@
 
 import {
   ArrowRight,
+  Globe,
   Briefcase,
   Camera,
   Compass,
@@ -34,6 +35,7 @@ const icons = {
   youtube: Play,
   instagram: Camera,
   linkedin: Briefcase,
+  other: Globe,
   copy: Link2,
   email: Mail,
   native: Share2,

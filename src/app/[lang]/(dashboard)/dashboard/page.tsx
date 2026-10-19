@@ -39,15 +39,17 @@ export default async function DashboardPage() {
   });
   const month = new Intl.DateTimeFormat(locale, { month: "short", timeZone: "UTC" });
 
-  const kpis = getKpis();
-  const articles = getDashboardArticles();
+  const [kpis, articles, messages, audience] = await Promise.all([
+    getKpis(),
+    getDashboardArticles(),
+    getMessages(),
+    getMonthlyAudience(),
+  ]);
   const pipeline = articles.filter((article) => article.status !== "published").slice(0, 4);
   const top = articles
     .filter((article) => article.status === "published")
     .sort((a, b) => b.views - a.views)
     .slice(0, 5);
-  const messages = getMessages();
-  const audience = getMonthlyAudience();
   const editHref = (id: string) => localizePath(locale, `/dashboard/articles/${id}`);
 
   const kpiCards = [

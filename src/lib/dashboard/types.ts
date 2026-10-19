@@ -34,7 +34,7 @@ export type BookDoc = {
   status: ContentStatus;
   title: string;
   description: Bilingual;
-  tags: string[];
+  tags: { en: string[]; fr: string[] };
   cover?: string;
   pages?: number;
   year?: number;
@@ -70,6 +70,6 @@ export type Country = {
 export type City = { name: string; country: string; visitors: number; lat: number; lng: number };
 
 export type Referrer =
-  "direct" | "whatsapp" | "facebook" | "google" | "youtube" | "instagram" | "linkedin";
+  "direct" | "whatsapp" | "facebook" | "google" | "youtube" | "instagram" | "linkedin" | "other";
 
 export type DeviceType = "mobile" | "desktop" | "tablet";

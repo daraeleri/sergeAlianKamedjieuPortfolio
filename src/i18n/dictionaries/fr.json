@@ -401,7 +401,6 @@
     "openMenu": "Ouvrir le menu",
     "closeMenu": "Fermer le menu",
     "notifications": "Notifications",
-    "sampleNotice": "Données d’exemple : chiffres, brouillons et messages sont fictifs jusqu’à la connexion de la base de données.",
     "userRole": "Administrateur",
     "nav": {
       "label": "Tableau de bord",
@@ -497,7 +496,7 @@
       "editBook": "Modifier le livre",
       "saveDraft": "Enregistrer le brouillon",
       "saving": "Enregistrement…",
-      "savedAt": "Enregistré sur cet appareil · {time}",
+      "savedAt": "Enregistré · {time}",
       "notSaved": "Pas encore enregistré",
       "publish": "Publier",
       "publishHint": "Complétez chaque étape pour publier.",
@@ -578,7 +577,9 @@
       "restore": "Une version plus récente de ce brouillon est enregistrée sur cet appareil.",
       "restoreAction": "La restaurer",
       "back": "Retour",
-      "storageFull": "Ce brouillon est trop lourd pour être gardé sur cet appareil (images volumineuses). Il reste ouvert ici jusqu’à ce que vous quittiez la page."
+      "storageFull": "Ce brouillon est trop lourd pour être gardé sur cet appareil (images volumineuses). Il reste ouvert ici jusqu’à ce que vous quittiez la page.",
+      "savedLocally": "Enregistré sur cet appareil · {time}",
+      "saveFailed": "Enregistrement en ligne impossible. Conservé sur cet appareil ; nouvel essai à la prochaine modification."
     },
     "analytics": {
       "title": "Statistiques",
@@ -595,7 +596,7 @@
       "languagesTitle": "Langue de lecture",
       "contentTitle": "Performance du contenu",
       "avgRead": "Temps de lecture moyen",
-      "returning": "Lecteurs fidèles",
+      "visits": "Visites",
       "bookOrders": "Demandes de commande de livres",
       "minutes": "{count} min",
       "mapTitle": "Visiteurs dans le monde",
@@ -632,7 +633,8 @@
         "google": "Google",
         "youtube": "YouTube",
         "instagram": "Instagram",
-        "linkedin": "LinkedIn"
+        "linkedin": "LinkedIn",
+        "other": "Autres sites"
       },
       "deviceTypes": {
         "mobile": "Mobile",
@@ -645,7 +647,9 @@
         "/#books": "Livres",
         "/#about": "À propos",
         "/#contact": "Contact"
-      }
+      },
+      "mapEmpty": "Aucune visite enregistrée pour l’instant. Une fois le site en ligne, chaque visiteur apparaîtra ici.",
+      "liveEventUnknown": "Quelqu’un lit"
     },
     "messages": {
       "title": "Messages",
@@ -679,5 +683,18 @@
     "title": "Page introuvable",
     "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
     "backHome": "Retour à l'accueil"
+  },
+  "auth": {
+    "title": "Connexion au tableau de bord",
+    "intro": "Gérez articles, livres, messages et statistiques.",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "submit": "Se connecter",
+    "submitting": "Connexion…",
+    "invalid": "E-mail ou mot de passe incorrect.",
+    "generic": "Une erreur est survenue. Veuillez réessayer.",
+    "backToSite": "Retour au site",
+    "signOut": "Se déconnecter",
+    "metaTitle": "Connexion"
   }
 }

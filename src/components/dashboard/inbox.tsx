@@ -2,7 +2,8 @@
 
 import { ArrowLeft, Building2, Mail, MailOpen } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { setMessageRead } from "@/app/actions/content";
 import { fill } from "@/components/dashboard/ui";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import type { InboxMessage, MessageType } from "@/lib/dashboard/types";
@@ -46,10 +47,22 @@ export function Inbox({
   const current = messages.find((message) => message.id === selected);
   const unreadCount = messages.filter((message) => !read[message.id]).length;
 
+  const markRead = (id: string, value: boolean) => {
+    setRead((state) => ({ ...state, [id]: value }));
+    void setMessageRead(id, value);
+  };
   const open = (id: string) => {
     setSelected(id);
-    setRead((state) => ({ ...state, [id]: true }));
+    if (!read[id]) markRead(id, true);
   };
+
+  // A message opened from a link (?id=) counts as read too.
+  const linked = params.get("id");
+  useEffect(() => {
+    if (linked && messages.some((message) => message.id === linked && !message.read)) {
+      void setMessageRead(linked, true);
+    }
+  }, [linked, messages]);
 
   return (
     <div className="grid overflow-hidden rounded-2xl bg-white ring-1 ring-black/5 lg:h-[calc(100svh-15rem)] lg:min-h-[32rem] lg:grid-cols-[22rem_minmax(0,1fr)]">
@@ -176,7 +189,7 @@ export function Inbox({
               </a>
               <button
                 type="button"
-                onClick={() => setRead((state) => ({ ...state, [current.id]: !state[current.id] }))}
+                onClick={() => markRead(current.id, !read[current.id])}
                 className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-medium ring-1 ring-black/10 hover:bg-mist"
               >
                 <MailOpen aria-hidden className="size-4" />

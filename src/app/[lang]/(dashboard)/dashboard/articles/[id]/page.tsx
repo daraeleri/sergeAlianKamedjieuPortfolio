@@ -5,17 +5,13 @@ import { EditorSkeleton } from "@/components/dashboard/ui";
 import { ArticleEditor } from "@/components/dashboard/editor/article-editor";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { localizePath } from "@/i18n/routing";
-import { getDashboardArticle, getDashboardArticles } from "@/lib/dashboard/data";
+import { getDashboardArticle } from "@/lib/dashboard/data";
 
 type Props = PageProps<"/[lang]/dashboard/articles/[id]">;
 
-export async function generateStaticParams() {
-  return getDashboardArticles().map((article) => ({ id: article.id }));
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const [{ id }, locale, dict] = await Promise.all([params, getLocale(), getDictionary()]);
-  const article = getDashboardArticle(id);
+  const article = await getDashboardArticle(id);
   return {
     title: article?.title[locale] || article?.title.en || dict.dashboard.editor.editArticle,
   };
@@ -32,7 +28,7 @@ export default function EditArticlePage({ params }: Props) {
 /** Reads the URL, so it renders inside the Suspense boundary above (instant navigation). */
 async function ArticleEditorLoader({ params }: { params: Props["params"] }) {
   const [{ id }, locale, dict] = await Promise.all([params, getLocale(), getDictionary()]);
-  const article = getDashboardArticle(id);
+  const article = await getDashboardArticle(id);
   if (!article) notFound();
 
   return (

@@ -22,7 +22,7 @@ export default async function DashboardArticlesPage() {
     timeZone: "UTC",
   });
 
-  const rows = getDashboardArticles().map((article) => ({
+  const rows = (await getDashboardArticles()).map((article) => ({
     id: article.id,
     href: localizePath(locale, `/dashboard/articles/${article.id}`),
     title: article.title[locale] || article.title.en || article.title.fr,

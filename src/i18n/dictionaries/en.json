@@ -401,7 +401,6 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "notifications": "Notifications",
-    "sampleNotice": "Sample data: figures, drafts and messages are examples until the database is connected.",
     "userRole": "Administrator",
     "nav": {
       "label": "Dashboard",
@@ -497,7 +496,7 @@
       "editBook": "Edit book",
       "saveDraft": "Save draft",
       "saving": "Saving…",
-      "savedAt": "Saved on this device · {time}",
+      "savedAt": "Saved · {time}",
       "notSaved": "Not saved yet",
       "publish": "Publish",
       "publishHint": "Complete every step to publish.",
@@ -578,7 +577,9 @@
       "restore": "A more recent version of this draft is saved on this device.",
       "restoreAction": "Restore it",
       "back": "Back",
-      "storageFull": "This draft is too large to keep on this device (large images). It stays open here until you leave."
+      "storageFull": "This draft is too large to keep on this device (large images). It stays open here until you leave.",
+      "savedLocally": "Saved on this device · {time}",
+      "saveFailed": "Couldn't save online. Kept on this device; retrying on your next change."
     },
     "analytics": {
       "title": "Analytics",
@@ -595,7 +596,7 @@
       "languagesTitle": "Reading language",
       "contentTitle": "Content performance",
       "avgRead": "Avg. reading time",
-      "returning": "Returning readers",
+      "visits": "Visits",
       "bookOrders": "Book order requests",
       "minutes": "{count} min",
       "mapTitle": "Visitors around the world",
@@ -632,7 +633,8 @@
         "google": "Google",
         "youtube": "YouTube",
         "instagram": "Instagram",
-        "linkedin": "LinkedIn"
+        "linkedin": "LinkedIn",
+        "other": "Other websites"
       },
       "deviceTypes": {
         "mobile": "Mobile",
@@ -645,7 +647,9 @@
         "/#books": "Books",
         "/#about": "About",
         "/#contact": "Contact"
-      }
+      },
+      "mapEmpty": "No visits recorded yet. Once the site is online, every visitor appears here.",
+      "liveEventUnknown": "Someone is reading"
     },
     "messages": {
       "title": "Messages",
@@ -679,5 +683,18 @@
     "title": "Page not found",
     "description": "The page you are looking for does not exist or has moved.",
     "backHome": "Back to home"
+  },
+  "auth": {
+    "title": "Sign in to your dashboard",
+    "intro": "Manage articles, books, messages and analytics.",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "submitting": "Signing in…",
+    "invalid": "Email or password is incorrect.",
+    "generic": "Something went wrong. Please try again.",
+    "backToSite": "Back to the site",
+    "signOut": "Sign out",
+    "metaTitle": "Sign in"
   }
 }

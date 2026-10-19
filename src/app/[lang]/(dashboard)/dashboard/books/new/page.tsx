@@ -18,7 +18,12 @@ export default async function NewBookPage() {
       backHref={localizePath(locale, "/dashboard/books")}
       author={siteConfig.name}
       orderLabel={dict.books.orderShort}
-      initial={{ status: "idea", title: "", description: { en: "", fr: "" }, tags: [] }}
+      initial={{
+        status: "idea",
+        title: "",
+        description: { en: "", fr: "" },
+        tags: { en: [], fr: [] },
+      }}
     />
   );
 }

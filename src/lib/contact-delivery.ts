@@ -1,23 +1,28 @@
 import "server-only";
 import type { ContactMessage } from "@/lib/contact";
+import { db } from "@/lib/db";
 
 /**
- * Delivers a validated contact message.
- *
- * NOT CONNECTED YET: no email service or database is set up. Until it is:
- * - in development, the message is printed to the server terminal so the form can be tested;
- * - in production, "unavailable" is returned and the form asks visitors to email directly,
- *   so nobody is told their message was sent when it was not.
- *
- * To connect it, send the message here (e.g. with an email API, or save it for the
- * dashboard's Messages page) and return "sent" on success.
+ * Delivers a validated contact message by saving it to the database, where it shows in
+ * the dashboard's Messages page. Returns "unavailable" if it can't be saved, so the
+ * form asks the visitor to email directly instead of pretending it was sent.
  */
 export async function deliverContactMessage(
   message: ContactMessage,
 ): Promise<"sent" | "unavailable"> {
-  if (process.env.NODE_ENV !== "production") {
-    console.info("[contact] Message received (not delivered, no service configured):", message);
+  try {
+    await db.message.create({
+      data: {
+        name: message.name,
+        email: message.email,
+        organization: message.organization || null,
+        type: message.type,
+        message: message.message,
+      },
+    });
     return "sent";
+  } catch (error) {
+    console.error("[contact] Could not save the message:", error);
+    return "unavailable";
   }
-  return "unavailable";
 }

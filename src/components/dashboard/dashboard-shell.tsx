@@ -8,6 +8,7 @@ import {
   FileText,
   Inbox,
   LayoutDashboard,
+  LogOut,
   Menu,
   Settings,
   X,
@@ -18,6 +19,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
+import { signOut } from "@/app/actions/auth";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
@@ -60,6 +62,7 @@ type ShellProps = {
   locale: Locale;
   copy: Copy;
   languageLabel: string;
+  signOutLabel: string;
   user: { name: string; avatar: string };
   /** Small counters next to nav items, e.g. open drafts and unread messages. */
   badges: Partial<Record<NavKey, number>>;
@@ -75,6 +78,7 @@ export function DashboardShell({
   locale,
   copy,
   languageLabel,
+  signOutLabel,
   user,
   badges,
   children,
@@ -189,10 +193,21 @@ export function DashboardShell({
               className="origin-[50%_8%] scale-[2.2] object-cover object-top"
             />
           </span>
-          <div className="min-w-0 leading-tight">
+          <div className="min-w-0 flex-1 leading-tight">
             <p className="truncate text-sm font-semibold">{user.name}</p>
             <p className="truncate text-xs text-black/45">{copy.userRole}</p>
           </div>
+          <form action={signOut}>
+            <input type="hidden" name="lang" value={locale} />
+            <button
+              type="submit"
+              title={signOutLabel}
+              className="grid size-8 place-items-center rounded-lg text-black/45 transition-colors hover:bg-mist hover:text-ink"
+            >
+              <LogOut aria-hidden className="size-4" />
+              <span className="sr-only">{signOutLabel}</span>
+            </button>
+          </form>
         </div>
       </div>
     </div>
@@ -266,10 +281,6 @@ export function DashboardShell({
             </Link>
           </div>
         </header>
-
-        <p className="border-b border-brand/10 bg-brand-tint px-4 py-2 text-center text-xs text-brand-strong sm:px-6">
-          {copy.sampleNotice}
-        </p>
 
         <main className="px-4 py-6 sm:px-6 sm:py-8 lg:px-8">{children}</main>
       </div>

@@ -6,28 +6,30 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleBody } from "@/components/site/article/article-body";
 import { ArticleShare } from "@/components/site/article/article-share";
+import { ReadTracker } from "@/components/site/article/read-tracker";
 import { ArticleToc } from "@/components/site/article/article-toc";
 import { ArticleCard, articleThemes } from "@/components/site/article-card";
 import { siteConfig } from "@/config/site";
-import { articleBodies, readingMinutes } from "@/content/article-bodies";
+import { readingMinutes } from "@/content/article-bodies";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { localizePath, pageMetadata, sectionHref } from "@/i18n/routing";
-import { articleAvatar, articleHref, getArticles } from "@/lib/articles";
+import { articleAvatar, articleHref } from "@/lib/articles";
+import { getArticleBody, getArticles } from "@/lib/content";
+import { defaultLocale } from "@/i18n/config";
 import { cn } from "@/lib/utils";
 
 type Props = PageProps<"/[lang]/articles/[slug]">;
 
 export async function generateStaticParams() {
   // The [lang] layout provides the locales; every locale has the same article slugs.
-  return Object.keys(articleBodies.en).map((slug) => ({ slug }));
+  return (await getArticles(defaultLocale)).map(({ slug }) => ({ slug }));
 }
 
 /** The article and its body for the current locale, or a 404. */
 async function loadArticle(params: Props["params"]) {
   const [{ slug }, locale, dict] = await Promise.all([params, getLocale(), getDictionary()]);
-  const articles = getArticles(locale, dict.articles);
+  const [articles, body] = await Promise.all([getArticles(locale), getArticleBody(locale, slug)]);
   const article = articles.find((item) => item.slug === slug);
-  const body = articleBodies[locale][slug];
   if (!article || !body) notFound();
   return { locale, dict, articles, article, body };
 }
@@ -183,6 +185,7 @@ async function Article({ params }: { params: Props["params"] }) {
           <div className="min-w-0">
             <ArticleToc items={toc} label={detail.toc} variant="collapsible" />
             <ArticleBody blocks={body} />
+            <ReadTracker articleId={article.slug} />
 
             {/* Category and share, after reading */}
             <div className="mt-14 flex max-w-[42rem] flex-wrap items-center justify-between gap-4 border-t border-black/10 pt-6">

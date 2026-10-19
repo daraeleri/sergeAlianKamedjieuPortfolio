@@ -2,6 +2,7 @@
 
 import { Check, Link2, Mail, MessageCircle, Share2 } from "lucide-react";
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { trackShare } from "@/lib/analytics/track";
 import { cn } from "@/lib/utils";
 
 type ShareLabels = {
@@ -59,7 +60,10 @@ export function ArticleShare({
         title={labels.copyLink}
         onClick={() => {
           navigator.clipboard?.writeText(url).then(
-            () => setCopied(true),
+            () => {
+              setCopied(true);
+              trackShare("copy");
+            },
             () => {},
           );
         }}
@@ -86,6 +90,7 @@ export function ArticleShare({
         rel="noopener noreferrer"
         aria-label={labels.whatsappShare}
         title={labels.whatsappShare}
+        onClick={() => trackShare("whatsapp")}
         className={buttonClass}
       >
         <MessageCircle aria-hidden className="size-4" />
@@ -94,6 +99,7 @@ export function ArticleShare({
         href={`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}`}
         aria-label={labels.emailShare}
         title={labels.emailShare}
+        onClick={() => trackShare("email")}
         className={buttonClass}
       >
         <Mail aria-hidden className="size-4" />
@@ -104,7 +110,10 @@ export function ArticleShare({
           aria-label={labels.shareMore}
           title={labels.shareMore}
           onClick={() => {
-            navigator.share({ title, url }).catch(() => {});
+            navigator
+              .share({ title, url })
+              .then(() => trackShare("native"))
+              .catch(() => {});
           }}
           className={buttonClass}
         >

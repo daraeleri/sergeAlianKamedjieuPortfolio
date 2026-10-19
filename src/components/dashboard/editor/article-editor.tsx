@@ -7,6 +7,7 @@ import { useId, useRef, useState } from "react";
 import { articleThemes } from "@/components/site/article-card";
 import { fill } from "@/components/dashboard/ui";
 import type { ArticleTheme } from "@/content/articles";
+import { saveArticle } from "@/app/actions/content";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { articleReadiness, countWords } from "@/lib/dashboard/readiness";
 import { contentStatuses, type ArticleDoc } from "@/lib/dashboard/types";
@@ -20,6 +21,7 @@ import {
   LanguageTabs,
   ReadinessPanel,
   useLocalDraft,
+  useServerSave,
   type EditLocale,
 } from "./editor-parts";
 
@@ -27,8 +29,8 @@ type Draft = Pick<ArticleDoc, "status" | "category" | "title" | "excerpt" | "cov
 
 /**
  * Article editor: bilingual fields (EN / FR tabs), cover, Medium-style block body, and a
- * sticky publish-readiness panel that updates as you write. Drafts autosave in this
- * browser until the database is connected.
+ * sticky publish-readiness panel that updates as you write. Changes save to the database
+ * as you type, with a copy kept in this browser in case the connection drops.
  */
 export function ArticleEditor({
   id,
@@ -54,6 +56,10 @@ export function ArticleEditor({
   const [restored, setRestored] = useState(false);
   const timer = useRef<number | undefined>(undefined);
   const local = useLocalDraft(`article:${id}`);
+  // A new article's URL becomes its edit page once it has an id (without reloading).
+  const server = useServerSave(id === "new" ? null : id, saveArticle, (newId) =>
+    window.history.replaceState(null, "", `${backHref}/${newId}`),
+  );
   const ids = { title: useId(), category: useId(), excerpt: useId(), status: useId() };
 
   const readiness = articleReadiness(draft);
@@ -63,6 +69,7 @@ export function ArticleEditor({
   const save = (value: Draft) => {
     window.clearTimeout(timer.current);
     local.save(value);
+    void server.save(value);
     setPending(false);
   };
   // Every change autosaves after a short pause.
@@ -79,7 +86,7 @@ export function ArticleEditor({
   const newerLocal =
     !restored &&
     local.saved &&
-    local.saved.savedAt > (updatedAt ? Date.parse(updatedAt) : 0) &&
+    local.saved.savedAt > Math.max(updatedAt ? Date.parse(updatedAt) : 0, server.savedAt ?? 0) &&
     JSON.stringify(local.saved.value) !== JSON.stringify(draft);
 
   const publish = () => {
@@ -89,11 +96,16 @@ export function ArticleEditor({
     setPublished(true);
   };
 
-  const savedLabel = pending
-    ? editor.saving
-    : local.saved
-      ? fill(editor.savedAt, { time: time.format(local.saved.savedAt) })
-      : editor.notSaved;
+  const savedLabel =
+    pending || server.status === "saving"
+      ? editor.saving
+      : server.status === "error"
+        ? editor.saveFailed
+        : server.savedAt
+          ? fill(editor.savedAt, { time: time.format(server.savedAt) })
+          : local.saved
+            ? fill(editor.savedLocally, { time: time.format(local.saved.savedAt) })
+            : editor.notSaved;
 
   const themed = draft.cover?.startsWith("theme:")
     ? articleThemes[draft.cover.slice(6) as ArticleTheme]

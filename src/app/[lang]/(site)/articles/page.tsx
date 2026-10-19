@@ -4,7 +4,8 @@ import Link from "next/link";
 import { ArticleCard } from "@/components/site/article-card";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { pageMetadata, sectionHref } from "@/i18n/routing";
-import { articleAvatar, articleHref, getArticles } from "@/lib/articles";
+import { articleAvatar, articleHref } from "@/lib/articles";
+import { getArticles } from "@/lib/content";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
@@ -20,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ArticlesPage() {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
   const copy = dict.articles;
-  const articles = getArticles(locale, copy);
+  const articles = await getArticles(locale);
 
   return (
     <div className="bg-white text-ink">

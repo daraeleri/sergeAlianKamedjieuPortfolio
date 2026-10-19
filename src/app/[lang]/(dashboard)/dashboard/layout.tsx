@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { DashboardShell } from "@/components/dashboard/dashboard-shell";
-import { siteConfig } from "@/config/site";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
-import { getDashboardArticles, getMessages } from "@/lib/dashboard/data";
+import { requireUser } from "@/lib/auth/session";
+import { db } from "@/lib/db";
+
+// Private, live data: dashboard pages render on the server for each request, after
+// checking the session, instead of serving a prerendered shell.
+export const instant = false;
 
 export async function generateMetadata(): Promise<Metadata> {
   const dict = await getDictionary();
@@ -14,16 +18,20 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function DashboardLayout({ children }: LayoutProps<"/[lang]/dashboard">) {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
-  const openDrafts = getDashboardArticles().filter((article) => article.status !== "published");
-  const unread = getMessages().filter((message) => !message.read);
+  const user = await requireUser(locale);
+  const [openDrafts, unread] = await Promise.all([
+    db.article.count({ where: { status: { not: "published" } } }),
+    db.message.count({ where: { read: false } }),
+  ]);
 
   return (
     <DashboardShell
       locale={locale}
       copy={dict.dashboard}
+      signOutLabel={dict.auth.signOut}
       languageLabel={dict.nav.language}
-      user={{ name: siteConfig.name, avatar: "/images/PersonaImage.png" }}
-      badges={{ articles: openDrafts.length, messages: unread.length }}
+      user={{ name: user.name, avatar: "/images/PersonaImage.png" }}
+      badges={{ articles: openDrafts, messages: unread }}
     >
       {children}
     </DashboardShell>

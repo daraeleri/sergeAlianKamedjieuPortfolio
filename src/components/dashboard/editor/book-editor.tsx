@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useId, useRef, useState } from "react";
 import { fill } from "@/components/dashboard/ui";
 import { BookCard } from "@/components/site/book-card";
+import { saveBook } from "@/app/actions/content";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { bookReadiness } from "@/lib/dashboard/readiness";
 import { contentStatuses, type BookDoc } from "@/lib/dashboard/types";
@@ -18,6 +19,7 @@ import {
   LanguageTabs,
   ReadinessPanel,
   useLocalDraft,
+  useServerSave,
   type EditLocale,
 } from "./editor-parts";
 
@@ -29,7 +31,7 @@ type Draft = Pick<
 /**
  * Book editor: title, bilingual description, topics, pages, year and cover, with a live
  * preview of the book as it will appear on the site's shelf, and the publish-readiness
- * panel. Drafts autosave in this browser until the database is connected.
+ * panel. Changes save to the database as you type, with a copy kept in this browser.
  */
 export function BookEditor({
   id,
@@ -52,13 +54,20 @@ export function BookEditor({
 }) {
   const editor = copy.editor;
   const [draft, setDraft] = useState<Draft>(initial);
-  const [tagsText, setTagsText] = useState(initial.tags.join(", "));
+  const [tagsText, setTagsText] = useState({
+    en: initial.tags.en.join(", "),
+    fr: initial.tags.fr.join(", "),
+  });
   const [lang, setLang] = useState<EditLocale>(locale === "fr" ? "fr" : "en");
   const [pending, setPending] = useState(false);
   const [published, setPublished] = useState(initial.status === "published");
   const [restored, setRestored] = useState(false);
   const timer = useRef<number | undefined>(undefined);
   const local = useLocalDraft(`book:${id}`);
+  // A new book's URL becomes its edit page once it has an id (without reloading).
+  const server = useServerSave(id === "new" ? null : id, saveBook, (newId) =>
+    window.history.replaceState(null, "", `${backHref}/${newId}`),
+  );
   const ids = {
     title: useId(),
     description: useId(),
@@ -74,6 +83,7 @@ export function BookEditor({
   const save = (value: Draft) => {
     window.clearTimeout(timer.current);
     local.save(value);
+    void server.save(value);
     setPending(false);
   };
   const update = (patch: Partial<Draft>) => {
@@ -88,7 +98,7 @@ export function BookEditor({
   const newerLocal =
     !restored &&
     local.saved &&
-    local.saved.savedAt > (updatedAt ? Date.parse(updatedAt) : 0) &&
+    local.saved.savedAt > Math.max(updatedAt ? Date.parse(updatedAt) : 0, server.savedAt ?? 0) &&
     JSON.stringify(local.saved.value) !== JSON.stringify(draft);
 
   const publish = () => {
@@ -98,11 +108,16 @@ export function BookEditor({
     setPublished(true);
   };
 
-  const savedLabel = pending
-    ? editor.saving
-    : local.saved
-      ? fill(editor.savedAt, { time: time.format(local.saved.savedAt) })
-      : editor.notSaved;
+  const savedLabel =
+    pending || server.status === "saving"
+      ? editor.saving
+      : server.status === "error"
+        ? editor.saveFailed
+        : server.savedAt
+          ? fill(editor.savedAt, { time: time.format(server.savedAt) })
+          : local.saved
+            ? fill(editor.savedLocally, { time: time.format(local.saved.savedAt) })
+            : editor.notSaved;
 
   return (
     <div>
@@ -134,7 +149,7 @@ export function BookEditor({
             onClick={() => {
               const value = local.saved!.value as Draft;
               setDraft(value);
-              setTagsText(value.tags.join(", "));
+              setTagsText({ en: value.tags.en.join(", "), fr: value.tags.fr.join(", ") });
               setRestored(true);
             }}
             className="ml-auto rounded-lg bg-white px-3 py-1 text-xs font-semibold ring-1 ring-amber-600/20 hover:bg-amber-100"
@@ -205,14 +220,17 @@ export function BookEditor({
               <Field label={editor.fields.tags} hint={editor.fields.tagsHint} htmlFor={ids.tags}>
                 <input
                   id={ids.tags}
-                  value={tagsText}
+                  value={tagsText[lang]}
                   onChange={(event) => {
-                    setTagsText(event.target.value);
+                    setTagsText({ ...tagsText, [lang]: event.target.value });
                     update({
-                      tags: event.target.value
-                        .split(",")
-                        .map((tag) => tag.trim())
-                        .filter(Boolean),
+                      tags: {
+                        ...draft.tags,
+                        [lang]: event.target.value
+                          .split(",")
+                          .map((tag) => tag.trim())
+                          .filter(Boolean),
+                      },
                     });
                   }}
                   className={fieldClass}
@@ -288,7 +306,7 @@ export function BookEditor({
                   slug: id,
                   title: draft.title || editor.fields.bookTitlePlaceholder,
                   description: draft.description[lang],
-                  tags: draft.tags,
+                  tags: draft.tags[lang],
                   cover: draft.cover,
                 }}
                 coverAlt=""

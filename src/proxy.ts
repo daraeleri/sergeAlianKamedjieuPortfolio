@@ -3,6 +3,9 @@ import Negotiator from "negotiator";
 import { NextResponse, type NextRequest } from "next/server";
 import { defaultLocale, hasLocale, LOCALE_COOKIE, locales, type Locale } from "@/i18n/config";
 
+/** Same name as in lib/auth/session.ts (that module is server-only, so not imported here). */
+const SESSION_COOKIE = "sak_session";
+
 function getPreferredLocale(request: NextRequest): Locale {
   const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value;
   if (hasLocale(cookieLocale)) return cookieLocale;
@@ -20,7 +23,20 @@ function getPreferredLocale(request: NextRequest): Locale {
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const firstSegment = pathname.split("/")[1];
-  if (hasLocale(firstSegment)) return;
+  if (hasLocale(firstSegment)) {
+    // Quick check only (is there a session cookie?); the dashboard layout verifies it.
+    const isDashboard =
+      pathname === `/${firstSegment}/dashboard` ||
+      pathname.startsWith(`/${firstSegment}/dashboard/`);
+    if (isDashboard && !request.cookies.has(SESSION_COOKIE)) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/${firstSegment}/login`;
+      url.search = "";
+      url.searchParams.set("next", pathname);
+      return NextResponse.redirect(url);
+    }
+    return;
+  }
 
   const url = request.nextUrl.clone();
   url.pathname = `/${getPreferredLocale(request)}${pathname === "/" ? "" : pathname}`;

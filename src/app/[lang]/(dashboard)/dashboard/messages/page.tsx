@@ -19,7 +19,7 @@ export default async function DashboardMessagesPage() {
       {/* The inbox reads ?id= to open a message, so it renders on the client. */}
       <Suspense>
         <Inbox
-          messages={getMessages()}
+          messages={await getMessages()}
           copy={copy}
           types={dict.contact.form.types}
           locale={locale}

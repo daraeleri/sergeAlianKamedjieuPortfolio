@@ -13,15 +13,35 @@ export type MapCountry = {
   topCity?: string;
 };
 
-export type MapCity = { name: string; visitors: number; lat: number; lng: number };
-
 export type MapPanelTab = {
   key: string;
   label: string;
   rows: { label: string; badge?: string; value: number }[];
 };
 
-type LiveEvent = { id: number; city: string; page: string; left: number; top: number };
+type LiveEvent = {
+  id: string;
+  place: string;
+  page: string;
+  at: number;
+  left?: number;
+  top?: number;
+};
+
+/** Shape returned by /api/analytics/live. */
+type LiveResponse = {
+  readingNow: number;
+  recent: {
+    id: string;
+    path: string;
+    articleId: string | null;
+    city: string | null;
+    country: string | null;
+    lat: number | null;
+    lng: number | null;
+    at: string;
+  }[];
+};
 
 export type VisitorMapCopy = {
   readingNow: string;
@@ -33,25 +53,29 @@ export type VisitorMapCopy = {
   liveEvent: string;
   justNow: string;
   countries: string;
+  empty: string;
+  liveEventUnknown: string;
 };
 
 const COLS = worldDots[0].length;
 const ROWS = worldDots.length;
-const LIVE_EVERY_MS = 3200;
+const POLL_MS = 15_000;
 
-/** Dotted world map with a numbered pin per country and a simulated live feed. */
+/** Dotted world map with a pin per country and a live feed of the latest readers. */
 export function VisitorMap({
   locale,
   countries,
-  cities,
-  livePages,
+  articleTitles,
+  pageNames,
   tabs,
   copy,
 }: {
   locale: string;
   countries: MapCountry[];
-  cities: MapCity[];
-  livePages: string[];
+  /** Article titles by id, to name the pages in the live feed. */
+  articleTitles: Record<string, string>;
+  /** Names of the other pages, by path without the language (e.g. "/articles"). */
+  pageNames: Record<string, string>;
   tabs: MapPanelTab[];
   copy: VisitorMapCopy;
 }) {
@@ -60,34 +84,69 @@ export function VisitorMap({
     () => new Intl.NumberFormat(locale, { notation: "compact", maximumFractionDigits: 1 }),
     [locale],
   );
+  const relative = useMemo(
+    () => new Intl.RelativeTimeFormat(locale, { numeric: "auto" }),
+    [locale],
+  );
+  const regionNames = useMemo(() => new Intl.DisplayNames(locale, { type: "region" }), [locale]);
   const total = countries.reduce((sum, country) => sum + country.visitors, 0);
-  const max = Math.max(...countries.map((country) => country.visitors));
+  const max = Math.max(1, ...countries.map((country) => country.visitors));
 
   const [active, setActive] = useState<string | null>(null);
   const [tab, setTab] = useState("live");
-  const [readingNow, setReadingNow] = useState(14);
+  const [readingNow, setReadingNow] = useState(0);
   const [events, setEvents] = useState<LiveEvent[]>([]);
+  const [now, setNow] = useState(0);
 
   const dots = useMemo(() => landDots(countries, max), [countries, max]);
 
-  // Simulated realtime: a new reader appears in a city every few seconds. Replace with a
-  // live feed (WebSocket or polling) once visits are recorded in the database.
+  // Latest readers, refreshed every few seconds while the page is open.
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const weights = cities.reduce((sum, city) => sum + city.visitors, 0);
-    let id = 0;
-    const timer = window.setInterval(() => {
-      let pick = Math.random() * weights;
-      const city = cities.find((item) => (pick -= item.visitors) <= 0) ?? cities[0];
-      const page = livePages[Math.floor(Math.random() * livePages.length)];
-      const event = { id: ++id, city: city.name, page, ...mapPosition(city.lat, city.lng) };
-      setEvents((current) => [event, ...current].slice(0, 4));
-      setReadingNow((current) =>
-        Math.min(24, Math.max(6, current + Math.round(Math.random() * 4 - 1.6))),
-      );
-    }, LIVE_EVERY_MS);
-    return () => window.clearInterval(timer);
-  }, [cities, livePages]);
+    let stopped = false;
+    const pageName = (path: string, articleId: string | null) =>
+      (articleId && articleTitles[articleId]) ||
+      pageNames[path.replace(/^\/(en|fr)(?=\/|$)/, "") || "/"] ||
+      path;
+    const placeName = (city: string | null, country: string | null) => {
+      if (city) return city;
+      try {
+        return country ? (regionNames.of(country) ?? country) : "";
+      } catch {
+        return country ?? "";
+      }
+    };
+    const load = async () => {
+      try {
+        const response = await fetch("/api/analytics/live", { cache: "no-store" });
+        if (!response.ok || stopped) return;
+        const data = (await response.json()) as LiveResponse;
+        setReadingNow(data.readingNow);
+        setNow(Date.now());
+        setEvents(
+          data.recent.map((item) => ({
+            id: item.id,
+            place: placeName(item.city, item.country),
+            page: pageName(item.path, item.articleId),
+            at: new Date(item.at).getTime(),
+            ...(item.lat !== null && item.lng !== null ? mapPosition(item.lat, item.lng) : {}),
+          })),
+        );
+      } catch {
+        // Offline or signed out: keep the last feed.
+      }
+    };
+    void load();
+    const timer = window.setInterval(load, POLL_MS);
+    return () => {
+      stopped = true;
+      window.clearInterval(timer);
+    };
+  }, [articleTitles, pageNames, regionNames]);
+
+  const ago = (at: number) => {
+    const minutes = Math.round((at - now) / 60_000);
+    return minutes > -1 ? copy.justNow : relative.format(minutes, "minute");
+  };
 
   const panelTabs = [{ key: "live", label: copy.live, rows: [] }, ...tabs];
   const current = panelTabs.find((item) => item.key === tab) ?? panelTabs[0];
@@ -115,17 +174,20 @@ export function VisitorMap({
           ))}
         </svg>
 
-        {events.map((event) => (
-          <span
-            key={event.id}
-            aria-hidden
-            className="pointer-events-none absolute size-3 -translate-1/2"
-            style={{ left: `${event.left}%`, top: `${event.top}%` }}
-          >
-            <span className="absolute inset-0 animate-ping rounded-full bg-emerald-400/70" />
-            <span className="absolute inset-0.5 rounded-full bg-emerald-500 ring-2 ring-white" />
-          </span>
-        ))}
+        {events
+          .slice(0, 3)
+          .filter((event) => event.left !== undefined)
+          .map((event) => (
+            <span
+              key={event.id}
+              aria-hidden
+              className="pointer-events-none absolute size-3 -translate-1/2"
+              style={{ left: `${event.left}%`, top: `${event.top}%` }}
+            >
+              <span className="absolute inset-0 animate-ping rounded-full bg-emerald-400/70" />
+              <span className="absolute inset-0.5 rounded-full bg-emerald-500 ring-2 ring-white" />
+            </span>
+          ))}
 
         {[...countries]
           // Smallest first, so the biggest pins and their numbers sit on top.
@@ -198,6 +260,14 @@ export function VisitorMap({
             );
           })}
 
+        {countries.length ? null : (
+          <p className="absolute inset-0 z-20 grid place-items-center p-4 text-center">
+            <span className="max-w-sm rounded-2xl bg-white/90 px-4 py-3 text-sm text-black/60 shadow-sm ring-1 ring-black/5 backdrop-blur">
+              {copy.empty}
+            </span>
+          </p>
+        )}
+
         <div className="absolute -top-1 right-0 z-40 flex items-center gap-1.5 rounded-full bg-white/90 px-2 py-1 text-[10px] font-medium ring-1 ring-black/5 backdrop-blur sm:top-0 sm:gap-2 sm:px-3 sm:py-1.5 sm:text-xs">
           <span className="relative flex size-2">
             <span className="absolute inset-0 animate-ping rounded-full bg-emerald-400" />
@@ -251,11 +321,13 @@ export function VisitorMap({
                   />
                   <span className="min-w-0 flex-1">
                     <span className="line-clamp-1 text-white/85">
-                      {copy.liveEvent.replace("{city}", event.city)}
+                      {event.place
+                        ? copy.liveEvent.replace("{city}", event.place)
+                        : copy.liveEventUnknown}
                     </span>
                     <span className="line-clamp-1 text-white/45">{event.page}</span>
                   </span>
-                  <span className="shrink-0 text-white/35">{copy.justNow}</span>
+                  <span className="shrink-0 text-white/35">{ago(event.at)}</span>
                 </li>
               ))
             ) : (

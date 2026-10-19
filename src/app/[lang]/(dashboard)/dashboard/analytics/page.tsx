@@ -3,9 +3,9 @@ import {
   Link2,
   Mail,
   MessageCircle,
-  Repeat,
   Share2,
   ShoppingBag,
+  Users,
   type LucideIcon,
 } from "lucide-react";
 import type { Metadata } from "next";
@@ -21,7 +21,6 @@ import {
   getCities,
   getCountries,
   getDashboardArticles,
-  getDashboardBooks,
   getDeviceStats,
   getKpis,
   getMonthlyAudience,
@@ -51,15 +50,34 @@ export default async function AnalyticsPage() {
   const number = new Intl.NumberFormat(locale);
   const month = new Intl.DateTimeFormat(locale, { month: "short", timeZone: "UTC" });
 
-  const kpis = getKpis();
-  const channels = getShareChannels();
+  const [
+    kpis,
+    channels,
+    countries,
+    cities,
+    regions,
+    languages,
+    allArticles,
+    pages,
+    devices,
+    referrers,
+    audience,
+  ] = await Promise.all([
+    getKpis(),
+    getShareChannels(),
+    getCountries(),
+    getCities(),
+    getRegions(),
+    getReadingLanguages(),
+    getDashboardArticles(),
+    getPageStats(),
+    getDeviceStats(),
+    getReferrers(),
+    getMonthlyAudience(),
+  ]);
   const channelTotal = channels.reduce((total, item) => total + item.count, 0);
-  const countries = getCountries();
-  const cities = getCities();
   const countryNames = new Map(countries.map((country) => [country.code, country.name[locale]]));
-  const languages = getReadingLanguages();
-  const orders = getDashboardBooks().reduce((total, book) => total + book.orders, 0);
-  const articles = getDashboardArticles()
+  const articles = allArticles
     .filter((article) => article.status === "published")
     .sort((a, b) => b.views - a.views);
 
@@ -75,9 +93,6 @@ export default async function AnalyticsPage() {
       icon: path.includes("#") ? "section" : "page",
     };
   };
-  const pages = getPageStats();
-  const devices = getDeviceStats();
-  const referrers = getReferrers();
   const countryRows = countries.map((country) => ({
     label: country.name[locale],
     badge: country.code,
@@ -96,9 +111,9 @@ export default async function AnalyticsPage() {
       label: copy.analytics.avgRead,
       value: fill(copy.analytics.minutes, { count: kpis.avgReadMinutes.toLocaleString(locale) }),
     },
-    { icon: Repeat, label: copy.analytics.returning, value: `${kpis.returningPercent}%` },
+    { icon: Users, label: copy.analytics.visits, value: number.format(kpis.visits) },
     { icon: Share2, label: copy.common.shares, value: number.format(channelTotal) },
-    { icon: ShoppingBag, label: copy.analytics.bookOrders, value: number.format(orders) },
+    { icon: ShoppingBag, label: copy.analytics.bookOrders, value: number.format(kpis.bookOrders) },
   ];
 
   return (
@@ -138,12 +153,10 @@ export default async function AnalyticsPage() {
             lng: country.lng,
             topCity: cities.find((city) => city.country === country.code)?.name,
           }))}
-          cities={cities}
-          livePages={[
-            ...articles.map((article) => article.title[locale]),
-            pageNames["/"],
-            pageNames["/#books"],
-          ]}
+          articleTitles={Object.fromEntries(
+            allArticles.map((article) => [article.id, article.title[locale] || article.title.en]),
+          )}
+          pageNames={pageNames}
           tabs={[
             { key: "countries", label: a.tabs.countries, rows: countryRows },
             { key: "cities", label: a.tabs.cities, rows: cityRows },
@@ -166,6 +179,8 @@ export default async function AnalyticsPage() {
             liveEvent: a.liveEvent,
             justNow: a.justNow,
             countries: a.tabs.countries,
+            empty: a.mapEmpty,
+            liveEventUnknown: a.liveEventUnknown,
           }}
         />
       </Card>
@@ -175,7 +190,7 @@ export default async function AnalyticsPage() {
           <BarChart
             locale={locale}
             label={copy.analytics.viewsTitle}
-            data={getMonthlyAudience().map((point) => ({
+            data={audience.map((point) => ({
               label: month.format(point.month),
               value: point.views,
             }))}
@@ -259,7 +274,7 @@ export default async function AnalyticsPage() {
             {
               key: "regions",
               label: a.tabs.regions,
-              rows: getRegions().map((region) => ({
+              rows: regions.map((region) => ({
                 label: region.name[locale],
                 sub: countryNames.get(region.country),
                 badge: region.country,

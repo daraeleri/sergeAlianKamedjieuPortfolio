@@ -68,7 +68,7 @@ export function bookReadiness(
       done: filled(book.description.en, 80) || filled(book.description.fr, 80),
     },
     { key: "cover", done: Boolean(book.cover) },
-    { key: "tags", done: book.tags.some((tag) => filled(tag)) },
+    { key: "tags", done: [...book.tags.en, ...book.tags.fr].some((tag) => filled(tag)) },
     { key: "pages", done: Boolean(book.pages && book.pages > 0) },
     { key: "year", done: Boolean(book.year && book.year > 1900) },
     {

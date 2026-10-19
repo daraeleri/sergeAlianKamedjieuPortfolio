@@ -4,6 +4,7 @@ import { CircleCheck, Circle, ImagePlus, PartyPopper, Rocket, Save, Trash2 } fro
 import Image from "next/image";
 import { useCallback, useId, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { fill } from "@/components/dashboard/ui";
+import type { SaveResult } from "@/app/actions/content";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import type { Readiness } from "@/lib/dashboard/readiness";
 import { cn } from "@/lib/utils";
@@ -402,4 +403,55 @@ export function useLocalDraft(key: string) {
 
   const parsed = stored ? (JSON.parse(stored) as { savedAt: number; value: unknown }) : null;
   return { saved: parsed, save, error };
+}
+
+/**
+ * Saves a draft to the database, one request at a time (changes made during a save are
+ * sent right after it). A new record gets its id on the first save; `onCreated` receives
+ * it so the page URL can follow.
+ */
+export function useServerSave<T>(
+  initialId: string | null,
+  action: (id: string | null, value: T) => Promise<SaveResult>,
+  onCreated?: (id: string) => void,
+) {
+  const id = useRef(initialId);
+  const busy = useRef(false);
+  const queued = useRef<{ value: T } | null>(null);
+  const [state, setState] = useState<{
+    status: "idle" | "saving" | "saved" | "error";
+    savedAt?: number;
+  }>({
+    status: "idle",
+  });
+
+  const save = useCallback(
+    async (value: T) => {
+      queued.current = { value };
+      if (busy.current) return;
+      busy.current = true;
+      setState((current) => ({ ...current, status: "saving" }));
+      while (queued.current) {
+        const next = queued.current.value;
+        queued.current = null;
+        try {
+          const result = await action(id.current, next);
+          if (result.ok) {
+            const created = id.current === null;
+            id.current = result.id;
+            setState({ status: "saved", savedAt: Date.parse(result.updatedAt) });
+            if (created) onCreated?.(result.id);
+          } else {
+            setState((current) => ({ ...current, status: "error" }));
+          }
+        } catch {
+          setState((current) => ({ ...current, status: "error" }));
+        }
+      }
+      busy.current = false;
+    },
+    [action, onCreated],
+  );
+
+  return { save, ...state };
 }

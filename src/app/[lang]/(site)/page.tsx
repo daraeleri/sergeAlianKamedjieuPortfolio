@@ -8,10 +8,10 @@ import { Hero } from "@/components/site/hero";
 import { MinistriesSection } from "@/components/site/ministries-section";
 import { ReachSection } from "@/components/site/reach-section";
 import { siteConfig } from "@/config/site";
-import { bookCovers } from "@/content/books";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { localizePath, pageMetadata, sectionHref } from "@/i18n/routing";
-import { articleAvatar, getArticles } from "@/lib/articles";
+import { articleAvatar } from "@/lib/articles";
+import { getArticles, getBooks } from "@/lib/content";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
@@ -29,6 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function HomePage() {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
+  const [books, articles] = await Promise.all([getBooks(locale), getArticles(locale)]);
 
   return (
     <>
@@ -40,12 +41,12 @@ export default async function HomePage() {
         copy={dict.books}
         orderHref={sectionHref(locale, "contact")}
         author={siteConfig.name}
-        books={dict.books.items.map((book) => ({ ...book, cover: bookCovers[book.slug] }))}
+        books={books}
       />
       <ArticlesSection
         copy={dict.articles}
         avatar={articleAvatar}
-        articles={getArticles(locale, dict.articles)}
+        articles={articles}
         allHref={localizePath(locale, "/articles")}
         locale={locale}
       />
