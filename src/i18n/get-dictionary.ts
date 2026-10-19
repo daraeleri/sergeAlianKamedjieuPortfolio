@@ -22,3 +22,8 @@ export async function getLocale(): Promise<Locale> {
 export async function getDictionary(): Promise<Dictionary> {
   return dictionaries[await getLocale()]();
 }
+
+/** Dictionary for a given locale, for code that receives it as a param (share images). */
+export function loadDictionary(locale: Locale): Promise<Dictionary> {
+  return dictionaries[locale]();
+}

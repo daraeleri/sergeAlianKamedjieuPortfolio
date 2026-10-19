@@ -44,7 +44,7 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Skip Next.js internals, API routes and any file with an extension
-  // (favicon.ico, robots.txt, sitemap.xml, images in /public, ...).
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
+  // Skip Next.js internals, API routes, the generated iPhone icon (no extension) and
+  // any file with an extension (favicon.ico, robots.txt, sitemap.xml, images in /public, ...).
+  matcher: ["/((?!api|_next|apple-icon|.*\\..*).*)"],
 };

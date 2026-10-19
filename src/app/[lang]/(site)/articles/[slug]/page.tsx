@@ -15,6 +15,8 @@ import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { localizePath, pageMetadata, sectionHref } from "@/i18n/routing";
 import { articleAvatar, articleHref } from "@/lib/articles";
 import { getArticleBody, getArticles } from "@/lib/content";
+import { articleSchema } from "@/lib/structured-data";
+import { JsonLd } from "@/components/json-ld";
 import { defaultLocale } from "@/i18n/config";
 import { cn } from "@/lib/utils";
 
@@ -41,6 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     pathname: `/articles/${article.slug}`,
     title: article.title,
     description: article.excerpt,
+    article: { publishedTime: article.date, section: article.category },
   });
 }
 
@@ -85,6 +88,7 @@ async function Article({ params }: { params: Props["params"] }) {
 
   return (
     <div className="bg-white text-ink">
+      <JsonLd data={articleSchema(locale, dict, article)} />
       <div aria-hidden className="reading-progress fixed inset-x-0 top-0 z-[60] h-1 bg-brand" />
 
       <article className="mx-auto max-w-6xl px-5 pt-32 sm:px-8 sm:pt-36">

@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: locales.map((locale) => `/${locale}/dashboard`),
+      disallow: locales.flatMap((locale) => [`/${locale}/dashboard`, `/${locale}/login`]),
     },
     sitemap: `${siteConfig.url}/sitemap.xml`,
   };

@@ -12,6 +12,8 @@ import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { localizePath, pageMetadata, sectionHref } from "@/i18n/routing";
 import { articleAvatar } from "@/lib/articles";
 import { getArticles, getBooks } from "@/lib/content";
+import { homeSchema } from "@/lib/structured-data";
+import { JsonLd } from "@/components/json-ld";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
@@ -35,6 +37,7 @@ export default async function HomePage() {
     // `contents` keeps the sections laid out as direct children of <main>; the
     // attribute hides the window scrollbar on this page (see globals.css).
     <div data-hide-scrollbar className="contents">
+      <JsonLd data={homeSchema(locale, dict)} />
       <Hero locale={locale} copy={dict.hero} />
       <AboutSection locale={locale} copy={dict.about} />
       <AcademicsSection copy={dict.academics} />

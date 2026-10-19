@@ -612,6 +612,22 @@
           "unauthorized": "Votre session a expiré. Reconnectez-vous.",
           "failed": "Envoi impossible. Réessayez."
         }
+      },
+      "share": {
+        "title": "Partager",
+        "publishFirst": "Publiez-le d'abord, puis partagez-le sur Facebook, WhatsApp et d'autres applications.",
+        "text": "Publiez-le sur vos pages, groupes et statuts. Voici l'aperçu que les gens verront avec le lien.",
+        "language": "Langue du lien",
+        "previewAlt": "Aperçu affiché avec le lien",
+        "openIn": "Partager sur {app}",
+        "copyLink": "Copier le lien",
+        "copyMessage": "Copier le message",
+        "copied": "Copié",
+        "message": "{title}\n\n{excerpt}\n\nLire l'article : {url}",
+        "phone": "Partager depuis ce téléphone",
+        "phoneHint": "Ouvre le menu de partage du téléphone : choisissez WhatsApp, puis Mon statut, ou Facebook, puis Story.",
+        "download": "Télécharger l'image",
+        "downloadHint": "Pour un statut WhatsApp ou Facebook depuis un ordinateur : publiez cette image et collez le message en légende."
       }
     },
     "analytics": {

@@ -14,6 +14,7 @@ import { contentStatuses, type Announcement, type ArticleDoc } from "@/lib/dashb
 import { cn } from "@/lib/utils";
 import { AnnouncePanel } from "./announce-panel";
 import { BlockEditor } from "./block-editor";
+import { SharePanel } from "./share-panel";
 import {
   CompactReadiness,
   CoverField,
@@ -296,6 +297,14 @@ export function ArticleEditor({
               subscribers={subscribers}
               copy={editor.announce}
               locale={locale}
+            />
+            <SharePanel
+              id={server.id}
+              published={draft.status === "published" && server.status !== "saving"}
+              title={draft.title}
+              excerpt={draft.excerpt}
+              copy={editor.share}
+              locale={locale === "fr" ? "fr" : "en"}
             />
           </ReadinessPanel>
         </aside>

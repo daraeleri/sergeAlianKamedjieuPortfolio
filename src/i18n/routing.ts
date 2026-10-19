@@ -20,6 +20,8 @@ type PageMetadataOptions = {
   pathname: Pathname;
   title?: string;
   description: string;
+  /** Set on article pages: shared links then show as articles, with their date. */
+  article?: { publishedTime: string; section: string };
 };
 
 /**
@@ -33,24 +35,51 @@ export function pageMetadata({
   pathname,
   title,
   description,
+  article,
 }: PageMetadataOptions): Metadata {
   const url = localizePath(locale, pathname);
+  const shared = {
+    siteName: siteConfig.name,
+    title: title ?? siteConfig.name,
+    description,
+    url,
+    locale: ogLocales[locale],
+    alternateLocale: locales.filter((l) => l !== locale).map((l) => ogLocales[l]),
+  };
 
   return {
     title,
     description,
     alternates: {
       canonical: url,
-      languages: Object.fromEntries(locales.map((l) => [l, localizePath(l, pathname)])),
+      languages: {
+        ...Object.fromEntries(locales.map((l) => [l, localizePath(l, pathname)])),
+        // Unprefixed paths redirect to the visitor's language (see proxy.ts).
+        "x-default": pathname,
+      },
     },
-    openGraph: {
-      type: "website",
-      siteName: siteConfig.name,
-      title: title ?? siteConfig.name,
-      description,
-      url,
-      locale: ogLocales[locale],
-      alternateLocale: locales.filter((l) => l !== locale).map((l) => ogLocales[l]),
-    },
+    openGraph: article
+      ? {
+          // The share image comes from the `opengraph-image` file next to the article page.
+          ...shared,
+          type: "article",
+          publishedTime: article.publishedTime,
+          section: article.section,
+          authors: [siteConfig.name],
+        }
+      : {
+          ...shared,
+          type: "website",
+          // The site's default share image (app/[lang]/opengraph-image.tsx). Named here
+          // because this `openGraph` object replaces the one that file adds to the layout.
+          images: [
+            {
+              url: localizePath(locale, "/opengraph-image"),
+              width: 1200,
+              height: 630,
+              alt: siteConfig.name,
+            },
+          ],
+        },
   };
 }

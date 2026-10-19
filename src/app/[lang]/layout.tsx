@@ -39,6 +39,14 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s | ${siteConfig.name}`,
     },
     description: dict.site.description,
+    applicationName: siteConfig.name,
+    authors: [{ name: siteConfig.name, url: siteConfig.url }],
+    creator: siteConfig.name,
+    publisher: siteConfig.name,
+    // Let Google show large image previews and full snippets (Discover, search results).
+    robots: {
+      googleBot: { "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+    },
     twitter: { card: "summary_large_image" },
   };
 }

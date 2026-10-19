@@ -612,6 +612,22 @@
           "unauthorized": "Your session ended. Sign in again.",
           "failed": "Couldn't send. Please try again."
         }
+      },
+      "share": {
+        "title": "Share",
+        "publishFirst": "Publish it first, then share it on Facebook, WhatsApp and other apps.",
+        "text": "Post it on your pages, groups and status. This is the preview people see with the link.",
+        "language": "Language of the link",
+        "previewAlt": "Preview shown with the link",
+        "openIn": "Share on {app}",
+        "copyLink": "Copy link",
+        "copyMessage": "Copy message",
+        "copied": "Copied",
+        "message": "{title}\n\n{excerpt}\n\nRead the article: {url}",
+        "phone": "Share from this phone",
+        "phoneHint": "Opens your phone's share menu: choose WhatsApp, then My status, or Facebook, then Story.",
+        "download": "Download image",
+        "downloadHint": "For a WhatsApp or Facebook status from a computer: post this image and paste the message as its caption."
       }
     },
     "analytics": {
