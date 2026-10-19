@@ -1,0 +1,151 @@
+// Database schema. Run `pnpm db:migrate` after changing it.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// Where a piece of content is on its way to publication.
+enum ContentStatus {
+  idea
+  draft
+  review
+  scheduled
+  published
+}
+
+/// An article in both site languages. The id is its URL slug.
+model Article {
+  id          String        @id
+  status      ContentStatus @default(draft)
+  categoryEn  String        @default("")
+  categoryFr  String        @default("")
+  titleEn     String        @default("")
+  titleFr     String        @default("")
+  excerptEn   String        @default("")
+  excerptFr   String        @default("")
+  /// Image path or URL; articles without one use their theme's design.
+  cover       String?
+  theme       String        @default("spirit")
+  /// Article blocks (paragraphs, headings, verses, quotes, lists, images) as JSON.
+  bodyEn      Json          @default("[]")
+  bodyFr      Json          @default("[]")
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([status, publishedAt])
+}
+
+model Book {
+  id            String        @id
+  status        ContentStatus @default(draft)
+  title         String        @default("")
+  descriptionEn String        @default("")
+  descriptionFr String        @default("")
+  tagsEn        String[]
+  tagsFr        String[]
+  cover         String?
+  pages         Int?
+  year          Int?
+  /// Order on the home page, lowest first.
+  position      Int           @default(0)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([status, position])
+}
+
+enum MessageType {
+  invitation
+  books
+  prayer
+  other
+}
+
+/// A message sent from the contact form.
+model Message {
+  id           String      @id @default(cuid())
+  name         String
+  email        String
+  organization String?
+  type         MessageType
+  message      String
+  read         Boolean     @default(false)
+  createdAt    DateTime    @default(now())
+
+  @@index([createdAt])
+}
+
+/// One page view. Visitors are counted without cookies: visitorId is a hash of the
+/// IP address, browser and day with a secret salt, so it can't identify anyone and
+/// changes every day.
+model PageView {
+  id          BigInt   @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  visitorId   String
+  path        String
+  locale      String?
+  articleId   String?
+  /// Referrer grouped by source: direct, whatsapp, facebook, google, ...
+  source      String   @default("direct")
+  referrer    String?
+  country     String?
+  region      String?
+  city        String?
+  latitude    Float?
+  longitude   Float?
+  browser     String?
+  os          String?
+  device      String?
+  /// Seconds spent on the page, sent when the visitor leaves it.
+  duration    Int?
+
+  @@index([createdAt])
+  @@index([path, createdAt])
+  @@index([articleId])
+}
+
+enum EventType {
+  read
+  share
+}
+
+/// Engagement events: an article read to the end, or a share (with its channel).
+model Event {
+  id        BigInt    @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  type      EventType
+  visitorId String
+  path      String
+  articleId String?
+  bookId    String?
+  channel   String?
+
+  @@index([type, createdAt])
+  @@index([articleId])
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  createdAt    DateTime  @default(now())
+  sessions     Session[]
+}
+
+/// Dashboard sign-in session. The cookie holds a random token; only its hash is stored.
+model Session {
+  id        String   @id
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
