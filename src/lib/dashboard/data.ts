@@ -4,7 +4,17 @@ import { articleMeta } from "@/content/articles";
 import { bookCovers } from "@/content/books";
 import en from "@/i18n/dictionaries/en.json";
 import fr from "@/i18n/dictionaries/fr.json";
-import type { ArticleDoc, BookDoc, InboxMessage, ShareChannel } from "./types";
+import type {
+  ArticleDoc,
+  Bilingual,
+  BookDoc,
+  City,
+  Country,
+  DeviceType,
+  InboxMessage,
+  Referrer,
+  ShareChannel,
+} from "./types";
 
 /**
  * Dashboard data. SAMPLE DATA until the database is connected: published articles and
@@ -224,16 +234,155 @@ export function getShareChannels(): { channel: ShareChannel; count: number }[] {
   ];
 }
 
-export function getCountries() {
+/** Visitors by country for the last 12 months, with a map position (sample). */
+export function getCountries(): Country[] {
   return [
-    { code: "CM", name: { en: "Cameroon", fr: "Cameroun" }, visitors: 9240 },
-    { code: "FR", name: { en: "France", fr: "France" }, visitors: 2310 },
-    { code: "CA", name: { en: "Canada", fr: "Canada" }, visitors: 1580 },
-    { code: "CI", name: { en: "Côte d’Ivoire", fr: "Côte d’Ivoire" }, visitors: 1120 },
-    { code: "US", name: { en: "United States", fr: "États-Unis" }, visitors: 940 },
-    { code: "GA", name: { en: "Gabon", fr: "Gabon" }, visitors: 610 },
-    { code: "BE", name: { en: "Belgium", fr: "Belgique" }, visitors: 470 },
+    { code: "CM", name: { en: "Cameroon", fr: "Cameroun" }, visitors: 9240, lat: 5.7, lng: 12.4 },
+    { code: "FR", name: { en: "France", fr: "France" }, visitors: 2310, lat: 46.6, lng: 2.4 },
+    { code: "CA", name: { en: "Canada", fr: "Canada" }, visitors: 1580, lat: 52, lng: -100 },
+    {
+      code: "CI",
+      name: { en: "Côte d’Ivoire", fr: "Côte d’Ivoire" },
+      visitors: 1120,
+      lat: 7.6,
+      lng: -5.5,
+    },
+    {
+      code: "US",
+      name: { en: "United States", fr: "États-Unis" },
+      visitors: 940,
+      lat: 38.5,
+      lng: -97,
+    },
+    { code: "GA", name: { en: "Gabon", fr: "Gabon" }, visitors: 610, lat: -0.8, lng: 11.6 },
+    { code: "BE", name: { en: "Belgium", fr: "Belgique" }, visitors: 470, lat: 50.6, lng: 4.7 },
+    { code: "NG", name: { en: "Nigeria", fr: "Nigeria" }, visitors: 380, lat: 9.1, lng: 8.2 },
+    { code: "CD", name: { en: "DR Congo", fr: "RD Congo" }, visitors: 340, lat: -2.9, lng: 23.6 },
+    { code: "SN", name: { en: "Senegal", fr: "Sénégal" }, visitors: 260, lat: 14.5, lng: -14.4 },
+    { code: "CH", name: { en: "Switzerland", fr: "Suisse" }, visitors: 210, lat: 46.8, lng: 8.2 },
+    { code: "DE", name: { en: "Germany", fr: "Allemagne" }, visitors: 190, lat: 51.2, lng: 10.4 },
+    {
+      code: "GB",
+      name: { en: "United Kingdom", fr: "Royaume-Uni" },
+      visitors: 180,
+      lat: 53.5,
+      lng: -2,
+    },
+    {
+      code: "ZA",
+      name: { en: "South Africa", fr: "Afrique du Sud" },
+      visitors: 90,
+      lat: -29,
+      lng: 24,
+    },
+    { code: "BR", name: { en: "Brazil", fr: "Brésil" }, visitors: 70, lat: -10, lng: -52 },
   ];
+}
+
+/** Visitors by city for the last 12 months, with a map position (sample). */
+export function getCities(): City[] {
+  return [
+    { name: "Douala", country: "CM", visitors: 3920, lat: 4.05, lng: 9.7 },
+    { name: "Yaoundé", country: "CM", visitors: 3110, lat: 3.87, lng: 11.52 },
+    { name: "Paris", country: "FR", visitors: 1240, lat: 48.86, lng: 2.35 },
+    { name: "Montréal", country: "CA", visitors: 820, lat: 45.5, lng: -73.57 },
+    { name: "Abidjan", country: "CI", visitors: 760, lat: 5.36, lng: -4 },
+    { name: "Bafoussam", country: "CM", visitors: 640, lat: 5.48, lng: 10.42 },
+    { name: "Libreville", country: "GA", visitors: 430, lat: 0.42, lng: 9.47 },
+    { name: "Bruxelles", country: "BE", visitors: 330, lat: 50.85, lng: 4.35 },
+    { name: "Houston", country: "US", visitors: 280, lat: 29.76, lng: -95.37 },
+    { name: "Lyon", country: "FR", visitors: 260, lat: 45.76, lng: 4.84 },
+    { name: "Toronto", country: "CA", visitors: 240, lat: 43.65, lng: -79.38 },
+    { name: "Lagos", country: "NG", visitors: 220, lat: 6.52, lng: 3.38 },
+  ];
+}
+
+/** Visitors by region for the last 12 months (sample). */
+export function getRegions(): { name: Bilingual; country: string; visitors: number }[] {
+  return [
+    { name: { en: "Littoral", fr: "Littoral" }, country: "CM", visitors: 4100 },
+    { name: { en: "Centre", fr: "Centre" }, country: "CM", visitors: 3300 },
+    { name: { en: "Île-de-France", fr: "Île-de-France" }, country: "FR", visitors: 1400 },
+    { name: { en: "West", fr: "Ouest" }, country: "CM", visitors: 1180 },
+    { name: { en: "Quebec", fr: "Québec" }, country: "CA", visitors: 980 },
+    { name: { en: "Abidjan", fr: "Abidjan" }, country: "CI", visitors: 760 },
+    { name: { en: "Estuaire", fr: "Estuaire" }, country: "GA", visitors: 430 },
+    { name: { en: "Ontario", fr: "Ontario" }, country: "CA", visitors: 420 },
+  ];
+}
+
+/** Most visited pages: overall, first page of a visit and last page of a visit (sample). */
+export function getPageStats() {
+  return {
+    top: [
+      { path: "/", visitors: 8420 },
+      { path: "/articles", visitors: 3120 },
+      { path: "/articles/plenitude-du-saint-esprit", visitors: 2650 },
+      { path: "/#books", visitors: 2210 },
+      { path: "/articles/leadership-serviteur", visitors: 1980 },
+      { path: "/#about", visitors: 1500 },
+      { path: "/#contact", visitors: 900 },
+    ],
+    entered: [
+      { path: "/", visitors: 6200 },
+      { path: "/articles/plenitude-du-saint-esprit", visitors: 2100 },
+      { path: "/articles/leadership-serviteur", visitors: 1560 },
+      { path: "/articles", visitors: 1240 },
+      { path: "/articles/de-bafoussam-aux-nations", visitors: 980 },
+      { path: "/#books", visitors: 610 },
+    ],
+    exited: [
+      { path: "/#contact", visitors: 3310 },
+      { path: "/articles/plenitude-du-saint-esprit", visitors: 1920 },
+      { path: "/", visitors: 1870 },
+      { path: "/#books", visitors: 1460 },
+      { path: "/articles", visitors: 1100 },
+      { path: "/articles/foi-esperance-amour", visitors: 720 },
+    ],
+  };
+}
+
+/** Where visitors came from (sample). */
+export function getReferrers(): { source: Referrer; visitors: number }[] {
+  return [
+    { source: "direct", visitors: 6100 },
+    { source: "whatsapp", visitors: 4300 },
+    { source: "facebook", visitors: 2900 },
+    { source: "google", visitors: 2200 },
+    { source: "youtube", visitors: 980 },
+    { source: "instagram", visitors: 760 },
+    { source: "linkedin", visitors: 210 },
+  ];
+}
+
+/** Browsers, operating systems and device types of visitors (sample). */
+export function getDeviceStats(): {
+  browsers: { name: string; visitors: number }[];
+  os: { name: string; visitors: number }[];
+  devices: { name: DeviceType; visitors: number }[];
+} {
+  return {
+    browsers: [
+      { name: "Chrome", visitors: 9900 },
+      { name: "Safari", visitors: 2880 },
+      { name: "Samsung Internet", visitors: 1440 },
+      { name: "Firefox", visitors: 800 },
+      { name: "Edge", visitors: 640 },
+      { name: "Opera", visitors: 330 },
+    ],
+    os: [
+      { name: "Android", visitors: 9280 },
+      { name: "iOS", visitors: 3360 },
+      { name: "Windows", visitors: 2240 },
+      { name: "macOS", visitors: 800 },
+      { name: "Linux", visitors: 310 },
+    ],
+    devices: [
+      { name: "mobile", visitors: 12640 },
+      { name: "desktop", visitors: 2880 },
+      { name: "tablet", visitors: 470 },
+    ],
+  };
 }
 
 export function getReadingLanguages() {

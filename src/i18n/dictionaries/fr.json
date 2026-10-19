@@ -204,12 +204,7 @@
     "listLabel": "Branches de JAFAN Ministries",
     "academyFoundedLabel": "Fondée en",
     "academyPathLabel": "Parcours d'études",
-    "academyPath": [
-      "Certificat",
-      "Licence",
-      "Master",
-      "Doctorat"
-    ],
+    "academyPath": ["Certificat", "Licence", "Master", "Doctorat"],
     "ctaButton": "Visiter le site de JAFAN",
     "newTab": "(s'ouvre dans un nouvel onglet)"
   },
@@ -232,37 +227,25 @@
         "slug": "le-saint-esprit-et-l-eglise",
         "title": "Le Saint-Esprit et l'Église",
         "description": "Une étude sur la place centrale du Paraclet dans la communauté des croyants.",
-        "tags": [
-          "Saint-Esprit",
-          "Église"
-        ]
+        "tags": ["Saint-Esprit", "Église"]
       },
       {
         "slug": "vers-une-plus-grande-manifestation-de-la-puissance-de-dieu",
         "title": "Vers une plus grande manifestation de la puissance de Dieu",
         "description": "Un manuel pour activer le surnaturel divin au quotidien.",
-        "tags": [
-          "Puissance de Dieu",
-          "Vie chrétienne"
-        ]
+        "tags": ["Puissance de Dieu", "Vie chrétienne"]
       },
       {
         "slug": "le-leadership-et-la-puissance-du-saint-esprit",
         "title": "Le leadership et la puissance du Saint-Esprit",
         "description": "La synthèse entre gestion organisationnelle et onction spirituelle.",
-        "tags": [
-          "Leadership",
-          "Saint-Esprit"
-        ]
+        "tags": ["Leadership", "Saint-Esprit"]
       },
       {
         "slug": "l-autorite-des-ecritures",
         "title": "L'autorité des Écritures",
         "description": "Un plaidoyer pour le retour à la suprématie de la Parole de Dieu.",
-        "tags": [
-          "Écritures",
-          "Doctrine"
-        ]
+        "tags": ["Écritures", "Doctrine"]
       }
     ]
   },
@@ -395,11 +378,7 @@
   },
   "footer": {
     "statementLead": "",
-    "words": [
-      "Portons",
-      "Proclamons",
-      "Partageons"
-    ],
+    "words": ["Portons", "Proclamons", "Partageons"],
     "statementTail": "l’Évangile jusqu’aux nations, ensemble.",
     "emailLabel": "E-mail",
     "copyEmail": "Copier l’adresse e-mail",
@@ -618,7 +597,55 @@
       "avgRead": "Temps de lecture moyen",
       "returning": "Lecteurs fidèles",
       "bookOrders": "Demandes de commande de livres",
-      "minutes": "{count} min"
+      "minutes": "{count} min",
+      "mapTitle": "Visiteurs dans le monde",
+      "mapDescription": "Chaque repère est un pays d’où viennent vos lecteurs. Survolez-le pour les détails.",
+      "readingNow": "{count} en lecture",
+      "visitors": "visiteurs",
+      "ofVisitors": "{percent} % des visiteurs",
+      "topCity": "1re ville",
+      "live": "Direct",
+      "liveEmpty": "En attente du prochain lecteur…",
+      "liveEvent": "Quelqu’un à {city} lit",
+      "justNow": "à l’instant",
+      "tabs": {
+        "countries": "Pays",
+        "regions": "Régions",
+        "cities": "Villes",
+        "pages": "Pages",
+        "top": "Top",
+        "entered": "Entrée",
+        "exited": "Sortie",
+        "sources": "Sources",
+        "referrer": "Origine",
+        "shares": "Partages",
+        "locations": "Lieux",
+        "devices": "Appareils",
+        "browsers": "Navigateurs",
+        "os": "Systèmes",
+        "deviceTypes": "Appareils"
+      },
+      "referrers": {
+        "direct": "Accès direct",
+        "whatsapp": "WhatsApp",
+        "facebook": "Facebook",
+        "google": "Google",
+        "youtube": "YouTube",
+        "instagram": "Instagram",
+        "linkedin": "LinkedIn"
+      },
+      "deviceTypes": {
+        "mobile": "Mobile",
+        "desktop": "Ordinateur",
+        "tablet": "Tablette"
+      },
+      "pageNames": {
+        "/": "Accueil",
+        "/articles": "Tous les articles",
+        "/#books": "Livres",
+        "/#about": "À propos",
+        "/#contact": "Contact"
+      }
     },
     "messages": {
       "title": "Messages",

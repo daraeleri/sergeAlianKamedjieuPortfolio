@@ -204,12 +204,7 @@
     "listLabel": "JAFAN Ministries branches",
     "academyFoundedLabel": "Founded in",
     "academyPathLabel": "Study path",
-    "academyPath": [
-      "Certificate",
-      "Bachelor's",
-      "Master's",
-      "Doctorate"
-    ],
+    "academyPath": ["Certificate", "Bachelor's", "Master's", "Doctorate"],
     "ctaButton": "Visit the JAFAN website",
     "newTab": "(opens in a new tab)"
   },
@@ -232,37 +227,25 @@
         "slug": "le-saint-esprit-et-l-eglise",
         "title": "Le Saint-Esprit et l'Église",
         "description": "A study of the central place of the Paraclete in the community of believers.",
-        "tags": [
-          "Holy Spirit",
-          "Church"
-        ]
+        "tags": ["Holy Spirit", "Church"]
       },
       {
         "slug": "vers-une-plus-grande-manifestation-de-la-puissance-de-dieu",
         "title": "Vers une plus grande manifestation de la puissance de Dieu",
         "description": "A handbook for experiencing God's supernatural power in everyday life.",
-        "tags": [
-          "Power of God",
-          "Christian life"
-        ]
+        "tags": ["Power of God", "Christian life"]
       },
       {
         "slug": "le-leadership-et-la-puissance-du-saint-esprit",
         "title": "Le leadership et la puissance du Saint-Esprit",
         "description": "Where organisational leadership meets spiritual anointing.",
-        "tags": [
-          "Leadership",
-          "Holy Spirit"
-        ]
+        "tags": ["Leadership", "Holy Spirit"]
       },
       {
         "slug": "l-autorite-des-ecritures",
         "title": "L'autorité des Écritures",
         "description": "A plea for a return to the supremacy of the Word of God.",
-        "tags": [
-          "Scripture",
-          "Doctrine"
-        ]
+        "tags": ["Scripture", "Doctrine"]
       }
     ]
   },
@@ -395,11 +378,7 @@
   },
   "footer": {
     "statementLead": "Let’s",
-    "words": [
-      "carry",
-      "proclaim",
-      "share"
-    ],
+    "words": ["carry", "proclaim", "share"],
     "statementTail": "the Gospel to the nations, together.",
     "emailLabel": "Email",
     "copyEmail": "Copy email address",
@@ -618,7 +597,55 @@
       "avgRead": "Avg. reading time",
       "returning": "Returning readers",
       "bookOrders": "Book order requests",
-      "minutes": "{count} min"
+      "minutes": "{count} min",
+      "mapTitle": "Visitors around the world",
+      "mapDescription": "Each pin is a country your readers come from. Hover a pin for details.",
+      "readingNow": "{count} reading now",
+      "visitors": "visitors",
+      "ofVisitors": "{percent}% of visitors",
+      "topCity": "top city",
+      "live": "Live",
+      "liveEmpty": "Waiting for the next reader…",
+      "liveEvent": "Someone in {city} is reading",
+      "justNow": "now",
+      "tabs": {
+        "countries": "Countries",
+        "regions": "Regions",
+        "cities": "Cities",
+        "pages": "Pages",
+        "top": "Top",
+        "entered": "Entry",
+        "exited": "Exit",
+        "sources": "Sources",
+        "referrer": "Referrer",
+        "shares": "Shares",
+        "locations": "Locations",
+        "devices": "Devices",
+        "browsers": "Browsers",
+        "os": "OS",
+        "deviceTypes": "Devices"
+      },
+      "referrers": {
+        "direct": "Direct",
+        "whatsapp": "WhatsApp",
+        "facebook": "Facebook",
+        "google": "Google",
+        "youtube": "YouTube",
+        "instagram": "Instagram",
+        "linkedin": "LinkedIn"
+      },
+      "deviceTypes": {
+        "mobile": "Mobile",
+        "desktop": "Desktop",
+        "tablet": "Tablet"
+      },
+      "pageNames": {
+        "/": "Home",
+        "/articles": "All articles",
+        "/#books": "Books",
+        "/#about": "About",
+        "/#contact": "Contact"
+      }
     },
     "messages": {
       "title": "Messages",

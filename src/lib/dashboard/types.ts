@@ -57,3 +57,19 @@ export type InboxMessage = {
 };
 
 export type ShareChannel = "whatsapp" | "copy" | "email" | "native";
+
+/** A place on the visitor map; lat and lng are in degrees. */
+export type Country = {
+  code: string;
+  name: Bilingual;
+  visitors: number;
+  lat: number;
+  lng: number;
+};
+
+export type City = { name: string; country: string; visitors: number; lat: number; lng: number };
+
+export type Referrer =
+  "direct" | "whatsapp" | "facebook" | "google" | "youtube" | "instagram" | "linkedin";
+
+export type DeviceType = "mobile" | "desktop" | "tablet";
