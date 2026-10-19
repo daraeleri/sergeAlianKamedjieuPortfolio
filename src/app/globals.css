@@ -73,6 +73,16 @@ body {
   color: var(--foreground);
 }
 
+/* Pages that contain a `data-hide-scrollbar` element (the home page) hide the window
+ * scrollbar; scrolling still works by wheel, touch and keyboard. */
+html:has([data-hide-scrollbar]) {
+  scrollbar-width: none;
+}
+
+html:has([data-hide-scrollbar])::-webkit-scrollbar {
+  display: none;
+}
+
 /*
  * Scroll-revealed statement text (Fluid Glass style): each word brightens as the
  * paragraph scrolls through the viewport. Uses CSS scroll-driven animations, so no

@@ -32,7 +32,9 @@ export default async function HomePage() {
   const [books, articles] = await Promise.all([getBooks(locale), getArticles(locale)]);
 
   return (
-    <>
+    // `contents` keeps the sections laid out as direct children of <main>; the
+    // attribute hides the window scrollbar on this page (see globals.css).
+    <div data-hide-scrollbar className="contents">
       <Hero locale={locale} copy={dict.hero} />
       <AboutSection locale={locale} copy={dict.about} />
       <AcademicsSection copy={dict.academics} />
@@ -61,6 +63,6 @@ export default async function HomePage() {
         email={siteConfig.contactEmail}
         location={siteConfig.location}
       />
-    </>
+    </div>
   );
 }
