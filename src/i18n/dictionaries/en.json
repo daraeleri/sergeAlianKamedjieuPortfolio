@@ -255,13 +255,12 @@
     "headingHighlight": "for every season.",
     "intro": "Teachings and reflections by Prof. Kamedjieu on the Holy Spirit, leadership, the authority of Scripture and everyday life with God.",
     "listLabel": "Articles by Prof. Serge Alain Kamedjieu",
-    "searchLabel": "Search articles",
-    "searchPlaceholder": "Search by title or topic",
-    "searchButton": "Find now",
-    "empty": "No article matches “{query}”.",
-    "clear": "Clear search",
-    "results": "{count} articles found",
     "author": "Prof. S. A. Kamedjieu",
+    "seeAll": "See all articles",
+    "pageTitle": "All articles",
+    "pageIntro": "Every teaching and reflection by Prof. Kamedjieu on the Holy Spirit, leadership, the authority of Scripture and everyday life with God.",
+    "count": "{count} articles",
+    "backHome": "Back to home",
     "items": [
       {
         "slug": "plenitude-du-saint-esprit",

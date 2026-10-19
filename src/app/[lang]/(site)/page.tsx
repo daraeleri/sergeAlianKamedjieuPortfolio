@@ -8,10 +8,10 @@ import { Hero } from "@/components/site/hero";
 import { MinistriesSection } from "@/components/site/ministries-section";
 import { ReachSection } from "@/components/site/reach-section";
 import { siteConfig } from "@/config/site";
-import { articleMeta } from "@/content/articles";
 import { bookCovers } from "@/content/books";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
-import { pageMetadata, sectionHref } from "@/i18n/routing";
+import { localizePath, pageMetadata, sectionHref } from "@/i18n/routing";
+import { articleAvatar, getArticles } from "@/lib/articles";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
@@ -29,12 +29,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function HomePage() {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
-  const dateFormat = new Intl.DateTimeFormat(locale, {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  });
 
   return (
     <>
@@ -50,12 +44,9 @@ export default async function HomePage() {
       />
       <ArticlesSection
         copy={dict.articles}
-        avatar="/images/PersonaImage.png"
-        articles={dict.articles.items.flatMap((article) => {
-          const meta = articleMeta[article.slug];
-          if (!meta) return [];
-          return [{ ...article, ...meta, dateLabel: dateFormat.format(new Date(meta.date)) }];
-        })}
+        avatar={articleAvatar}
+        articles={getArticles(locale, dict.articles)}
+        allHref={localizePath(locale, "/articles")}
       />
       <ReachSection copy={dict.reach} />
       <ContactSection

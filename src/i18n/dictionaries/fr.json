@@ -255,13 +255,12 @@
     "headingHighlight": "pour chaque saison.",
     "intro": "Enseignements et réflexions du Prof. Kamedjieu sur le Saint-Esprit, le leadership, l’autorité des Écritures et la vie quotidienne avec Dieu.",
     "listLabel": "Articles du Prof. Serge Alain Kamedjieu",
-    "searchLabel": "Rechercher des articles",
-    "searchPlaceholder": "Rechercher par titre ou thème",
-    "searchButton": "Rechercher",
-    "empty": "Aucun article ne correspond à « {query} ».",
-    "clear": "Effacer la recherche",
-    "results": "{count} articles trouvés",
     "author": "Prof. S. A. Kamedjieu",
+    "seeAll": "Voir tous les articles",
+    "pageTitle": "Tous les articles",
+    "pageIntro": "Tous les enseignements et réflexions du Prof. Kamedjieu sur le Saint-Esprit, le leadership, l’autorité des Écritures et la vie quotidienne avec Dieu.",
+    "count": "{count} articles",
+    "backHome": "Retour à l’accueil",
     "items": [
       {
         "slug": "plenitude-du-saint-esprit",
