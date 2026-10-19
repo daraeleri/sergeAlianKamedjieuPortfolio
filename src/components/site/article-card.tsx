@@ -7,12 +7,14 @@ import {
   Users,
   type LucideIcon,
 } from "lucide-react";
+import type { Route } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import type { ArticleCardData, ArticleTheme } from "@/lib/articles";
 import { cn } from "@/lib/utils";
 
 /** Background and icon of the designed fallback, per theme (until articles have photos). */
-const themes: Record<ArticleTheme, { icon: LucideIcon; className: string }> = {
+export const articleThemes: Record<ArticleTheme, { icon: LucideIcon; className: string }> = {
   spirit: {
     icon: Flame,
     className:
@@ -44,20 +46,23 @@ const themes: Record<ArticleTheme, { icon: LucideIcon; className: string }> = {
 
 /**
  * One article: picture (or themed background) with a stepped white panel at the bottom
- * (category tab, title and excerpt, then an author and date strip). Will link to the
- * article detail page once it exists.
+ * (category tab, title and excerpt, then an author and date strip). The whole card links
+ * to the article: the title link is stretched over the card.
  */
 export function ArticleCard({
   article,
   author,
   avatar,
+  href,
 }: {
   article: ArticleCardData;
+  /** Article page. */
+  href: Route;
   author: string;
   /** Author photo for the byline. */
   avatar: string;
 }) {
-  const theme = themes[article.theme];
+  const theme = articleThemes[article.theme];
   const Icon = theme.icon;
 
   return (
@@ -99,13 +104,18 @@ export function ArticleCard({
       )}
 
       {/* Stepped white panel: category tab, content, byline */}
-      <div className="text-ink transition-transform duration-500 ease-out group-hover:-translate-y-1">
+      <div className="text-ink">
         <p className="inline-block rounded-t-xl bg-white px-3.5 pt-2.5 pb-1 text-xs font-medium text-brand-strong">
           {article.category}
         </p>
         <div className="rounded-xl rounded-tl-none rounded-bl-none bg-white px-4 pt-3 pb-4">
           <h3 className="font-heading text-lg leading-snug font-semibold tracking-tight text-balance">
-            {article.title}
+            <Link
+              href={href}
+              className="outline-none after:absolute after:inset-0 after:z-10 after:rounded-2xl focus-visible:after:ring-4 focus-visible:after:ring-brand/40"
+            >
+              {article.title}
+            </Link>
           </h3>
           <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-black/60">
             {article.excerpt}

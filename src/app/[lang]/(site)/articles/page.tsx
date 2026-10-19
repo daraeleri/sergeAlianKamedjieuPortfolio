@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArticleCard } from "@/components/site/article-card";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { pageMetadata, sectionHref } from "@/i18n/routing";
-import { articleAvatar, getArticles } from "@/lib/articles";
+import { articleAvatar, articleHref, getArticles } from "@/lib/articles";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
@@ -62,7 +62,12 @@ export default async function ArticlesPage() {
               className="flex animate-fade-up"
               style={{ animationDelay: `${120 + i * 60}ms` }}
             >
-              <ArticleCard article={article} author={copy.author} avatar={articleAvatar} />
+              <ArticleCard
+                article={article}
+                author={copy.author}
+                avatar={articleAvatar}
+                href={articleHref(locale, article.slug)}
+              />
             </li>
           ))}
         </ul>

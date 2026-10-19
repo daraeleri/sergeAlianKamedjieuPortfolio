@@ -261,6 +261,28 @@
     "pageIntro": "Tous les enseignements et réflexions du Prof. Kamedjieu sur le Saint-Esprit, le leadership, l’autorité des Écritures et la vie quotidienne avec Dieu.",
     "count": "{count} articles",
     "backHome": "Retour à l’accueil",
+    "detail": {
+      "backToArticles": "Tous les articles",
+      "minRead": "{count} min de lecture",
+      "published": "Publié le",
+      "toc": "Sur cette page",
+      "share": "Partager",
+      "copyLink": "Copier le lien",
+      "copied": "Lien copié",
+      "shareMore": "Plus d’options",
+      "emailShare": "Partager par e-mail",
+      "whatsappShare": "Partager sur WhatsApp",
+      "inviteTitle": "Invitez le Prof. Kamedjieu",
+      "inviteText": "Conférences, séminaires ou croisades : apportez cet enseignement à votre église ou à votre nation.",
+      "inviteCta": "Envoyer une invitation",
+      "aboutAuthor": "À propos de l’auteur",
+      "authorRole": "Pasteur · Professeur de théologie · Auteur",
+      "authorBio": "Théologien, évangéliste international et fondateur de JAFAN Ministries à Bafoussam, au Cameroun. Au service du ministère depuis 1996, il forme des leaders à la JAFAN Academy of World Evangelism.",
+      "authorLink": "En savoir plus",
+      "continueLabel": "Continuer la lecture",
+      "related": "Autres articles",
+      "readArticle": "Lire l’article"
+    },
     "items": [
       {
         "slug": "plenitude-du-saint-esprit",

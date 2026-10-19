@@ -1,6 +1,8 @@
 import { articleMeta, type ArticleTheme } from "@/content/articles";
+import type { Route } from "next";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
+import { localizePath } from "@/i18n/routing";
 
 export type { ArticleTheme };
 
@@ -15,6 +17,11 @@ export type ArticleCardData = Dictionary["articles"]["items"][number] & {
 
 /** Author photo used in article bylines. */
 export const articleAvatar = "/images/PersonaImage.png";
+
+/** Page of one article, e.g. "/fr/articles/leadership-serviteur". */
+export function articleHref(locale: Locale, slug: string): Route {
+  return localizePath(locale, `/articles/${slug}`);
+}
 
 /** Translated articles joined with their date, theme and image, newest first. */
 export function getArticles(locale: Locale, copy: Dictionary["articles"]): ArticleCardData[] {

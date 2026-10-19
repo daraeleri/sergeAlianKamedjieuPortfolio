@@ -10,7 +10,8 @@ import Link from "next/link";
 import { useRef } from "react";
 import { ArticleCard } from "@/components/site/article-card";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import type { ArticleCardData } from "@/lib/articles";
+import type { Locale } from "@/i18n/config";
+import { articleHref, type ArticleCardData } from "@/lib/articles";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
 
@@ -26,6 +27,7 @@ export function ArticlesSection({
   articles,
   avatar,
   allHref,
+  locale,
 }: {
   copy: Dictionary["articles"];
   /** Newest first. */
@@ -33,6 +35,7 @@ export function ArticlesSection({
   avatar: string;
   /** The page listing every article. */
   allHref: Route;
+  locale: Locale;
 }) {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -127,7 +130,12 @@ export function ArticlesSection({
         >
           {articles.slice(0, HOME_COUNT).map((article) => (
             <li key={article.slug} className="flex">
-              <ArticleCard article={article} author={copy.author} avatar={avatar} />
+              <ArticleCard
+                article={article}
+                author={copy.author}
+                avatar={avatar}
+                href={articleHref(locale, article.slug)}
+              />
             </li>
           ))}
         </ul>

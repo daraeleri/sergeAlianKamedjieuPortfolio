@@ -261,6 +261,28 @@
     "pageIntro": "Every teaching and reflection by Prof. Kamedjieu on the Holy Spirit, leadership, the authority of Scripture and everyday life with God.",
     "count": "{count} articles",
     "backHome": "Back to home",
+    "detail": {
+      "backToArticles": "All articles",
+      "minRead": "{count} min read",
+      "published": "Published on",
+      "toc": "On this page",
+      "share": "Share",
+      "copyLink": "Copy link",
+      "copied": "Link copied",
+      "shareMore": "More options",
+      "emailShare": "Share by email",
+      "whatsappShare": "Share on WhatsApp",
+      "inviteTitle": "Invite Prof. Kamedjieu",
+      "inviteText": "Conferences, seminars or crusades: bring this teaching to your church or nation.",
+      "inviteCta": "Send an invitation",
+      "aboutAuthor": "About the author",
+      "authorRole": "Pastor · Professor of Theology · Author",
+      "authorBio": "Theologian, international evangelist and founder of JAFAN Ministries in Bafoussam, Cameroon. He has served in ministry since 1996 and trains leaders through the JAFAN Academy of World Evangelism.",
+      "authorLink": "More about him",
+      "continueLabel": "Continue reading",
+      "related": "Other articles",
+      "readArticle": "Read the article"
+    },
     "items": [
       {
         "slug": "plenitude-du-saint-esprit",

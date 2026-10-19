@@ -47,6 +47,7 @@ export default async function HomePage() {
         avatar={articleAvatar}
         articles={getArticles(locale, dict.articles)}
         allHref={localizePath(locale, "/articles")}
+        locale={locale}
       />
       <ReachSection copy={dict.reach} />
       <ContactSection
