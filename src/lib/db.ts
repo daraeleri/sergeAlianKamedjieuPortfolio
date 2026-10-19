@@ -11,7 +11,18 @@ function createClient() {
   if (!connectionString) {
     throw new Error("DATABASE_URL is not set. Add it to .env.local (see .env.example).");
   }
-  return new PrismaClient({ adapter: new PrismaPg({ connectionString }) });
+  return new PrismaClient({
+    adapter: new PrismaPg({ connectionString: withVerifiedSsl(connectionString) }),
+  });
+}
+
+/**
+ * Neon URLs come with `sslmode=require`, which `pg` already treats as `verify-full` but
+ * warns about on every connection. Asking for `verify-full` keeps the same security and
+ * drops the warning.
+ */
+function withVerifiedSsl(url: string) {
+  return url.replace(/sslmode=(prefer|require|verify-ca)\b/, "sslmode=verify-full");
 }
 
 const globalForDb = globalThis as unknown as { db?: ReturnType<typeof createClient> };

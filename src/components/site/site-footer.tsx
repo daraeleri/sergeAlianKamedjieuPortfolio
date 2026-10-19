@@ -6,6 +6,7 @@ import { siteConfig, siteNav } from "@/config/site";
 import { localeLabels, locales } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { localizePath, sectionHref } from "@/i18n/routing";
+import { getBooks, getEmptySections } from "@/lib/content";
 import { currentYear } from "@/lib/current-year";
 
 /**
@@ -19,8 +20,9 @@ export async function SiteFooter() {
   const words = [...copy.words, copy.words[0]];
   const lead = copy.statementLead ? `${copy.statementLead} ` : "";
   const homeHref = localizePath(locale, "/");
+  const [books, empty] = await Promise.all([getBooks(locale), getEmptySections(locale)]);
   const menu = siteNav
-    .filter((item) => item.hash)
+    .filter((item) => item.hash && !empty.has(item.key))
     .map((item) => ({
       href: `${homeHref}#${item.hash}` as Route,
       label: dict.nav[item.key],
@@ -138,15 +140,17 @@ export async function SiteFooter() {
               ))}
             </ul>
           </FooterColumn>
-          <FooterColumn label={copy.booksLabel}>
-            <ul className="space-y-2">
-              {dict.books.items.slice(0, 4).map((book) => (
-                <li key={book.slug}>
-                  <FooterLink href={sectionHref(locale, "books")}>{book.title}</FooterLink>
-                </li>
-              ))}
-            </ul>
-          </FooterColumn>
+          {books.length ? (
+            <FooterColumn label={copy.booksLabel}>
+              <ul className="space-y-2">
+                {books.slice(0, 4).map((book) => (
+                  <li key={book.slug}>
+                    <FooterLink href={sectionHref(locale, "books")}>{book.title}</FooterLink>
+                  </li>
+                ))}
+              </ul>
+            </FooterColumn>
+          ) : null}
           <FooterColumn label={copy.languageLabel}>
             <ul className="space-y-2">
               {locales.map((l) => (

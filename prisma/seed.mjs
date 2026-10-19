@@ -13,7 +13,12 @@ import { bookCovers } from "../src/content/books.ts";
 config({ path: ".env.local", quiet: true });
 config({ quiet: true });
 
-const client = new pg.Client({ connectionString: process.env.DIRECT_URL });
+const client = new pg.Client({
+  connectionString: process.env.DIRECT_URL?.replace(
+    /sslmode=(prefer|require|verify-ca)\b/,
+    "sslmode=verify-full",
+  ),
+});
 await client.connect();
 
 let articles = 0;

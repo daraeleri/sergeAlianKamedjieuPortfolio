@@ -117,3 +117,12 @@ export async function getBooks(locale: Locale): Promise<PublicBook[]> {
     cover: row.cover ?? undefined,
   }));
 }
+
+/** Home-page sections with nothing published, so pages and menus can leave them out. */
+export async function getEmptySections(locale: Locale): Promise<Set<string>> {
+  const [books, articles] = await Promise.all([getBooks(locale), getArticles(locale)]);
+  const empty = new Set<string>();
+  if (!books.length) empty.add("books");
+  if (!articles.length) empty.add("articles");
+  return empty;
+}

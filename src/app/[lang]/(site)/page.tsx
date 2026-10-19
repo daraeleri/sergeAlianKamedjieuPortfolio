@@ -37,19 +37,24 @@ export default async function HomePage() {
       <AboutSection locale={locale} copy={dict.about} />
       <AcademicsSection copy={dict.academics} />
       <MinistriesSection copy={dict.ministries} websiteUrl={siteConfig.jafanUrl} />
-      <BooksSection
-        copy={dict.books}
-        orderHref={sectionHref(locale, "contact")}
-        author={siteConfig.name}
-        books={books}
-      />
-      <ArticlesSection
-        copy={dict.articles}
-        avatar={articleAvatar}
-        articles={articles}
-        allHref={localizePath(locale, "/articles")}
-        locale={locale}
-      />
+      {/* Books and articles only appear once something is published. */}
+      {books.length ? (
+        <BooksSection
+          copy={dict.books}
+          orderHref={sectionHref(locale, "contact")}
+          author={siteConfig.name}
+          books={books}
+        />
+      ) : null}
+      {articles.length ? (
+        <ArticlesSection
+          copy={dict.articles}
+          avatar={articleAvatar}
+          articles={articles}
+          allHref={localizePath(locale, "/articles")}
+          locale={locale}
+        />
+      ) : null}
       <ReachSection copy={dict.reach} />
       <ContactSection
         copy={dict.contact}

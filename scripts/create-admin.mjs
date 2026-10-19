@@ -81,7 +81,10 @@ if ((await askHidden("Repeat password: ")) !== password) {
 }
 
 const client = new pg.Client({
-  connectionString: process.env.DIRECT_URL ?? process.env.DATABASE_URL,
+  connectionString: (process.env.DIRECT_URL ?? process.env.DATABASE_URL)?.replace(
+    /sslmode=(prefer|require|verify-ca)\b/,
+    "sslmode=verify-full",
+  ),
 });
 await client.connect();
 const passwordHash = await hashPassword(password);

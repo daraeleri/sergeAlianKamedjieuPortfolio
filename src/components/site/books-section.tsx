@@ -4,9 +4,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import { ArrowRight, BookOpen, ChevronDown } from "lucide-react";
+import { BookOpen, ChevronDown } from "lucide-react";
 import type { Route } from "next";
-import Link from "next/link";
 import { useId, useRef, useState } from "react";
 import { BookCard, type BookCardBook } from "@/components/site/book-card";
 import type { Dictionary } from "@/i18n/get-dictionary";
@@ -29,9 +28,9 @@ const FEATURED_COUNT = 4;
 const tones = ["brand", "ink", "light"] as const;
 
 /**
- * "Books" as a shelf: a split header (heading on the left, count and order button on the
- * right) above a row of books standing on light cards. With more than four books, the
- * rest stay hidden until "See all N books" is pressed.
+ * "Books" as a shelf: a split header (heading on the left, count on the right) above a
+ * row of book covers. With more than four books, a "See all N books" button in the
+ * header reveals the rest.
  */
 export function BooksSection({ copy, books, orderHref, author }: BooksSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -131,16 +130,24 @@ export function BooksSection({ copy, books, orderHref, author }: BooksSectionPro
                 {copy.statNote}
               </span>
             </p>
-            <Link
-              href={orderHref}
-              className="group inline-flex items-center gap-2 self-start rounded-xl bg-brand px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-strong md:self-end"
-            >
-              {copy.orderCta}
-              <ArrowRight
-                aria-hidden
-                className="size-4 transition-transform group-hover:translate-x-0.5"
-              />
-            </Link>
+            {hasMore ? (
+              <button
+                type="button"
+                onClick={toggleMore}
+                aria-expanded={expanded}
+                aria-controls={listId}
+                className="inline-flex items-center gap-2 self-start rounded-xl bg-brand px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-strong md:self-end"
+              >
+                {expanded ? copy.seeLess : copy.seeMore.replace("{count}", String(books.length))}
+                <ChevronDown
+                  aria-hidden
+                  className={cn(
+                    "size-4 transition-transform duration-300",
+                    expanded && "rotate-180",
+                  )}
+                />
+              </button>
+            ) : null}
           </div>
         </div>
 
@@ -174,24 +181,6 @@ export function BooksSection({ copy, books, orderHref, author }: BooksSectionPro
             </li>
           ))}
         </ul>
-
-        {hasMore ? (
-          <div className="mt-12 flex justify-center">
-            <button
-              type="button"
-              onClick={toggleMore}
-              aria-expanded={expanded}
-              aria-controls={listId}
-              className="inline-flex items-center gap-2 rounded-xl bg-mist px-5 py-3 text-sm font-medium transition-colors hover:bg-brand-tint hover:text-brand-strong"
-            >
-              {expanded ? copy.seeLess : copy.seeMore.replace("{count}", String(books.length))}
-              <ChevronDown
-                aria-hidden
-                className={cn("size-4 transition-transform duration-300", expanded && "rotate-180")}
-              />
-            </button>
-          </div>
-        ) : null}
       </div>
     </section>
   );
