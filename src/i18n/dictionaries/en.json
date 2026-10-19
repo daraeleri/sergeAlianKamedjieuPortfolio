@@ -9,6 +9,7 @@
     "academics": "Academics",
     "ministries": "Ministries",
     "books": "Books",
+    "articles": "Articles",
     "contact": "Contact",
     "main": "Main",
     "language": "Language",
@@ -245,6 +246,58 @@
         "title": "L'autorité des Écritures",
         "description": "A plea for a return to the supremacy of the Word of God.",
         "tags": ["Scripture", "Doctrine"]
+      }
+    ]
+  },
+  "articles": {
+    "label": "Latest articles",
+    "headingLead": "Words of faith",
+    "headingHighlight": "for every season.",
+    "intro": "Teachings and reflections by Prof. Kamedjieu on the Holy Spirit, leadership, the authority of Scripture and everyday life with God.",
+    "listLabel": "Articles by Prof. Serge Alain Kamedjieu",
+    "searchLabel": "Search articles",
+    "searchPlaceholder": "Search by title or topic",
+    "searchButton": "Find now",
+    "empty": "No article matches “{query}”.",
+    "clear": "Clear search",
+    "results": "{count} articles found",
+    "author": "Prof. S. A. Kamedjieu",
+    "items": [
+      {
+        "slug": "plenitude-du-saint-esprit",
+        "category": "Holy Spirit",
+        "title": "Walking in the fullness of the Holy Spirit",
+        "excerpt": "What it means to be led by the Spirit day after day, and how His presence transforms the believer and the Church."
+      },
+      {
+        "slug": "leadership-serviteur",
+        "category": "Leadership",
+        "title": "Servant leadership: leading the way Christ led",
+        "excerpt": "Authority in the Kingdom is measured by service. Principles for pastors and leaders who want to lead like Jesus."
+      },
+      {
+        "slug": "autorite-des-ecritures-aujourd-hui",
+        "category": "Scripture",
+        "title": "Why the authority of Scripture still matters today",
+        "excerpt": "In an age of opinions, the Word of God remains the final reference for faith, doctrine and life."
+      },
+      {
+        "slug": "de-bafoussam-aux-nations",
+        "category": "Mission",
+        "title": "From Bafoussam to the nations: lessons from the field",
+        "excerpt": "Stories and lessons from thirty years of crusades and conferences carrying the Gospel across borders."
+      },
+      {
+        "slug": "foi-esperance-amour",
+        "category": "Christian life",
+        "title": "Faith, hope and love in everyday life",
+        "excerpt": "Three virtues that never pass away, and simple ways to live them at home, at work and in the church."
+      },
+      {
+        "slug": "former-des-leaders",
+        "category": "Training",
+        "title": "Why every church needs well-trained leaders",
+        "excerpt": "The vision behind the JAFAN Academy: equipping men and women to serve with knowledge and anointing."
       }
     ]
   },

@@ -9,6 +9,7 @@
     "academics": "Parcours",
     "ministries": "Ministères",
     "books": "Livres",
+    "articles": "Articles",
     "contact": "Contact",
     "main": "Principal",
     "language": "Langue",
@@ -245,6 +246,58 @@
         "title": "L'autorité des Écritures",
         "description": "Un plaidoyer pour le retour à la suprématie de la Parole de Dieu.",
         "tags": ["Écritures", "Doctrine"]
+      }
+    ]
+  },
+  "articles": {
+    "label": "Derniers articles",
+    "headingLead": "Des paroles de foi",
+    "headingHighlight": "pour chaque saison.",
+    "intro": "Enseignements et réflexions du Prof. Kamedjieu sur le Saint-Esprit, le leadership, l’autorité des Écritures et la vie quotidienne avec Dieu.",
+    "listLabel": "Articles du Prof. Serge Alain Kamedjieu",
+    "searchLabel": "Rechercher des articles",
+    "searchPlaceholder": "Rechercher par titre ou thème",
+    "searchButton": "Rechercher",
+    "empty": "Aucun article ne correspond à « {query} ».",
+    "clear": "Effacer la recherche",
+    "results": "{count} articles trouvés",
+    "author": "Prof. S. A. Kamedjieu",
+    "items": [
+      {
+        "slug": "plenitude-du-saint-esprit",
+        "category": "Saint-Esprit",
+        "title": "Marcher dans la plénitude du Saint-Esprit",
+        "excerpt": "Ce que signifie être conduit par l’Esprit jour après jour, et comment Sa présence transforme le croyant et l’Église."
+      },
+      {
+        "slug": "leadership-serviteur",
+        "category": "Leadership",
+        "title": "Le leadership serviteur : diriger comme le Christ",
+        "excerpt": "Dans le Royaume, l’autorité se mesure au service. Des principes pour les pasteurs et leaders qui veulent diriger comme Jésus."
+      },
+      {
+        "slug": "autorite-des-ecritures-aujourd-hui",
+        "category": "Écritures",
+        "title": "Pourquoi l’autorité des Écritures compte encore aujourd’hui",
+        "excerpt": "À l’ère des opinions, la Parole de Dieu reste la référence ultime pour la foi, la doctrine et la vie."
+      },
+      {
+        "slug": "de-bafoussam-aux-nations",
+        "category": "Mission",
+        "title": "De Bafoussam aux nations : leçons du terrain",
+        "excerpt": "Récits et leçons de trente années de croisades et de conférences qui portent l’Évangile au-delà des frontières."
+      },
+      {
+        "slug": "foi-esperance-amour",
+        "category": "Vie chrétienne",
+        "title": "Foi, espérance et amour au quotidien",
+        "excerpt": "Trois vertus qui ne passent jamais, et des façons simples de les vivre à la maison, au travail et à l’église."
+      },
+      {
+        "slug": "former-des-leaders",
+        "category": "Formation",
+        "title": "Pourquoi chaque église a besoin de leaders bien formés",
+        "excerpt": "La vision de la JAFAN Academy : équiper des hommes et des femmes pour servir avec connaissance et onction."
       }
     ]
   },
